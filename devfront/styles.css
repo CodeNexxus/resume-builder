@@ -1,3 +1,9 @@
+body {
+    li {
+        line-height: 2rem;
+    }
+}
+
 .background {
     display: flex;
     justify-content: center;
@@ -41,6 +47,18 @@
     display: flex;
 }
 
+.profile-img {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    img {
+        height: 8rem;
+        width: 8rem;
+        border-radius: 4rem;
+    }
+}
+
 .base-info {
     width: 30%;
     padding: 1rem;
@@ -79,4 +97,20 @@
 
 .t3 .additional-info {
     background-color: #FFE6C7;
+}
+
+hr.rounded {
+    border-top: 2px solid #bbb;
+    border-radius: 1px;
+}
+
+.non-styled-list {
+    margin-inline-start: 2rem;
+}
+
+.hard-skills {
+    ul {
+        gap: 2rem;
+        display: flex;
+    }
 }
