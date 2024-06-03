@@ -18,19 +18,20 @@ summary: 'summary:' TEXT;
 
 skills: hard_skills soft_skills? languages?;
 hard_skills: 'hard_skills:' hard_skill_list;
-hard_skill_list: hard_skill (NEWLINE hard_skill)*;
+hard_skill_list: hard_skill*;
 hard_skill: TEXT ',' TEXT;
 
-soft_skills: 'soft_skills:' NEWLINE soft_skill_list;
-soft_skill_list: soft_skill (NEWLINE soft_skill)*;
-soft_skill: TEXT ',' RATING;
+soft_skills: 'soft_skills:' soft_skill_list;
+soft_skill_list: soft_skill*;
+soft_skill: TEXT;
 
-languages: 'languages:' NEWLINE language_list;
-language_list: language (NEWLINE language)*;
+languages: 'languages:' language_list;
+language_list: language*;
 language: TEXT;
 
-certificates: 'certificates:' NEWLINE certificate (NEWLINE NEWLINE certificate)*;
-certificate: 'name:' TEXT NEWLINE 'institution:' TEXT NEWLINE 'link:' URL NEWLINE;
+certificates: 'certificates:' certificate_list;
+certificate_list: certificate*;
+certificate: 'name:' TEXT 'institution:' TEXT 'link:' URL;
 
 socials: 'socials:' NEWLINE social_list;
 social_list: social (NEWLINE social)*;
@@ -48,6 +49,10 @@ educations: 'educations:' NEWLINE education (NEWLINE NEWLINE education)*;
 education: 'institution:' TEXT NEWLINE 'degree:' TEXT NEWLINE 'start_date:' TEXT NEWLINE 'end_date:' TEXT NEWLINE;
 
 TEXT: [a-zA-Z0-9_./\- ]+;
+//ID: LETTER (LETTER | DIGIT)*;
+//fragment DIGIT: [0-9];
+//fragment LETTER: [a-zA-Z];
+
 //DATE: [0-9]{4} '-' [0-9]{2} '-' [0-9]{2};
 PHONE: ' '* '+98' [0-9]+;
 EMAIL: ' '* [a-zA-Z0-9_.+-]+ '@' [a-zA-Z0-9-]+ '.' [a-zA-Z0-9-.]+;
