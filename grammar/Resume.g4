@@ -33,8 +33,8 @@ certificates: 'certificates:' NEWLINE* certificate_list ;
 certificate_list:  certificate+;
 certificate: 'name:' TEXT+ NEWLINE* 'institution:' TEXT+ NEWLINE* 'link:' URL NEWLINE* ;
 
-socials: 'socials:' NEWLINE social_list;
-social_list: social (NEWLINE social)*;
+socials: 'socials:' social_list;
+social_list: social;
 social: TEXT ':' URL;
 
 projects: 'projects:' NEWLINE* project (NEWLINE NEWLINE project)*;

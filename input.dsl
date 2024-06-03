@@ -4,7 +4,7 @@ job_title: Software Engineer
 phone: +989303016386
 city: New York
 gmail: johndoe@gmail.com
-birth: 2000/10/11
+birth: 2000-10-11
 
 summary: Experienced software engineer with a passion for developing innovative programs that expedite the efficiency and effectiveness of organizational success. Well-versed in technology and writing code to create systems that are reliable and user-friendly.
 
