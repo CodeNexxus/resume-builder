@@ -1,0 +1,28 @@
+.background {
+    display: flex;
+    justify-content: center;
+    margin: 0;
+}
+
+.t1.background {
+    background-image: linear-gradient(to bottom right, #8DECB4, #41B06E);
+}
+
+.t2.background {
+    background-image: linear-gradient(to bottom right, #EA906C, white);
+}
+
+.t3.background {
+    background-image: linear-gradient(to bottom right, #FF6000, #FFA559);
+}
+
+.container {
+    background-color: white;
+    width: 70%;
+    min-width: 50rem;
+    display: flex;
+}
+
+.base-info {
+    background-color: skyblue;
+}
