@@ -1,0 +1,6 @@
+# ignored files
+.idea
+.venv
+venv
+env
+.env
