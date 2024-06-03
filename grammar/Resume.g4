@@ -33,9 +33,9 @@ certificates: 'certificates:' NEWLINE* certificate_list ;
 certificate_list:  certificate+;
 certificate: 'name:' TEXT+ NEWLINE* 'institution:' TEXT+ NEWLINE* 'link:' URL NEWLINE* ;
 
-socials: 'socials:' social_list;
-social_list: social;
-social: TEXT ':' URL;
+socials: 'socials:' NEWLINE social_list;
+social_list: social*;
+social: TEXT ':' URL NEWLINE;
 
 projects: 'projects:' NEWLINE* project (NEWLINE NEWLINE project)*;
 project: 'title:' TEXT+ NEWLINE* 'description:' TEXT+ NEWLINE* 'link:' URL NEWLINE*;
