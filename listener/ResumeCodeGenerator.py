@@ -1,9 +1,9 @@
 class ResumeDslCodeGenerator:
     def __init__(self):
-        self.non_operands = ['program', 'initiate_game',
-                             'bomb_location', 'output',
-                             'bomb_placements', 'begin_scope_operator',
-                             'end_scope_operator', 'hint']
+        self.non_operands = ['resume','personal_info', 'summary',
+                             'skills', 'certificates',
+                             'socials', 'projects',
+                             'work_experience', 'educations']
         self.operand_stack = []
         self.code_stack = []
 
@@ -24,32 +24,79 @@ class ResumeDslCodeGenerator:
         for code_string in self.code_stack:
             if code_string is not None:
                 result += code_string
-        return result
+
+
+        base_html = (
+            "<html><head><title>Resume</title><link rel=\"stylesheet\" type=\"text/css\" href=\"styles.css\"></head>"
+            "<body class=\"t1 background\"><section class=\"container\">"
+            "<div class=\"header-name\"><h1>John Doe</h1></div>"
+            "<div class=\"information\">HERE</div>"
+            "</section></body></html>"
+        )
+        return base_html.replace("HERE", result)
 
     def generate_code_based_on_non_operand(self, item):
-        if item == "program":
-            self.generate_program()
+        if item == "personal_info":
+            self.generate_personal_info()
 
-        elif item == "output":
-            self.set_output_type()
+        elif item == "summary":
+            self.generate_summrary()
 
-        elif item == "initiate_game":
-            self.generate_initiate_game()
+        elif item == "skills":
+            self.generate_skills()
 
-        elif item == "bomb_location":
-            self.generate_bomb()
+        elif item == "certificates":
+            self.generate_certificates()
 
-        elif item == "bomb_placements":
-            self.generate_bomb_placements()
+        elif item == "socials":
+            self.generate_socials()
 
-        elif item == "begin_scope_operator":
-            self.generate_begin_scope_operator()
+        elif item == "projects":
+            self.generate_projects()
 
-        elif item == "end_scope_operator":
-            self.generate_end_scope_operator()
+        elif item == "work_experience":
+            self.generate_work_experience()
 
-        elif item == "hint":
-            self.generate_hint()
+        elif item == "educations":
+            self.generate_educations()
+
+    def generate_personal_info(self):
+        name = self.operand_stack.pop()
+        surname = self.operand_stack.pop()
+
+        job_title = self.operand_stack.pop()
+        phone = self.operand_stack.pop()
+
+        city = self.operand_stack.pop()
+        gmail = self.operand_stack.pop()
+
+        birth = self.operand_stack.pop()
+
+        code_string = f"bombs = [[False for y in range({height})] for x in range({width})]\n"
+        self.code_stack.append(code_string)
+    def generate_summrary(self):
+        pass
+    def generate_skills(self):
+        pass
+    def generate_certificates(self):
+        pass
+    def generate_socials(self):
+        pass
+    def generate_projects(self):
+        pass
+    def generate_work_experience(self):
+        pass
+    def generate_educations(self):
+        pass
+
+
+
+
+
+
+
+
+
 
     def generate_program(self):
         placements_code = self.code_stack.pop()
@@ -112,37 +159,3 @@ class ResumeDslCodeGenerator:
     def generate_hint(self):
         self.code_stack.append(f"##COMPILER_PARAM:::hint:::{self.operand_stack.pop()}")
 
-    def generate_hint_code(self):
-        return (
-            "hints = [[0 for y in range(len(bombs[0]))] for x in range(len(bombs))]\n"
-            "for i in range(len(bombs)):\n"
-            "\tfor j in range(len(bombs[i])):\n"
-            "\t\tif bombs[i][j]:\n"
-            "\t\t\tfor x in range(max(0, i-1), min(len(bombs), i+2)):\n"
-            "\t\t\t\tfor y in range(max(0, j-1), min(len(bombs[i]), j+2)):\n"
-            "\t\t\t\t\thints[x][y] += 1\n"
-        )
-
-    def generate_print_code(self, hints_enabled):
-        if hints_enabled:
-            return (
-                "for row in range(len(bombs)):\n"
-                "\tfor col in range(len(bombs[row])):\n"
-                "\t\tif bombs[row][col]:\n"
-                "\t\t\tprint('*', end ='')\n"
-                "\t\telif hints[row][col] > 0:\n"
-                "\t\t\tprint(hints[row][col], end ='')\n"
-                "\t\telse:\n"
-                "\t\t\tprint('#', end ='')\n"
-                "\tprint()\n"
-            )
-        else:
-            return (
-                "for row in bombs:\n"
-                "\tfor column in row:\n"
-                "\t\tif not column:\n"
-                "\t\t\tprint('#', end ='')\n"
-                "\t\telse:\n"
-                "\t\t\tprint('*', end ='')\n"
-                "\tprint()\n"
-            )
