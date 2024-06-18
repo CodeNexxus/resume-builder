@@ -1,4 +1,4 @@
-class CustomExampleDSLCodeGenerator:
+class ResumeDslCodeGenerator:
     def __init__(self):
         self.non_operands = ['program', 'initiate_game',
                              'bomb_location', 'output',
