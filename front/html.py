@@ -1,7 +1,7 @@
 from antlr4 import *
 from gen.ResumeLexer import ResumeLexer
 from gen.ResumeParser import ResumeParser
-from listener.resume_builder_listener import ResumeBuilderListener
+from listener.resume_builder_listener import ResumeBuilderListener,ResumeListener
 
 
 def get_html(self):
