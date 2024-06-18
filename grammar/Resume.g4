@@ -30,7 +30,7 @@ language_list: language*;
 language: TEXT NEWLINE;
 
 certificates: 'certificates:' NEWLINE* certificate_list ;
-certificate_list:  certificate+;
+certificate_list:  certificate*;
 certificate: 'name:' TEXT+ NEWLINE* 'institution:' TEXT+ NEWLINE* 'link:' URL NEWLINE* ;
 
 socials: 'socials:' NEWLINE social_list;
