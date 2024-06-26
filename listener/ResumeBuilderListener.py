@@ -1,28 +1,15 @@
 from ast_code.ast import AST
 from ast_code.make_ast_subtree import make_ast_subtree
 from gen.ResumeListener import ResumeListener
-from gen.ResumeParser import ResumeParser
-
-
-# class ResumeBuilderListener(ResumeListener):
-#     def __init__(self):
-#         self.sections = []
-#         self.current_section = {}
-#
-#     def enterSection(self, ctx: ResumeParser.SectionContext):
-#         self.current_section = {'title': ctx.ID().getText(), 'entries': []}
-#         self.sections.append(self.current_section)
-#
-#     def exitEntry(self, ctx: ResumeParser.EntryContext):
-#         self.current_section['entries'].append((ctx.ID().getText(), ctx.STRING().getText()))
-#
-#     def exitText(self, ctx: ResumeParser.TextContext):
-#         self.current_section['entries'].append(('text', ctx.STRING().getText()))
-
 
 class ResumeListener(ResumeListener):
     def __init__(self, rule_names):
-        self.overridden_rules = ['resume', 'personal_info', 'summary']
+        self.overridden_rules = ['resume', 'personal_info', 'name',
+                                 'surname', 'job_title', 'birth',
+                                 'phone', 'city', 'gmail', 'summary',
+                                 'hard_skills', 'soft_skills', 'soft_skill',
+                                 'languages', 'language', 'certificate',
+                                 ]
         self.rule_names = rule_names
         self.ast = AST()
 
@@ -37,6 +24,50 @@ class ResumeListener(ResumeListener):
     def exitPersonal_info(self, ctx):
         make_ast_subtree(self.ast, ctx, "personal_info", keep_node=True)
 
+    def exitName(self, ctx):
+        make_ast_subtree(self.ast, ctx, "name", keep_node=True)
+
+    def exitSurname(self, ctx):
+        make_ast_subtree(self.ast, ctx, "surname", keep_node=True)
+
+    def exitJob_title(self, ctx):
+        make_ast_subtree(self.ast, ctx, "job_title", keep_node=True)
+
+    def exitBirth(self, ctx):
+        make_ast_subtree(self.ast, ctx, "birth", keep_node=True)
+
+    def exitPhone(self, ctx):
+        make_ast_subtree(self.ast, ctx, "phone", keep_node=True)
+
+    def exitCity(self, ctx):
+        make_ast_subtree(self.ast, ctx, "city", keep_node=True)
+
+    def exitGmail(self, ctx):
+        make_ast_subtree(self.ast, ctx, "gmail", keep_node=True)
+
     def exitSummary(self, ctx):
-        ctx.compound = True
         make_ast_subtree(self.ast, ctx, "summary", keep_node=True)
+
+    def exitHard_skills(self, ctx):
+        ctx.compound = True
+        make_ast_subtree(self.ast, ctx, "hard_skills", keep_node=True)
+
+    def exitSoft_skills(self, ctx):
+        ctx.compound = True
+        make_ast_subtree(self.ast, ctx, "soft_skills", keep_node=True)
+
+    def exitSoft_skill(self, ctx):
+        make_ast_subtree(self.ast, ctx, "soft_skill", keep_node=True)
+
+    def exitLanguages(self, ctx):
+        ctx.compound = True
+        make_ast_subtree(self.ast, ctx, "languages", keep_node=True)
+
+    def exitLanguage(self, ctx):
+        make_ast_subtree(self.ast, ctx, "language", keep_node=True)
+
+    def exitCertificates(self, ctx):
+        make_ast_subtree(self.ast, ctx, "certificates", keep_node=True)
+
+    def exitCertificate(self, ctx):
+        make_ast_subtree(self.ast, ctx, "certificate", keep_node=True)

@@ -1,4 +1,4 @@
-# Generated from C:/Users/pars/Desktop/code nuxxus/grammar/Resume.g4 by ANTLR 4.13.1
+# Generated from D:/Uni/semester_6/Compiler/project/resume-builder/grammar/Resume.g4 by ANTLR 4.13.1
 from antlr4 import *
 if "." in __name__:
     from .ResumeParser import ResumeParser
@@ -107,6 +107,15 @@ class ResumeListener(ParseTreeListener):
         pass
 
 
+    # Enter a parse tree produced by ResumeParser#value.
+    def enterValue(self, ctx:ResumeParser.ValueContext):
+        pass
+
+    # Exit a parse tree produced by ResumeParser#value.
+    def exitValue(self, ctx:ResumeParser.ValueContext):
+        pass
+
+
     # Enter a parse tree produced by ResumeParser#skills.
     def enterSkills(self, ctx:ResumeParser.SkillsContext):
         pass
@@ -125,21 +134,30 @@ class ResumeListener(ParseTreeListener):
         pass
 
 
-    # Enter a parse tree produced by ResumeParser#hard_skill_list.
-    def enterHard_skill_list(self, ctx:ResumeParser.Hard_skill_listContext):
-        pass
-
-    # Exit a parse tree produced by ResumeParser#hard_skill_list.
-    def exitHard_skill_list(self, ctx:ResumeParser.Hard_skill_listContext):
-        pass
-
-
     # Enter a parse tree produced by ResumeParser#hard_skill.
     def enterHard_skill(self, ctx:ResumeParser.Hard_skillContext):
         pass
 
     # Exit a parse tree produced by ResumeParser#hard_skill.
     def exitHard_skill(self, ctx:ResumeParser.Hard_skillContext):
+        pass
+
+
+    # Enter a parse tree produced by ResumeParser#hard_skill_name.
+    def enterHard_skill_name(self, ctx:ResumeParser.Hard_skill_nameContext):
+        pass
+
+    # Exit a parse tree produced by ResumeParser#hard_skill_name.
+    def exitHard_skill_name(self, ctx:ResumeParser.Hard_skill_nameContext):
+        pass
+
+
+    # Enter a parse tree produced by ResumeParser#rate.
+    def enterRate(self, ctx:ResumeParser.RateContext):
+        pass
+
+    # Exit a parse tree produced by ResumeParser#rate.
+    def exitRate(self, ctx:ResumeParser.RateContext):
         pass
 
 
@@ -152,21 +170,21 @@ class ResumeListener(ParseTreeListener):
         pass
 
 
-    # Enter a parse tree produced by ResumeParser#soft_skill_list.
-    def enterSoft_skill_list(self, ctx:ResumeParser.Soft_skill_listContext):
-        pass
-
-    # Exit a parse tree produced by ResumeParser#soft_skill_list.
-    def exitSoft_skill_list(self, ctx:ResumeParser.Soft_skill_listContext):
-        pass
-
-
     # Enter a parse tree produced by ResumeParser#soft_skill.
     def enterSoft_skill(self, ctx:ResumeParser.Soft_skillContext):
         pass
 
     # Exit a parse tree produced by ResumeParser#soft_skill.
     def exitSoft_skill(self, ctx:ResumeParser.Soft_skillContext):
+        pass
+
+
+    # Enter a parse tree produced by ResumeParser#soft_skill_name.
+    def enterSoft_skill_name(self, ctx:ResumeParser.Soft_skill_nameContext):
+        pass
+
+    # Exit a parse tree produced by ResumeParser#soft_skill_name.
+    def exitSoft_skill_name(self, ctx:ResumeParser.Soft_skill_nameContext):
         pass
 
 
@@ -179,21 +197,21 @@ class ResumeListener(ParseTreeListener):
         pass
 
 
-    # Enter a parse tree produced by ResumeParser#language_list.
-    def enterLanguage_list(self, ctx:ResumeParser.Language_listContext):
-        pass
-
-    # Exit a parse tree produced by ResumeParser#language_list.
-    def exitLanguage_list(self, ctx:ResumeParser.Language_listContext):
-        pass
-
-
     # Enter a parse tree produced by ResumeParser#language.
     def enterLanguage(self, ctx:ResumeParser.LanguageContext):
         pass
 
     # Exit a parse tree produced by ResumeParser#language.
     def exitLanguage(self, ctx:ResumeParser.LanguageContext):
+        pass
+
+
+    # Enter a parse tree produced by ResumeParser#language_name.
+    def enterLanguage_name(self, ctx:ResumeParser.Language_nameContext):
+        pass
+
+    # Exit a parse tree produced by ResumeParser#language_name.
+    def exitLanguage_name(self, ctx:ResumeParser.Language_nameContext):
         pass
 
 
@@ -206,21 +224,30 @@ class ResumeListener(ParseTreeListener):
         pass
 
 
-    # Enter a parse tree produced by ResumeParser#certificate_list.
-    def enterCertificate_list(self, ctx:ResumeParser.Certificate_listContext):
-        pass
-
-    # Exit a parse tree produced by ResumeParser#certificate_list.
-    def exitCertificate_list(self, ctx:ResumeParser.Certificate_listContext):
-        pass
-
-
     # Enter a parse tree produced by ResumeParser#certificate.
     def enterCertificate(self, ctx:ResumeParser.CertificateContext):
         pass
 
     # Exit a parse tree produced by ResumeParser#certificate.
     def exitCertificate(self, ctx:ResumeParser.CertificateContext):
+        pass
+
+
+    # Enter a parse tree produced by ResumeParser#institution.
+    def enterInstitution(self, ctx:ResumeParser.InstitutionContext):
+        pass
+
+    # Exit a parse tree produced by ResumeParser#institution.
+    def exitInstitution(self, ctx:ResumeParser.InstitutionContext):
+        pass
+
+
+    # Enter a parse tree produced by ResumeParser#url.
+    def enterUrl(self, ctx:ResumeParser.UrlContext):
+        pass
+
+    # Exit a parse tree produced by ResumeParser#url.
+    def exitUrl(self, ctx:ResumeParser.UrlContext):
         pass
 
 

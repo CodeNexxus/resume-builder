@@ -1,4 +1,4 @@
-# Generated from C:/Users/pars/Desktop/code nuxxus/grammar/Resume.g4 by ANTLR 4.13.1
+# Generated from D:/Uni/semester_6/Compiler/project/resume-builder/grammar/Resume.g4 by ANTLR 4.13.1
 from antlr4 import *
 if "." in __name__:
     from .ResumeParser import ResumeParser
@@ -64,6 +64,11 @@ class ResumeVisitor(ParseTreeVisitor):
         return self.visitChildren(ctx)
 
 
+    # Visit a parse tree produced by ResumeParser#value.
+    def visitValue(self, ctx:ResumeParser.ValueContext):
+        return self.visitChildren(ctx)
+
+
     # Visit a parse tree produced by ResumeParser#skills.
     def visitSkills(self, ctx:ResumeParser.SkillsContext):
         return self.visitChildren(ctx)
@@ -74,13 +79,18 @@ class ResumeVisitor(ParseTreeVisitor):
         return self.visitChildren(ctx)
 
 
-    # Visit a parse tree produced by ResumeParser#hard_skill_list.
-    def visitHard_skill_list(self, ctx:ResumeParser.Hard_skill_listContext):
+    # Visit a parse tree produced by ResumeParser#hard_skill.
+    def visitHard_skill(self, ctx:ResumeParser.Hard_skillContext):
         return self.visitChildren(ctx)
 
 
-    # Visit a parse tree produced by ResumeParser#hard_skill.
-    def visitHard_skill(self, ctx:ResumeParser.Hard_skillContext):
+    # Visit a parse tree produced by ResumeParser#hard_skill_name.
+    def visitHard_skill_name(self, ctx:ResumeParser.Hard_skill_nameContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by ResumeParser#rate.
+    def visitRate(self, ctx:ResumeParser.RateContext):
         return self.visitChildren(ctx)
 
 
@@ -89,13 +99,13 @@ class ResumeVisitor(ParseTreeVisitor):
         return self.visitChildren(ctx)
 
 
-    # Visit a parse tree produced by ResumeParser#soft_skill_list.
-    def visitSoft_skill_list(self, ctx:ResumeParser.Soft_skill_listContext):
+    # Visit a parse tree produced by ResumeParser#soft_skill.
+    def visitSoft_skill(self, ctx:ResumeParser.Soft_skillContext):
         return self.visitChildren(ctx)
 
 
-    # Visit a parse tree produced by ResumeParser#soft_skill.
-    def visitSoft_skill(self, ctx:ResumeParser.Soft_skillContext):
+    # Visit a parse tree produced by ResumeParser#soft_skill_name.
+    def visitSoft_skill_name(self, ctx:ResumeParser.Soft_skill_nameContext):
         return self.visitChildren(ctx)
 
 
@@ -104,13 +114,13 @@ class ResumeVisitor(ParseTreeVisitor):
         return self.visitChildren(ctx)
 
 
-    # Visit a parse tree produced by ResumeParser#language_list.
-    def visitLanguage_list(self, ctx:ResumeParser.Language_listContext):
+    # Visit a parse tree produced by ResumeParser#language.
+    def visitLanguage(self, ctx:ResumeParser.LanguageContext):
         return self.visitChildren(ctx)
 
 
-    # Visit a parse tree produced by ResumeParser#language.
-    def visitLanguage(self, ctx:ResumeParser.LanguageContext):
+    # Visit a parse tree produced by ResumeParser#language_name.
+    def visitLanguage_name(self, ctx:ResumeParser.Language_nameContext):
         return self.visitChildren(ctx)
 
 
@@ -119,13 +129,18 @@ class ResumeVisitor(ParseTreeVisitor):
         return self.visitChildren(ctx)
 
 
-    # Visit a parse tree produced by ResumeParser#certificate_list.
-    def visitCertificate_list(self, ctx:ResumeParser.Certificate_listContext):
+    # Visit a parse tree produced by ResumeParser#certificate.
+    def visitCertificate(self, ctx:ResumeParser.CertificateContext):
         return self.visitChildren(ctx)
 
 
-    # Visit a parse tree produced by ResumeParser#certificate.
-    def visitCertificate(self, ctx:ResumeParser.CertificateContext):
+    # Visit a parse tree produced by ResumeParser#institution.
+    def visitInstitution(self, ctx:ResumeParser.InstitutionContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by ResumeParser#url.
+    def visitUrl(self, ctx:ResumeParser.UrlContext):
         return self.visitChildren(ctx)
 
 
