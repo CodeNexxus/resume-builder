@@ -4,7 +4,7 @@ class ResumeDslCodeGenerator:
                              'personal_info', 'summary',
                              'skills',
                              'certificates', 'certificate',
-                             'socials','social_list',
+                             'socials', 'social_list',
                                        'projects',
                              'languages', 'soft_skills', 'hard_skills',
                              'work_experience', 'educations']
@@ -69,20 +69,24 @@ class ResumeDslCodeGenerator:
         elif item == "skills":
             self.generate_skills()
 
-        elif item == "certificates":
-            self.generate_certificates()
+        # elif item == "certificates":
+        #     print("hel")
+        #
+        #     self.generate_certificates()
 
-        elif item == "certificate":
+        elif item == "certificates":
             self.generate_each_certificate()
 
         elif item == "socials":
             # print(self.operand_stack)
             # print("hello")
-            self.generate_socials()
+            # self.generate_socials()
+            pass
 
         elif item == "social_list":
             # print(self.operand_stack)
-            self.generate_each_social()
+            # self.generate_each_social()
+            pass
 
         elif item == "projects":
             self.generate_projects()
@@ -94,18 +98,20 @@ class ResumeDslCodeGenerator:
             self.generate_educations()
 
     def generate_base_info(self):
+        certificate_code = self.code_stack.pop()
         personal_code = self.code_stack.pop()
         # socials_code = self.code_stack.pop()
+        # print(certi_code)
 
         code_string = (f"\n\t\t\t\t<div class=\"base-info\">"
-                       f"{personal_code}\n"
+                       f"{personal_code}\n{certificate_code}"
                        f"\n\t\t\t\t</div>")
 
         self.code_stack.append(code_string)
 
     def generate_additional_info(self):
         languages = self.code_stack.pop()
-        socials_code = self.code_stack.pop()
+        # socials_code = self.code_stack.pop()
         soft_skills = self.code_stack.pop()
         hard_skills = self.code_stack.pop()
         summary = self.code_stack.pop()
@@ -165,44 +171,49 @@ class ResumeDslCodeGenerator:
         socials_start_code = '<div><h2>Social</h2><ul>'
         socials_end_code = f'</ul></div>{self.hr_spliter}'
 
-        # self.code_stack.append(socials_start_code)
-        # self.code_stack.append(socials_end_code)
-
+        self.code_stack.append(socials_start_code)
+        self.code_stack.append(socials_end_code)
 
     def generate_each_social(self):
 
-        name = self.operand_stack.pop()
+        # name = self.operand_stack.pop()
         # url = self.operand_stack.pop()
+        print(self.operand_stack)
 
 
-        # socials_end_code = self.code_stack.pop()
+        socials_end_code = self.code_stack.pop()
 
         each_social = f'<li>{"name"}</li>'
 
-        # self.code_stack.append(each_social)
-        # self.code_stack.append(socials_end_code)
+        self.code_stack.append(each_social)
+        self.code_stack.append(socials_end_code)
 
-
-    def generate_certificates(self):
+    def generate_each_certificate(self):
         certificates_start_code = ('\n\n\t\t\t\t<div>\n\t\t\t\t\t<h2>Certifications</h2>'
                                    '\n\t\t\t\t\t<ul>')
         certificates_end_code = f'\n\t\t\t\t\t</ul>\n\t\t\t\t</div>\n\n\t\t\t\t{self.hr_spliter}'
 
-        self.code_stack.append(certificates_start_code)
-        self.code_stack.append(certificates_end_code)
+        code_temp = certificates_start_code
 
+        temp = ""
+        while True:
+            # print(self.operand_stack)
+            link = self.operand_stack.pop()
+            institution = self.operand_stack.pop()
+            self.operand_stack.pop()
+            name = self.operand_stack.pop()
 
-    def generate_each_certificate(self):
-        name = self.operand_stack.pop()
-        institution = self.operand_stack.pop()
-        link = self.operand_stack.pop()
+            each_social = f'\n\t\t\t\t\t\t<li><a href=\"{link}\">{name}-{institution}</a></li>'
+            code_temp += each_social
 
-        certificate_end_code = self.code_stack.pop()
+            temp = self.operand_stack.pop()
+            if temp == 'end_scope_operator':
+                break
+            self.operand_stack.append(temp)
 
-        each_social = f'<li>{name}-{institution}</li>'
+        code_temp += certificates_end_code
 
-        self.code_stack.append(each_social)
-        self.code_stack.append(certificate_end_code)
+        self.code_stack.append(code_temp)
 
 
     def generate_summrary(self):
@@ -213,14 +224,15 @@ class ResumeDslCodeGenerator:
 
         self.code_stack.append(summary_code)
 
-
-
     def generate_skills(self):
         pass
+
     def generate_projects(self):
         pass
+
     def generate_work_experience(self):
         pass
+
     def generate_educations(self):
         pass
 
@@ -252,7 +264,6 @@ class ResumeDslCodeGenerator:
         code_string = f"\n\n\t\t\t\t{languages_code}\n\n\t\t\t\t{self.hr_spliter}"
 
         self.code_stack.append(code_string)
-
 
     def generate_soft_skills(self):
         temp = self.operand_stack.pop()
@@ -313,69 +324,4 @@ class ResumeDslCodeGenerator:
         code_string = f"\n\n\t\t\t\t{hard_skill_code}\n\n\t\t\t\t{self.hr_spliter}"
 
         self.code_stack.append(code_string)
-
-
-
-
-
-    # def generate_program(self):
-    #     placements_code = self.code_stack.pop()
-    #     initiate_code = self.code_stack.pop()
-    #     output_type = 'console'
-    #     hints_enabled = False
-    #     while self.code_stack:
-    #         temp_code = self.code_stack.pop()
-    #         if temp_code.startswith('##COMPILER_PARAM:::output_type:::'):
-    #             output_type = temp_code.replace('##COMPILER_PARAM:::output_type:::', '')
-    #         elif temp_code.startswith('##COMPILER_PARAM:::hint:::'):
-    #             hints_enabled = temp_code.replace('##COMPILER_PARAM:::hint:::', '') == 'True'
-    #         else:
-    #             self.code_stack.append(temp_code)
-    #             break
-
-    #     if output_type == 'console':
-    #         program_code = initiate_code + placements_code
-    #         if hints_enabled:
-    #             program_code += self.generate_hint_code()
-    #         program_code += self.generate_print_code(hints_enabled)
-    #         self.code_stack.append(program_code)
-
-    # def generate_initiate_game(self):
-    #     height = int(self.operand_stack.pop())
-    #     width = int(self.operand_stack.pop())
-    #     code_string = f"bombs = [[False for y in range({height})] for x in range({width})]\n"
-    #     self.code_stack.append(code_string)
-
-    # def generate_bomb(self):
-    #     y = int(self.operand_stack.pop())
-    #     x = int(self.operand_stack.pop())
-    #     code_string = f"bombs[{x - 1}][{y - 1}] = True\n"
-    #     self.code_stack.append(code_string)
-
-    # def set_output_type(self):
-    #     self.code_stack.append(f"##COMPILER_PARAM:::output_type:::{self.operand_stack.pop()}")
-
-    # def generate_bomb_placements(self):
-    #     temp_block_stack = []
-    #     current_code = self.code_stack.pop()
-    #     if current_code != '##COMPILER_PARAM:::scope:::end_scope_operator':
-    #         self.code_stack.append(current_code)
-    #         return
-    #     while current_code != '##COMPILER_PARAM:::scope:::begin_scope_operator':
-    #         current_code = self.code_stack.pop()
-    #         temp_block_stack.append(current_code)
-    #     temp_block_stack.pop()
-    #     result = ''
-    #     while len(temp_block_stack) != 0:
-    #         result = result + temp_block_stack.pop()
-    #     self.code_stack.append(result)
-
-    # def generate_begin_scope_operator(self):
-    #     self.code_stack.append("##COMPILER_PARAM:::scope:::begin_scope_operator")
-
-    # def generate_end_scope_operator(self):
-    #     self.code_stack.append("##COMPILER_PARAM:::scope:::end_scope_operator")
-
-    # def generate_hint(self):
-    #     self.code_stack.append(f"##COMPILER_PARAM:::hint:::{self.operand_stack.pop()}")
 

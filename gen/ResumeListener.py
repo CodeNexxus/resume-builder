@@ -251,6 +251,15 @@ class ResumeListener(ParseTreeListener):
         pass
 
 
+    # Enter a parse tree produced by ResumeParser#link.
+    def enterLink(self, ctx:ResumeParser.LinkContext):
+        pass
+
+    # Exit a parse tree produced by ResumeParser#link.
+    def exitLink(self, ctx:ResumeParser.LinkContext):
+        pass
+
+
     # Enter a parse tree produced by ResumeParser#institution.
     def enterInstitution(self, ctx:ResumeParser.InstitutionContext):
         pass

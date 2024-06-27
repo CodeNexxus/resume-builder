@@ -144,6 +144,11 @@ class ResumeVisitor(ParseTreeVisitor):
         return self.visitChildren(ctx)
 
 
+    # Visit a parse tree produced by ResumeParser#link.
+    def visitLink(self, ctx:ResumeParser.LinkContext):
+        return self.visitChildren(ctx)
+
+
     # Visit a parse tree produced by ResumeParser#institution.
     def visitInstitution(self, ctx:ResumeParser.InstitutionContext):
         return self.visitChildren(ctx)

@@ -11,6 +11,16 @@ socials:
     github: https://github.com/johndoe
     github2: https://github2.com/johndoe
 
+certificates:
+name: AWS Certified Solutions Architect
+institution: Amazon
+link: https://aws.amazon.com/certification/certified-solutions-architect-associate/
+
+name: AWS Certified2 Solutions Architect
+institution: Amazon2
+link: https://aws.amazon.com/certification/certified-solutions-architect-associate/
+
+
 summary: Experienced
 
 hard_skills:
@@ -28,11 +38,6 @@ soft_skills:
 languages:
     English
     Spanish
-
-certificates:
-name: AWS Certified Solutions Architect
-institution: Amazon
-link: https://aws.amazon.com/certification/certified-solutions-architect-associate/
 
 
 projects:
