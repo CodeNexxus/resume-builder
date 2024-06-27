@@ -1,4 +1,4 @@
-# Generated from D:/Uni/semester_6/Compiler/project/resume-builder/grammar/Resume.g4 by ANTLR 4.13.1
+# Generated from C:/Users/pars/Desktop/code nuxxus/grammar/Resume.g4 by ANTLR 4.13.1
 from antlr4 import *
 if "." in __name__:
     from .ResumeParser import ResumeParser
@@ -16,6 +16,16 @@ class ResumeVisitor(ParseTreeVisitor):
 
     # Visit a parse tree produced by ResumeParser#resume.
     def visitResume(self, ctx:ResumeParser.ResumeContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by ResumeParser#base_info.
+    def visitBase_info(self, ctx:ResumeParser.Base_infoContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by ResumeParser#additional_info.
+    def visitAdditional_info(self, ctx:ResumeParser.Additional_infoContext):
         return self.visitChildren(ctx)
 
 
@@ -139,11 +149,6 @@ class ResumeVisitor(ParseTreeVisitor):
         return self.visitChildren(ctx)
 
 
-    # Visit a parse tree produced by ResumeParser#url.
-    def visitUrl(self, ctx:ResumeParser.UrlContext):
-        return self.visitChildren(ctx)
-
-
     # Visit a parse tree produced by ResumeParser#socials.
     def visitSocials(self, ctx:ResumeParser.SocialsContext):
         return self.visitChildren(ctx)
@@ -151,11 +156,6 @@ class ResumeVisitor(ParseTreeVisitor):
 
     # Visit a parse tree produced by ResumeParser#social_list.
     def visitSocial_list(self, ctx:ResumeParser.Social_listContext):
-        return self.visitChildren(ctx)
-
-
-    # Visit a parse tree produced by ResumeParser#social.
-    def visitSocial(self, ctx:ResumeParser.SocialContext):
         return self.visitChildren(ctx)
 
 

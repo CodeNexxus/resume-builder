@@ -4,9 +4,9 @@ start: resume EOF;
 
 resume: base_info NEWLINE* additional_info;
 
-base_info: personal_info NEWLINE* socials? NEWLINE*;
+base_info: personal_info NEWLINE* socials? ;
 
-additional_info: summary? NEWLINE* skills? NEWLINE* certificates? NEWLINE*   projects? NEWLINE* work_experience? NEWLINE* educations?;
+additional_info: summary? NEWLINE* skills? NEWLINE* certificates? NEWLINE* projects? NEWLINE* work_experience? NEWLINE* educations?;
 
 personal_info: 'name:' name NEWLINE 'surname:' surname NEWLINE 'job_title:' job_title NEWLINE 'phone:' phone NEWLINE 'city:' city NEWLINE 'gmail:' gmail NEWLINE 'birth:' birth;
 
@@ -37,14 +37,13 @@ language: language_name NEWLINE;
 language_name : TEXT;
 
 certificates: 'certificates:' NEWLINE* (certificate)*;
-certificate: 'name:' name NEWLINE 'institution:' institution NEWLINE 'link:' url NEWLINE*;
+certificate: 'name:' name NEWLINE 'institution:' institution NEWLINE 'link:' URL NEWLINE*;
 institution: TEXT;
-url: URL;
 
 
-socials: 'socials:' NEWLINE social_list;
-social_list: social*;
-social: TEXT ':' URL NEWLINE;
+
+socials: 'socials:' NEWLINE* social_list;
+social_list: (TEXT ':' URL NEWLINE)*;
 
 
 projects: 'projects:' NEWLINE (project NEWLINE)*;

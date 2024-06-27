@@ -1,6 +1,6 @@
 from antlr4 import *
 import argparse
-from listener.ResumeBuilderListener import ResumeListener
+from listener.ResumeBuilderListener import CustomResumeListener
 from ast_code.ast_to_networkx_graph import show_ast
 from gen.ResumeLexer import ResumeLexer
 from gen.ResumeParser import ResumeParser
@@ -14,11 +14,11 @@ def main(arguments):
     token_stream = CommonTokenStream(lexer)
     parser = ResumeParser(token_stream)
     parse_tree = parser.resume()
-    ast_builder_listener = ResumeListener(parser.ruleNames)
+    ast_builder_listener = CustomResumeListener(parser.ruleNames)
     walker = ParseTreeWalker()
     walker.walk(t=parse_tree, listener=ast_builder_listener)
     ast = ast_builder_listener.ast
-    show_ast(ast.root)
+    # show_ast(ast.root)
     post_order_ast_traverser = PostOrderASTTraverser()
     post_order_ast_traverser.node_attributes = ['label', 'text', 'number']
     traversal = post_order_ast_traverser.traverse_ast(ast.root)

@@ -1,4 +1,4 @@
-# Generated from D:/Uni/semester_6/Compiler/project/resume-builder/grammar/Resume.g4 by ANTLR 4.13.1
+# Generated from C:/Users/pars/Desktop/code nuxxus/grammar/Resume.g4 by ANTLR 4.13.1
 from antlr4 import *
 if "." in __name__:
     from .ResumeParser import ResumeParser
@@ -23,6 +23,24 @@ class ResumeListener(ParseTreeListener):
 
     # Exit a parse tree produced by ResumeParser#resume.
     def exitResume(self, ctx:ResumeParser.ResumeContext):
+        pass
+
+
+    # Enter a parse tree produced by ResumeParser#base_info.
+    def enterBase_info(self, ctx:ResumeParser.Base_infoContext):
+        pass
+
+    # Exit a parse tree produced by ResumeParser#base_info.
+    def exitBase_info(self, ctx:ResumeParser.Base_infoContext):
+        pass
+
+
+    # Enter a parse tree produced by ResumeParser#additional_info.
+    def enterAdditional_info(self, ctx:ResumeParser.Additional_infoContext):
+        pass
+
+    # Exit a parse tree produced by ResumeParser#additional_info.
+    def exitAdditional_info(self, ctx:ResumeParser.Additional_infoContext):
         pass
 
 
@@ -242,15 +260,6 @@ class ResumeListener(ParseTreeListener):
         pass
 
 
-    # Enter a parse tree produced by ResumeParser#url.
-    def enterUrl(self, ctx:ResumeParser.UrlContext):
-        pass
-
-    # Exit a parse tree produced by ResumeParser#url.
-    def exitUrl(self, ctx:ResumeParser.UrlContext):
-        pass
-
-
     # Enter a parse tree produced by ResumeParser#socials.
     def enterSocials(self, ctx:ResumeParser.SocialsContext):
         pass
@@ -266,15 +275,6 @@ class ResumeListener(ParseTreeListener):
 
     # Exit a parse tree produced by ResumeParser#social_list.
     def exitSocial_list(self, ctx:ResumeParser.Social_listContext):
-        pass
-
-
-    # Enter a parse tree produced by ResumeParser#social.
-    def enterSocial(self, ctx:ResumeParser.SocialContext):
-        pass
-
-    # Exit a parse tree produced by ResumeParser#social.
-    def exitSocial(self, ctx:ResumeParser.SocialContext):
         pass
 
 

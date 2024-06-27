@@ -4,12 +4,12 @@ job_title: Software Engineer
 phone: +989303016386
 city: New York
 gmail: johndoe@gmail.com
-birth: 2000-10-11
-
+birth: 2000-10-12
 
 socials:
     linkedin: https://linkedin.com/in/johndoe
     github: https://github.com/johndoe
+    github2: https://github2.com/johndoe
 
 summary: Experienced
 
@@ -30,7 +30,6 @@ languages:
     Spanish
 
 certificates:
-
 name: AWS Certified Solutions Architect
 institution: Amazon
 link: https://aws.amazon.com/certification/certified-solutions-architect-associate/

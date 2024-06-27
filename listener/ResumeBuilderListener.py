@@ -2,11 +2,15 @@ from ast_code.ast import AST
 from ast_code.make_ast_subtree import make_ast_subtree
 from gen.ResumeListener import ResumeListener
 
-class ResumeListener(ResumeListener):
+
+class CustomResumeListener(ResumeListener):
+
     def __init__(self, rule_names):
-        self.overridden_rules = ['resume', 'personal_info', 'name',
+        self.overridden_rules = ['resume', 'base_info', 'additional_info',
+                                 'personal_info', 'name',
                                  'surname', 'job_title', 'birth',
                                  'phone', 'city', 'gmail', 'summary',
+                                 'socials', 'social_list',
                                  'hard_skills', 'soft_skills', 'soft_skill',
                                  'languages', 'language', 'certificate',
                                  ]
@@ -20,6 +24,20 @@ class ResumeListener(ResumeListener):
 
     def exitResume(self, ctx):
         make_ast_subtree(self.ast, ctx, "resume", keep_node=True)
+
+    def exitSocial_list(self, ctx):
+        make_ast_subtree(self.ast, ctx, "social_list", keep_node=True)
+
+    def exitSocials(self, ctx):
+        ctx.compound = True
+        make_ast_subtree(self.ast, ctx, "socials", keep_node=True)
+
+
+    def exitBase_info(self, ctx):
+        make_ast_subtree(self.ast, ctx, "base_info", keep_node=True)
+
+    def exitAdditional_info(self, ctx):
+        make_ast_subtree(self.ast, ctx, "additional_info", keep_node=True)
 
     def exitPersonal_info(self, ctx):
         make_ast_subtree(self.ast, ctx, "personal_info", keep_node=True)
