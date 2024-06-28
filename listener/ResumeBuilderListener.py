@@ -7,13 +7,19 @@ class CustomResumeListener(ResumeListener):
 
     def __init__(self, rule_names):
         self.overridden_rules = ['resume', 'base_info', 'additional_info',
-                                 'personal_info', 'name',
-                                 'surname', 'job_title', 'birth',
-                                 'phone', 'city', 'gmail', 'summary',
-                                 'socials', 'social_list',
+                                 'personal_info', 'name', 'surname',
+                                 'job_title', 'phone', 'institution',
+                                 'city', 'gmail', 'birth',
+                                 'summary', 'socials', 'social',
                                  'hard_skills', 'soft_skills', 'soft_skill',
-                                 'languages', 'language', 'certificate',
-                                 'educations',
+                                 'languages', 'language', 'certificates',
+                                 'certificate', 'educations', 'link',
+                                 'projects', 'project', 'project_title',
+                                 'project_description', 'project_url',
+                                 'work_experience', 'job', 'company', 'position',
+                                 'start_date', 'end_date', 'responsibility_list',
+                                 'responsibility', 'education', 'degree',
+                                 ''
                                  ]
         self.rule_names = rule_names
         self.ast = AST()
@@ -26,8 +32,8 @@ class CustomResumeListener(ResumeListener):
     def exitResume(self, ctx):
         make_ast_subtree(self.ast, ctx, "resume", keep_node=True)
 
-    def exitSocial_list(self, ctx):
-        make_ast_subtree(self.ast, ctx, "social_list", keep_node=True)
+    def exitSocial(self, ctx):
+        make_ast_subtree(self.ast, ctx, "social", keep_node=True)
 
     def exitSocials(self, ctx):
         ctx.compound = True
@@ -91,7 +97,62 @@ class CustomResumeListener(ResumeListener):
         make_ast_subtree(self.ast, ctx, "language", keep_node=True)
 
     def exitCertificates(self, ctx):
+        ctx.compound = True
         make_ast_subtree(self.ast, ctx, "certificates", keep_node=True)
 
     def exitCertificate(self, ctx):
         make_ast_subtree(self.ast, ctx, "certificate", keep_node=True)
+
+    def exitInstitution(self, ctx):
+        make_ast_subtree(self.ast, ctx, "institution", keep_node=True)
+
+    def exitLink(self, ctx):
+        make_ast_subtree(self.ast, ctx, "link", keep_node=True)
+
+    def exitProjects(self, ctx):
+        ctx.compound = True
+        make_ast_subtree(self.ast, ctx, "projects", keep_node=True)
+
+    def exitProject(self, ctx):
+        make_ast_subtree(self.ast, ctx, "project", keep_node=True)
+
+    def exitProject_title(self, ctx):
+        make_ast_subtree(self.ast, ctx, "title", keep_node=True)
+
+    def exitProject_description(self, ctx):
+        make_ast_subtree(self.ast, ctx, "description", keep_node=True)
+
+    def exitProject_url(self, ctx):
+        make_ast_subtree(self.ast, ctx, "url", keep_node=True)
+
+    def exitWork_experience(self, ctx):
+        ctx.compound = True
+        make_ast_subtree(self.ast, ctx, "work_experience", keep_node=True)
+
+    def exitJob(self, ctx):
+        make_ast_subtree(self.ast, ctx, "job", keep_node=True)
+
+    def exitCompany(self, ctx):
+        make_ast_subtree(self.ast, ctx, "company", keep_node=True)
+
+    def exitPosition(self, ctx):
+        make_ast_subtree(self.ast, ctx, "position", keep_node=True)
+
+    def exitStart_date(self, ctx):
+        make_ast_subtree(self.ast, ctx, "start_date", keep_node=True)
+
+    def exitEnd_date(self, ctx):
+        make_ast_subtree(self.ast, ctx, "end_date", keep_node=True)
+
+    def exitResponsibility_list(self, ctx):
+        ctx.compound = True
+        make_ast_subtree(self.ast, ctx, "responsibilities", keep_node=True)
+
+    def exitResponsibility(self, ctx):
+        make_ast_subtree(self.ast, ctx, "responsibility", keep_node=True)
+
+    def exitEducation(self, ctx):
+        make_ast_subtree(self.ast, ctx, "education", keep_node=True)
+
+    def exitDegree(self, ctx):
+        make_ast_subtree(self.ast, ctx, "degree", keep_node=True)
