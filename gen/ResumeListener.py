@@ -1,4 +1,4 @@
-# Generated from C:/Users/pars/Desktop/code nuxxus/grammar/Resume.g4 by ANTLR 4.13.1
+# Generated from D:/Uni/semester_6/Compiler/project/resume-builder/grammar/Resume.g4 by ANTLR 4.13.1
 from antlr4 import *
 if "." in __name__:
     from .ResumeParser import ResumeParser
@@ -278,12 +278,21 @@ class ResumeListener(ParseTreeListener):
         pass
 
 
-    # Enter a parse tree produced by ResumeParser#social_list.
-    def enterSocial_list(self, ctx:ResumeParser.Social_listContext):
+    # Enter a parse tree produced by ResumeParser#social.
+    def enterSocial(self, ctx:ResumeParser.SocialContext):
         pass
 
-    # Exit a parse tree produced by ResumeParser#social_list.
-    def exitSocial_list(self, ctx:ResumeParser.Social_listContext):
+    # Exit a parse tree produced by ResumeParser#social.
+    def exitSocial(self, ctx:ResumeParser.SocialContext):
+        pass
+
+
+    # Enter a parse tree produced by ResumeParser#social_name.
+    def enterSocial_name(self, ctx:ResumeParser.Social_nameContext):
+        pass
+
+    # Exit a parse tree produced by ResumeParser#social_name.
+    def exitSocial_name(self, ctx:ResumeParser.Social_nameContext):
         pass
 
 
@@ -368,12 +377,21 @@ class ResumeListener(ParseTreeListener):
         pass
 
 
-    # Enter a parse tree produced by ResumeParser#text_name.
-    def enterText_name(self, ctx:ResumeParser.Text_nameContext):
+    # Enter a parse tree produced by ResumeParser#company.
+    def enterCompany(self, ctx:ResumeParser.CompanyContext):
         pass
 
-    # Exit a parse tree produced by ResumeParser#text_name.
-    def exitText_name(self, ctx:ResumeParser.Text_nameContext):
+    # Exit a parse tree produced by ResumeParser#company.
+    def exitCompany(self, ctx:ResumeParser.CompanyContext):
+        pass
+
+
+    # Enter a parse tree produced by ResumeParser#position.
+    def enterPosition(self, ctx:ResumeParser.PositionContext):
+        pass
+
+    # Exit a parse tree produced by ResumeParser#position.
+    def exitPosition(self, ctx:ResumeParser.PositionContext):
         pass
 
 
@@ -404,12 +422,21 @@ class ResumeListener(ParseTreeListener):
         pass
 
 
-    # Enter a parse tree produced by ResumeParser#date.
-    def enterDate(self, ctx:ResumeParser.DateContext):
+    # Enter a parse tree produced by ResumeParser#start_date.
+    def enterStart_date(self, ctx:ResumeParser.Start_dateContext):
         pass
 
-    # Exit a parse tree produced by ResumeParser#date.
-    def exitDate(self, ctx:ResumeParser.DateContext):
+    # Exit a parse tree produced by ResumeParser#start_date.
+    def exitStart_date(self, ctx:ResumeParser.Start_dateContext):
+        pass
+
+
+    # Enter a parse tree produced by ResumeParser#end_date.
+    def enterEnd_date(self, ctx:ResumeParser.End_dateContext):
+        pass
+
+    # Exit a parse tree produced by ResumeParser#end_date.
+    def exitEnd_date(self, ctx:ResumeParser.End_dateContext):
         pass
 
 

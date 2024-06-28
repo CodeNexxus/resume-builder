@@ -135,7 +135,7 @@ class ResumeDslCodeGenerator:
         name = self.operand_stack.pop()
 
         name_code = f"<li>\n\t\t\t\t\t\t\t<strong>name:</strong> \"{name}\"\n\t\t\t\t\t\t</li>"
-        surname_code = f'\n\t\t\t\t\t\t<li>\n\t\t\t\t\t\t\t<strong>ser name:</strong> \"{surname}\"\n\t\t\t\t\t\t</li>'
+        surname_code = f'\n\t\t\t\t\t\t<li>\n\t\t\t\t\t\t\t<strong>surname:</strong> \"{surname}\"\n\t\t\t\t\t\t</li>'
         job_title_code = f'\n\t\t\t\t\t\t<li>\n\t\t\t\t\t\t\t<strong>job title:</strong> \"{job_title}\"\n\t\t\t\t\t\t</li>'
         birth_code = f'\n\t\t\t\t\t\t<li>\n\t\t\t\t\t\t\t<strong>birth:</strong> \"{birth}\"\n\t\t\t\t\t\t</li>'
         phone_code = f'\n\t\t\t\t\t\t<li>\n\t\t\t\t\t\t\t<strong>phone:</strong> \"{phone}\"\n\t\t\t\t\t\t</li>'

@@ -18,7 +18,7 @@ def main(arguments):
     walker = ParseTreeWalker()
     walker.walk(t=parse_tree, listener=ast_builder_listener)
     ast = ast_builder_listener.ast
-    # show_ast(ast.root)
+    show_ast(ast.root)
     post_order_ast_traverser = PostOrderASTTraverser()
     post_order_ast_traverser.node_attributes = ['label', 'text', 'number']
     traversal = post_order_ast_traverser.traverse_ast(ast.root)

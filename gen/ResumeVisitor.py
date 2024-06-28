@@ -1,4 +1,4 @@
-# Generated from C:/Users/pars/Desktop/code nuxxus/grammar/Resume.g4 by ANTLR 4.13.1
+# Generated from D:/Uni/semester_6/Compiler/project/resume-builder/grammar/Resume.g4 by ANTLR 4.13.1
 from antlr4 import *
 if "." in __name__:
     from .ResumeParser import ResumeParser
@@ -159,8 +159,13 @@ class ResumeVisitor(ParseTreeVisitor):
         return self.visitChildren(ctx)
 
 
-    # Visit a parse tree produced by ResumeParser#social_list.
-    def visitSocial_list(self, ctx:ResumeParser.Social_listContext):
+    # Visit a parse tree produced by ResumeParser#social.
+    def visitSocial(self, ctx:ResumeParser.SocialContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by ResumeParser#social_name.
+    def visitSocial_name(self, ctx:ResumeParser.Social_nameContext):
         return self.visitChildren(ctx)
 
 
@@ -209,8 +214,13 @@ class ResumeVisitor(ParseTreeVisitor):
         return self.visitChildren(ctx)
 
 
-    # Visit a parse tree produced by ResumeParser#text_name.
-    def visitText_name(self, ctx:ResumeParser.Text_nameContext):
+    # Visit a parse tree produced by ResumeParser#company.
+    def visitCompany(self, ctx:ResumeParser.CompanyContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by ResumeParser#position.
+    def visitPosition(self, ctx:ResumeParser.PositionContext):
         return self.visitChildren(ctx)
 
 
@@ -229,8 +239,13 @@ class ResumeVisitor(ParseTreeVisitor):
         return self.visitChildren(ctx)
 
 
-    # Visit a parse tree produced by ResumeParser#date.
-    def visitDate(self, ctx:ResumeParser.DateContext):
+    # Visit a parse tree produced by ResumeParser#start_date.
+    def visitStart_date(self, ctx:ResumeParser.Start_dateContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by ResumeParser#end_date.
+    def visitEnd_date(self, ctx:ResumeParser.End_dateContext):
         return self.visitChildren(ctx)
 
 
