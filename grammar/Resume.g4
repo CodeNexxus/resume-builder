@@ -41,10 +41,9 @@ certificate: 'name:' name NEWLINE 'institution:' institution NEWLINE 'link:' lin
 link: URL;
 institution: TEXT;
 
-
-socials: 'socials:' NEWLINE* social_list;
-social_list: (name ':' link NEWLINE)*;
-
+socials: 'socials:' NEWLINE* (social NEWLINE)+;
+social: social_name ':' link;
+social_name: TEXT;
 
 projects: 'projects:' NEWLINE (project NEWLINE)*;
 project: 'title:' project_title NEWLINE* 'description:' project_description NEWLINE* 'link:' project_url NEWLINE*;
@@ -54,18 +53,19 @@ project_description: TEXT;
 project_url: URL;
 
 work_experience: 'work_experience:' NEWLINE* job (NEWLINE NEWLINE job)*;
-job: 'company:' text_name NEWLINE* 'position:' text_name NEWLINE* 'start_date:' date NEWLINE* 'end_date:' date NEWLINE*  'responsibilities:' NEWLINE responsibility_list;
+job: 'company:' company NEWLINE* 'position:' position NEWLINE* 'start_date:' start_date NEWLINE* 'end_date:' end_date NEWLINE*  'responsibilities:' NEWLINE responsibility_list;
 responsibility_list: responsibility (NEWLINE responsibility)*;
 responsibility: TEXT+;
 
-text_name: TEXT+;
+company: TEXT;
+position: TEXT;
 
 educations: 'educations:' NEWLINE education (NEWLINE NEWLINE education)*;
-education: 'institution:' institution NEWLINE* 'degree:' degree NEWLINE* 'start_date:' date NEWLINE* 'end_date:' date NEWLINE*;
+education: 'institution:' institution NEWLINE* 'degree:' degree NEWLINE* 'start_date:' start_date NEWLINE* 'end_date:' end_date NEWLINE*;
 
-
-degree: TEXT+;
-date: TEXT+;
+degree: TEXT;
+start_date: TEXT;
+end_date: TEXT;
 
 URL: ' '* 'http' 's'? '://' [a-zA-Z0-9./?=&_-]+;
 EMAIL: ' '* [a-zA-Z0-9_.+-]+ '@' [a-zA-Z0-9-]+ '.' [a-zA-Z0-9-.]+;
