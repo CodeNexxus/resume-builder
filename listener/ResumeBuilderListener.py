@@ -13,6 +13,7 @@ class CustomResumeListener(ResumeListener):
                                  'socials', 'social_list',
                                  'hard_skills', 'soft_skills', 'soft_skill',
                                  'languages', 'language', 'certificate',
+                                 'educations',
                                  ]
         self.rule_names = rule_names
         self.ast = AST()
@@ -80,6 +81,11 @@ class CustomResumeListener(ResumeListener):
     def exitLanguages(self, ctx):
         ctx.compound = True
         make_ast_subtree(self.ast, ctx, "languages", keep_node=True)
+
+    def exitEducations(self, ctx):
+        ctx.compound = True
+        make_ast_subtree(self.ast, ctx, "educations", keep_node=True)
+
 
     def exitLanguage(self, ctx):
         make_ast_subtree(self.ast, ctx, "language", keep_node=True)

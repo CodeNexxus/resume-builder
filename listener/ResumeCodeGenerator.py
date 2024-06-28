@@ -4,8 +4,7 @@ class ResumeDslCodeGenerator:
                              'personal_info', 'summary',
                              'skills',
                              'certificates', 'certificate',
-                             'socials', 'social_list',
-                                       'projects',
+                             'socials', 'social_list', 'projects',
                              'languages', 'soft_skills', 'hard_skills',
                              'work_experience', 'educations']
         self.operand_stack = []
@@ -69,24 +68,11 @@ class ResumeDslCodeGenerator:
         elif item == "skills":
             self.generate_skills()
 
-        # elif item == "certificates":
-        #     print("hel")
-        #
-        #     self.generate_certificates()
-
         elif item == "certificates":
             self.generate_each_certificate()
 
         elif item == "socials":
-            # print(self.operand_stack)
-            # print("hello")
-            # self.generate_socials()
-            pass
-
-        elif item == "social_list":
-            # print(self.operand_stack)
-            # self.generate_each_social()
-            pass
+            self.generate_socials()
 
         elif item == "projects":
             self.generate_projects()
@@ -98,27 +84,30 @@ class ResumeDslCodeGenerator:
             self.generate_educations()
 
     def generate_base_info(self):
+        socials_code = self.code_stack.pop()
         certificate_code = self.code_stack.pop()
         personal_code = self.code_stack.pop()
-        # socials_code = self.code_stack.pop()
-        # print(certi_code)
+
+        # print(socials_code)
 
         code_string = (f"\n\t\t\t\t<div class=\"base-info\">"
-                       f"{personal_code}\n{certificate_code}"
+                       f"{personal_code}\n{certificate_code}\n{socials_code}"
                        f"\n\t\t\t\t</div>")
 
         self.code_stack.append(code_string)
 
     def generate_additional_info(self):
+        educations = self.code_stack.pop()
+        projects_code = self.code_stack.pop()
         languages = self.code_stack.pop()
         # socials_code = self.code_stack.pop()
         soft_skills = self.code_stack.pop()
         hard_skills = self.code_stack.pop()
         summary = self.code_stack.pop()
-        # print(summary)
+        # print(projects_code)
 
         code_string = (f"\n\t\t\t\t<div class=\"additional-info\">"
-                       f"{summary}\n{languages}\n{soft_skills}\n{hard_skills}"
+                       f"{summary}\n{languages}\n{soft_skills}\n{hard_skills}\n{projects_code}\n{educations}"
                        f"\n\t\t\t\t</div>")
 
         self.code_stack.append(code_string)
@@ -166,27 +155,32 @@ class ResumeDslCodeGenerator:
         self.code_stack.append(code_string)
 
     def generate_socials(self):
-        print(self.operand_stack)
+        # print(self.operand_stack)
 
-        socials_start_code = '<div><h2>Social</h2><ul>'
-        socials_end_code = f'</ul></div>{self.hr_spliter}'
+        socials_start_code = '\n\t\t\t\t\t<div>\n\t\t\t\t\t\t<h2>Social</h2>\n\t\t\t\t\t\t<ul>'
+        socials_end_code = f'\n\t\t\t\t\t\t</ul>\n\t\t\t\t\t</div>\n\n\t\t\t\t\t{self.hr_spliter}'
 
-        self.code_stack.append(socials_start_code)
-        self.code_stack.append(socials_end_code)
+        code_temp = socials_start_code
 
-    def generate_each_social(self):
+        temp = ""
+        self.operand_stack.pop()
+        while True:
+            link = self.operand_stack.pop()
+            self.operand_stack.pop()
+            name = self.operand_stack.pop()
 
-        # name = self.operand_stack.pop()
-        # url = self.operand_stack.pop()
-        print(self.operand_stack)
+            each_social = f'\n\t\t\t\t\t\t\t<li>\n\t\t\t\t\t\t\t\t<a href=\"{link}\">{name}</a>\n\t\t\t\t\t\t\t</li>'
 
+            code_temp += each_social
 
-        socials_end_code = self.code_stack.pop()
+            temp = self.operand_stack.pop()
+            if temp == 'begin_scope_operator':
+                break
+            self.operand_stack.append(temp)
 
-        each_social = f'<li>{"name"}</li>'
+        code_temp += socials_end_code
 
-        self.code_stack.append(each_social)
-        self.code_stack.append(socials_end_code)
+        self.code_stack.append(code_temp)
 
     def generate_each_certificate(self):
         certificates_start_code = ('\n\n\t\t\t\t<div>\n\t\t\t\t\t<h2>Certifications</h2>'
@@ -206,15 +200,14 @@ class ResumeDslCodeGenerator:
             each_social = f'\n\t\t\t\t\t\t<li><a href=\"{link}\">{name}-{institution}</a></li>'
             code_temp += each_social
 
-            temp = self.operand_stack.pop()
-            if temp == 'end_scope_operator':
+            # temp = self.operand_stack.pop()
+            if len(self.operand_stack) == 0:
                 break
-            self.operand_stack.append(temp)
+            # self.operand_stack.append(temp)
 
         code_temp += certificates_end_code
 
         self.code_stack.append(code_temp)
-
 
     def generate_summrary(self):
         summary = self.operand_stack.pop()
@@ -228,13 +221,67 @@ class ResumeDslCodeGenerator:
         pass
 
     def generate_projects(self):
-        pass
+        # print(self.operand_stack)
+        projects_start_code = ('\n\n\t\t\t\t<div>\n\t\t\t\t\t<h2>Projects</h2>'
+                                '\n\t\t\t\t\t<ul>')
+        projects_end_code = f'\n\t\t\t\t\t</ul>\n\t\t\t\t</div>\n\n\t\t\t\t{self.hr_spliter}'
+
+        code_temp = projects_start_code
+
+        temp = ""
+        while True:
+            self.operand_stack.pop()
+            link = self.operand_stack.pop()
+            description = self.operand_stack.pop()
+            title = self.operand_stack.pop()
+
+            title_code = f'\n\t\t\t\t\t\t<li><strong>title:</strong> <a href=\"{link}\">{title}</a></li>'
+            description_code = f'\n\t\t\t\t\t\t<li><strong>description:</strong>{description}</li><br>'
+            code_temp += title_code + description_code
+
+            # temp = self.operand_stack.pop()
+            if temp == 'begin_scope_operator' or len(self.operand_stack) == 0:
+                break
+            # self.operand_stack.append(temp)
+
+        code_temp += projects_end_code
+
+        self.code_stack.append(code_temp)
 
     def generate_work_experience(self):
         pass
 
     def generate_educations(self):
-        pass
+        # print(self.operand_stack)
+        educations_start_code = ('\n\n\t\t\t\t<div>\n\t\t\t\t\t<h2>Educations</h2>'
+                                 '\n\t\t\t\t\t<ul>')
+        educations_end_code = f'\n\t\t\t\t\t</ul>\n\t\t\t\t</div>\n\n\t\t\t\t{self.hr_spliter}'
+
+        code_temp = educations_start_code
+
+        temp = ""
+        self.operand_stack.pop()
+        while True:
+            self.operand_stack.pop()
+            end_date = self.operand_stack.pop()
+            start_date = self.operand_stack.pop()
+            degree = self.operand_stack.pop()
+            institution = self.operand_stack.pop()
+
+            degree_code = f'\n\t\t\t\t\t\t<li><strong>degree:</strong>{degree}</li>'
+            institution_code = f'\n\t\t\t\t\t\t<li><strong>institution:</strong>{institution}</li>'
+            from_code = f'\n\t\t\t\t\t\t<li><strong>from</strong>{start_date} <strong>to</strong> {end_date}</li><br>'
+
+            code_temp += degree_code + institution_code + from_code
+
+            temp = self.operand_stack.pop()
+            if temp == 'begin_scope_operator':
+                break
+            self.operand_stack.append(temp)
+
+        code_temp += educations_end_code
+
+        self.code_stack.append(code_temp)
 
     def generate_languages(self):
         temp = self.operand_stack.pop()
