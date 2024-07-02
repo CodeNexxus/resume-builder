@@ -1,6 +1,6 @@
 go_top:True
 autocopy:True
-job_title_effect:True
+job_title_effect:False
 interactive_skill_bars:False
 collapsable_sections:False
 dynamic_theme:False
