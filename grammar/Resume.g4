@@ -24,7 +24,9 @@ summary: 'summary:' (value NEWLINE)*;
 
 value: TEXT;
 
-skills: hard_skills NEWLINE* soft_skills? NEWLINE* languages?;
+skills: jobinja_scraper NEWLINE* hard_skills NEWLINE* soft_skills? NEWLINE* languages?;
+jobinja_scraper: 'jobinja:' link;
+
 hard_skills: 'hard_skills:' NEWLINE (hard_skill)*;
 hard_skill: hard_skill_name ',' rate NEWLINE;
 hard_skill_name: TEXT;
@@ -76,7 +78,7 @@ pdf_download: 'pdf_download';
 section_mod: collapsable?;
 collapsable: 'collapsable';
 
-URL: ' '* 'http' 's'? '://' [a-zA-Z0-9./?=&_-]+;
+URL: ' '* 'http' 's'? '://' [a-zA-Z0-9./?=&_%-]+;
 EMAIL: ' '* [a-zA-Z0-9_.+-]+ '@' [a-zA-Z0-9-]+ '.' [a-zA-Z0-9-.]+;
 PHONE: ' '* '+98' [0-9]+;
 TEXT : [a-zA-Z0-9_./\- ]+ ;

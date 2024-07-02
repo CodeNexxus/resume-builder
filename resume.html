@@ -14,11 +14,11 @@
 				
 				<div class="base-info">
 				<div class="profile-img">
-					<img src="face.jpg" />
+					<img src="face.jpeg" />
 				</div>
 
 				<div>
-					<h2 class="base-item"> Software Engineer</h2>
+					<h2 id="typed-text" class="base-item" style="height: 30px"></h2>
 					<ul>
 						<li>
 							<strong>name:</strong>  John
@@ -55,16 +55,16 @@
 					<hr class="rounded" />
 
 					<div>
-						<h2 class="base-item">Top Five Languages</h2>
+						<h2 class="base-item">Top Five GitHub</h2>
 						<ul>
 						<div class="additional-info-item">
 							<li>
 								<strong>Jupyter Notebook</strong>
 						</li>
 							<div class="rate">
-								<img class="rate-star" src="icons/filled star.svg" alt="">
-								<img class="rate-star" src="icons/filled star.svg" alt="">
-								<img class="rate-star" src="icons/filled star.svg" alt="">
+								<img class="rate-star" src="icons/wstarfilled.svg" alt="">
+								<img class="rate-star" src="icons/wstarfilled.svg" alt="">
+								<img class="rate-star" src="icons/wstarfilled.svg" alt="">
 						</div>
 						</div>
 						<div class="additional-info-item">
@@ -72,9 +72,9 @@
 								<strong>Python</strong>
 						</li>
 							<div class="rate">
-								<img class="rate-star" src="icons/filled star.svg" alt="">
-								<img class="rate-star" src="icons/filled star.svg" alt="">
-								<img class="rate-star" src="icons/star (1).svg" alt="">
+								<img class="rate-star" src="icons/wstarfilled.svg" alt="">
+								<img class="rate-star" src="icons/wstarfilled.svg" alt="">
+								<img class="rate-star" src="icons/wstar.svg" alt="">
 						</div>
 						</div>
 						<div class="additional-info-item">
@@ -82,9 +82,9 @@
 								<strong>C#</strong>
 						</li>
 							<div class="rate">
-								<img class="rate-star" src="icons/filled star.svg" alt="">
-								<img class="rate-star" src="icons/star (1).svg" alt="">
-								<img class="rate-star" src="icons/star (1).svg" alt="">
+								<img class="rate-star" src="icons/wstarfilled.svg" alt="">
+								<img class="rate-star" src="icons/wstar.svg" alt="">
+								<img class="rate-star" src="icons/wstar.svg" alt="">
 						</div>
 						</div>
 						<div class="additional-info-item">
@@ -92,9 +92,9 @@
 								<strong>HTML</strong>
 						</li>
 							<div class="rate">
-								<img class="rate-star" src="icons/filled star.svg" alt="">
-								<img class="rate-star" src="icons/filled star.svg" alt="">
-								<img class="rate-star" src="icons/star (1).svg" alt="">
+								<img class="rate-star" src="icons/wstarfilled.svg" alt="">
+								<img class="rate-star" src="icons/wstarfilled.svg" alt="">
+								<img class="rate-star" src="icons/wstar.svg" alt="">
 						</div>
 						</div>
 						<div class="additional-info-item">
@@ -102,9 +102,9 @@
 								<strong>Java</strong>
 						</li>
 							<div class="rate">
-								<img class="rate-star" src="icons/filled star.svg" alt="">
-								<img class="rate-star" src="icons/star (1).svg" alt="">
-								<img class="rate-star" src="icons/star (1).svg" alt="">
+								<img class="rate-star" src="icons/wstarfilled.svg" alt="">
+								<img class="rate-star" src="icons/wstar.svg" alt="">
+								<img class="rate-star" src="icons/wstar.svg" alt="">
 						</div>
 						</div>
 						</ul>
@@ -117,11 +117,11 @@
 						
 						<div class="info-title">
 							<img class="base-info-icon" src="icons/icons8-phone.svg" alt="phone icon">
-							<a class="link-white" href=" +989303016386"> +989303016386</a>
+							<p id="phone" class="link-white" > +989303016386</p>
 						</div>
 						<div class="info-title">
 							<img class="base-info-icon" src="icons/icons8-gmail.svg" alt="gmail icon">
-							<a class="link-white" href=" johndoe@gmail.com"> johndoe@gmail.com</a>
+							<p id="email" "class="link-white" > johndoe@gmail.com</p>
 						</div>
 					</ul>
 				</div>
@@ -134,7 +134,7 @@
 					<div class="additional-info-title">
 						<img class="additioan-info-titles-icon" src="icons/info.svg" alt="about icon"><h2>About Me</h2>
 					</div>
-					<p class="non-styled-list text"> Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas illo amet quod enim tempore optio laborum aperiam asperiores impedit accusantium ea dignissimos provident blanditiis cupiditate ipsum quos quidem ex totam</p>
+					<p class="non-styled-list text"> ss</p>
 				</div>
 
 				<hr class="rounded" />
@@ -321,6 +321,54 @@
 				<hr class="rounded" />
 				</div>
 			</div>
+		<!-- snack bar -->
+			<div id="email-snackbar">email saved in clipboared</div>
+			<div id="phone-snackbar">phone saved in clipboared</div>
+		<!-- end snack bar -->
+		<!-- go top btn -->
+		<a href="#" class="go-top">
+		<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#fff" class="bi bi-triangle-fill" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M7.022 1.566a1.13 1.13 0 0 1 1.96 0l6.857 11.667c.457.778-.092 1.767-.98 1.767H1.144c-.889 0-1.437-.99-.98-1.767z"/></svg></a>
+		<!-- end go top -->
 		</section>
+		<script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12">
+		</script>
+		<script>
+			new Typed('#typed-text', {
+			strings: [' Software Engineer'],
+			typeSpeed: 40,
+			loop: true,
+			showCursor: false 
+			});
+			
+			const email = document.getElementById("email")
+			email.addEventListener('click', (event) => {
+			event.preventDefault();
+			navigator.clipboard.writeText(email.innerHTML);
+			var x = document.getElementById("email-snackbar");
+			x.className = "show";
+			setTimeout(function () {
+			x.className = x.className.replace("show", "");
+			}, 3000);
+			});
+			
+			const phone = document.getElementById("phone")
+			phone.addEventListener('click', (event) => {
+			event.preventDefault();
+			navigator.clipboard.writeText(phone.innerHTML);
+			var x = document.getElementById("phone-snackbar");
+			x.className = "show";
+			setTimeout(function () {
+			x.className = x.className.replace("show", "");
+			}, 3000);
+			});
+			
+			// go top btn
+			const toTop = document.querySelector(".go-top");
+			window.addEventListener("scroll", () => {
+			if (window.pageYOffset > 150){
+			toTop.classList.add("active");
+			} else {toTop.classList.remove("active");}
+			});
+		</script>
 	</body>
 </html>

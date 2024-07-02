@@ -15,10 +15,11 @@ class CustomResumeListener(ResumeListener):
                                  'languages', 'language', 'certificates',
                                  'certificate', 'educations', 'link',
                                  'projects', 'project', 'project_title',
-                                 'project_description', 'project_url',
-                                 'work_experience', 'job', 'company', 'position',
+                                 'project_description', 'project_url', 'work_experience'
+                                 'job', 'company', 'position',
                                  'start_date', 'end_date', 'responsibility_list',
-                                 'responsibility', 'education', 'degree', 'git_scraper',
+                                 'responsibility', 'education', 'degree',
+                                 'git_scraper', 'jobinja_scraper'
                                  ]
         self.rule_names = rule_names
         self.ast = AST()
@@ -158,3 +159,6 @@ class CustomResumeListener(ResumeListener):
 
     def exitDegree(self, ctx):
         make_ast_subtree(self.ast, ctx, "degree", keep_node=True)
+
+    def exitJobinja_scraper(self, ctx):
+        make_ast_subtree(self.ast, ctx, "jobinja_scraper", keep_node=True)
