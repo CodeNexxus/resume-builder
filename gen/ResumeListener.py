@@ -1,4 +1,4 @@
-# Generated from C:/Users/pars/Desktop/code nuxxus/grammar/Resume.g4 by ANTLR 4.13.1
+# Generated from D:/Uni/semester_6/Compiler/proj/resume-builder/grammar/Resume.g4 by ANTLR 4.13.1
 from antlr4 import *
 if "." in __name__:
     from .ResumeParser import ResumeParser
@@ -149,6 +149,15 @@ class ResumeListener(ParseTreeListener):
 
     # Exit a parse tree produced by ResumeParser#skills.
     def exitSkills(self, ctx:ResumeParser.SkillsContext):
+        pass
+
+
+    # Enter a parse tree produced by ResumeParser#jobinja_scraper.
+    def enterJobinja_scraper(self, ctx:ResumeParser.Jobinja_scraperContext):
+        pass
+
+    # Exit a parse tree produced by ResumeParser#jobinja_scraper.
+    def exitJobinja_scraper(self, ctx:ResumeParser.Jobinja_scraperContext):
         pass
 
 

@@ -1,4 +1,5 @@
 from .GitScraper import git_scraper
+from .JobinjaScraper import get_required_skills
 class ResumeDslCodeGenerator:
     def __init__(self):
         self.non_operands = ['resume', 'base_info', 'additional_info', 'git_scraper',
@@ -7,10 +8,11 @@ class ResumeDslCodeGenerator:
                              'certificates', 'certificate',
                              'socials', 'social_list', 'projects',
                              'languages', 'soft_skills', 'hard_skills',
-                             'work_experience', 'educations']
+                             'work_experience', 'educations', 'jobinja_scraper']
         self.operand_stack = []
         self.code_stack = []
         self.hr_spliter = '<hr class="rounded" />'
+        self.jobinja_added = False
 
     def is_operand(self, item):
         if item in self.non_operands:
@@ -83,6 +85,9 @@ class ResumeDslCodeGenerator:
 
         elif item == "educations":
             self.generate_educations()
+
+        elif item == "jobinja_scraper":
+            self.generate_jobinja_scraper()
 
     def generate_base_info(self):
         socials_code = self.code_stack.pop()
@@ -512,7 +517,10 @@ class ResumeDslCodeGenerator:
 
         hard_skills.pop()
 
-        # print(hard_skills)
+        required_skills = []
+        for i in range(len(self.operand_stack)):
+            temp = self.operand_stack.pop()
+            required_skills.append(temp)
 
         element = (f'\n\t\t\t\t\t\t<div class="additional-info-item">\n\t\t\t\t\t\t\t'
                    f'<li>\n\t\t\t\t\t\t\t\t<strong>hard_skills_item</strong>\n\t\t\t\t\t\t</li>'
@@ -543,3 +551,10 @@ class ResumeDslCodeGenerator:
 
         self.code_stack.append(code_string)
 
+    def generate_jobinja_scraper(self):
+        _ = self.operand_stack.pop()
+        job_url = self.operand_stack.pop().strip().strip('"')
+        required_skills = get_required_skills(job_url)
+
+        for i in range(len(required_skills)):
+            self.operand_stack.append(required_skills[i])
