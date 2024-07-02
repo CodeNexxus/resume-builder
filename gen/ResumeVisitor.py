@@ -1,4 +1,4 @@
-# Generated from D:/Uni/semester_6/Compiler/proj/resume-builder/grammar/Resume.g4 by ANTLR 4.13.1
+# Generated from C:/Users/DarknesS/source/repos/dsl/grammar/Resume.g4 by ANTLR 4.13.1
 from antlr4 import *
 if "." in __name__:
     from .ResumeParser import ResumeParser
@@ -311,6 +311,31 @@ class ResumeVisitor(ParseTreeVisitor):
 
     # Visit a parse tree produced by ResumeParser#end_date.
     def visitEnd_date(self, ctx:ResumeParser.End_dateContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by ResumeParser#optional_features.
+    def visitOptional_features(self, ctx:ResumeParser.Optional_featuresContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by ResumeParser#theme_switch.
+    def visitTheme_switch(self, ctx:ResumeParser.Theme_switchContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by ResumeParser#pdf_download.
+    def visitPdf_download(self, ctx:ResumeParser.Pdf_downloadContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by ResumeParser#section_mod.
+    def visitSection_mod(self, ctx:ResumeParser.Section_modContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by ResumeParser#collapsable.
+    def visitCollapsable(self, ctx:ResumeParser.CollapsableContext):
         return self.visitChildren(ctx)
 
 
