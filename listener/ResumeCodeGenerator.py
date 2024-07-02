@@ -1,5 +1,5 @@
 from .GitScraper import git_scraper
-from .JobinjaScraper import get_required_skills
+# from .JobinjaScraper import get_required_skills
 class ResumeDslCodeGenerator:
     def __init__(self):
         self.non_operands = ['resume', 'base_info', 'additional_info', 'git_scraper',
@@ -13,6 +13,7 @@ class ResumeDslCodeGenerator:
         self.code_stack = []
         self.hr_spliter = '<hr class="rounded" />'
         self.jobinja_added = False
+        self.js_code_stack = []
 
     def is_operand(self, item):
         if item in self.non_operands:
@@ -34,6 +35,11 @@ class ResumeDslCodeGenerator:
             if code_string is not None:
                 result += code_string
 
+        result_js = ''
+        for code_string in self.js_code_stack:
+            if code_string is not None:
+                result_js += code_string
+
         base_html = (
             "<html>\n\n\t<head>"
             "\n\t\t<meta charset=\"utf-8\">\n\t\t<title>Resume</title>\n\t\t"
@@ -42,9 +48,28 @@ class ResumeDslCodeGenerator:
             "\n\n\t<body class=\"t2 background\">"
             "\n\t\t<section class=\"container\">"
             "\n\n\t\t\t<div class=\"information\">\n\t\t\t\tHERE\n\t\t\t</div>\n\t\t"
-            "</section>\n\t</body>\n</html>"
+            "<!-- snack bar -->\n\t\t\t"
+            "<div id=\"email-snackbar\">email saved in clipboared</div>\n\t\t\t"
+            "<div id=\"phone-snackbar\">phone saved in clipboared</div>\n\t\t"
+            "<!-- end snack bar -->\n\t\t"
+            "<!-- go top btn -->\n\t\t"
+            "<a href=\"#\" class=\"go-top\">\n\t\t"
+            "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"20\" height=\"20\" fill=\"#fff\" "
+            "class=\"bi bi-triangle-fill\" viewBox=\"0 0 16 16\">"
+            "<path fill-rule=\"evenodd\" d=\"M7.022 1.566a1.13 1.13 0 0 1 1.96 0l6.857 11.667c.457.778"
+            "-.092 1.767-.98 1.767H1.144c-.889 0-1.437-.99-.98-1.767z\"/>"
+            "</svg>"
+            "</a>\n\t\t"
+            "<!-- end go top -->\n\t\t"
+            "</section>\n\t\t<script src=\"https://cdn.jsdelivr.net/npm/typed.js@2.0.12\">"
+            "\n\t\t</script>"
+            "\n\t\t<script>scripts_Here"
+            "\n\t\t</script>"
+            "\n\t</body>\n</html>"
         )
-        return base_html.replace("HERE", result)
+        base_html = base_html.replace("HERE", result)
+        base_html = base_html.replace("scripts_Here", result_js)
+        return base_html
 
     def generate_code_based_on_non_operand(self, item):
         if item == "personal_info":
@@ -104,6 +129,18 @@ class ResumeDslCodeGenerator:
 
         self.code_stack.append(code_string)
 
+    def js_go_top(self):
+
+        js_code = ('\n\t\t\t// go top btn'
+                   '\n\t\t\tconst toTop = document.querySelector(".go-top");'
+                   '\n\t\t\twindow.addEventListener("scroll", () => {'
+                   '\n\t\t\tif (window.pageYOffset > 150){'
+                   '\n\t\t\ttoTop.classList.add("active");'
+                   '\n\t\t\t} else {toTop.classList.remove("active");}'
+                   '\n\t\t\t});')
+
+        self.js_code_stack.append(js_code)
+
     def generate_additional_info(self):
         educations = self.code_stack.pop()
         experience = self.code_stack.pop()
@@ -118,6 +155,8 @@ class ResumeDslCodeGenerator:
                        f"{summary}\n{languages}\n{soft_skills}\n{hard_skills}\n{projects_code}\n"
                        f"{experience}\n{educations}"
                        f"\n\t\t\t\t</div>")
+
+        self.js_go_top()
 
         self.code_stack.append(code_string)
 
@@ -151,8 +190,9 @@ class ResumeDslCodeGenerator:
         temp = name_code + surname_code + birth_code + city_code
 
         personal_image = ('\n\t\t\t\t<div class=\"profile-img\">'
-                          '\n\t\t\t\t\t<img src=\"face.jpg\" />\n\t\t\t\t</div>')
-        personal_base_code = (f'<div>\n\t\t\t\t\t<h2 class="base-item">{job_title}</h2>'
+                          '\n\t\t\t\t\t<img src=\"face.jpeg\" />\n\t\t\t\t</div>')
+        personal_base_code = (f'<div>\n\t\t\t\t\t<h2 id="typed-text" class="base-item"'
+                              f' style="height: 30px"></h2>'
                               '\n\t\t\t\t\t<ul>\n\t\t\t\t\t\tHERE\n\t\t\t\t\t</ul>\n\t\t\t\t</div>')
         personal_base_code = personal_base_code.replace("HERE",temp)
 
@@ -162,20 +202,60 @@ class ResumeDslCodeGenerator:
 
         phone_code = (f'\n\t\t\t\t\t\t<div class="info-title">\n\t\t\t\t\t\t\t'
                       f'<img class="base-info-icon" src="icons/icons8-phone.svg" alt="phone icon">'
-                      f'\n\t\t\t\t\t\t\t<a class="link-white" href="{phone}">{phone}</a>\n\t\t\t\t\t\t</div>')
+                      f'\n\t\t\t\t\t\t\t<p id="phone" class="link-white" >{phone}</p>\n\t\t\t\t\t\t</div>')
 
         gmail_code = (f'\n\t\t\t\t\t\t<div class="info-title">\n\t\t\t\t\t\t\t'
                       f'<img class="base-info-icon" src="icons/icons8-gmail.svg" alt="gmail icon">'
-                      f'\n\t\t\t\t\t\t\t<a class="link-white" href="{gmail}">{gmail}</a>\n\t\t\t\t\t\t</div>')
+                      f'\n\t\t\t\t\t\t\t<p id="email" "class="link-white" >{gmail}</p>\n\t\t\t\t\t\t</div>')
         temp = phone_code + gmail_code
 
         contacts_code = (f'<div>\n\t\t\t\t\t<h2 class="base-item">Contacts</h2>'
-                        '\n\t\t\t\t\t<ul>\n\t\t\t\t\t\tHERE\n\t\t\t\t\t</ul>\n\t\t\t\t</div>')
+                         '\n\t\t\t\t\t<ul>\n\t\t\t\t\t\tHERE\n\t\t\t\t\t</ul>\n\t\t\t\t</div>')
         contacts_code = contacts_code.replace("HERE", temp)
 
         code_string = f"{contacts_code}\n\n\t\t\t\t{self.hr_spliter}"
 
         self.code_stack.append(code_string)
+
+        # js part
+        self.personal_info_js(job_title)
+
+    def personal_info_js(self,job_title):
+
+        js_code = '\n\t\t\tnew Typed(\'#typed-text\', {\n\t\t\t'
+        js_code += (f'strings: [\'{job_title}\'],\n\t\t\t'
+                    f'typeSpeed: 40,\n\t\t\t'
+                    f'loop: true,\n\t\t\t'
+                    f'showCursor: false \n\t\t\t')
+        js_code += "});\n\t\t\t"
+
+        self.js_code_stack.append(js_code)
+
+        js_snack_bar_code = ('\n\t\t\tconst email = document.getElementById(\"email\")\n\t\t\t'
+                             'email.addEventListener(\'click\', (event) => {\n\t\t\t'
+                             'event.preventDefault();\n\t\t\t'
+                             'navigator.clipboard.writeText(email.innerHTML);\n\t\t\t'
+                             'var x = document.getElementById("email-snackbar");\n\t\t\t'
+                             'x.className = "show";\n\t\t\t'
+                             'setTimeout(function () {\n\t\t\t'
+                             'x.className = x.className.replace("show", "");\n\t\t\t'
+                             '}, 3000);\n\t\t\t'
+                             '});\n\t\t\t')
+
+        self.js_code_stack.append(js_snack_bar_code)
+
+        js_snack_bar_code = ('\n\t\t\tconst phone = document.getElementById(\"phone\")\n\t\t\t'
+                             'phone.addEventListener(\'click\', (event) => {\n\t\t\t'
+                             'event.preventDefault();\n\t\t\t'
+                             'navigator.clipboard.writeText(phone.innerHTML);\n\t\t\t'
+                             'var x = document.getElementById("phone-snackbar");\n\t\t\t'
+                             'x.className = "show";\n\t\t\t'
+                             'setTimeout(function () {\n\t\t\t'
+                             'x.className = x.className.replace("show", "");\n\t\t\t'
+                             '}, 3000);\n\t\t\t'
+                             '});\n\t\t\t')
+
+        self.js_code_stack.append(js_snack_bar_code)
 
     def generate_git_scraper(self):
         # print(self.operand_stack)
@@ -183,7 +263,7 @@ class ResumeDslCodeGenerator:
         username = self.operand_stack.pop().replace(" ","")
         languages = git_scraper(username)
         # languages = {}
-        cl_start_code = '\n\t\t\t\t\t<div>\n\t\t\t\t\t\t<h2 class="base-item">Top Five Languages</h2>\n\t\t\t\t\t\t<ul>'
+        cl_start_code = '\n\t\t\t\t\t<div>\n\t\t\t\t\t\t<h2 class="base-item">Top Five GitHub</h2>\n\t\t\t\t\t\t<ul>'
         cl_end_code = f'\n\t\t\t\t\t\t</ul>\n\t\t\t\t\t</div>\n\n\t\t\t\t\t{self.hr_spliter}'
 
         code_temp = cl_start_code
@@ -194,8 +274,8 @@ class ResumeDslCodeGenerator:
                        f'<li>\n\t\t\t\t\t\t\t\t<strong>hard_skills_item</strong>\n\t\t\t\t\t\t</li>'
                        f'\n\t\t\t\t\t\t\t<div class="rate">rating-skill\n\t\t\t\t\t\t</div>\n\t\t\t\t\t\t</div>')
 
-            fill_star = '\n\t\t\t\t\t\t\t\t<img class="rate-star" src="icons/filled star.svg" alt="">'
-            empty_star = '\n\t\t\t\t\t\t\t\t<img class="rate-star" src="icons/star (1).svg" alt="">'
+            fill_star = '\n\t\t\t\t\t\t\t\t<img class="rate-star" src="icons/wstarfilled.svg" alt="">'
+            empty_star = '\n\t\t\t\t\t\t\t\t<img class="rate-star" src="icons/wstar.svg" alt="">'
 
             temp_code = element.replace("hard_skills_item", lan)
             rating_code = fill_star * int(number) + empty_star * (3 - int(number))
@@ -552,9 +632,11 @@ class ResumeDslCodeGenerator:
         self.code_stack.append(code_string)
 
     def generate_jobinja_scraper(self):
-        _ = self.operand_stack.pop()
-        job_url = self.operand_stack.pop().strip().strip('"')
-        required_skills = get_required_skills(job_url)
-
-        for i in range(len(required_skills)):
-            self.operand_stack.append(required_skills[i])
+        pass
+        # print(self.operand_stack)
+        # _ = self.operand_stack.pop()
+        # job_url = self.operand_stack.pop().strip().strip('"')
+        # required_skills = get_required_skills(job_url)
+        #
+        # for i in range(len(required_skills)):
+        #     self.operand_stack.append(required_skills[i])
