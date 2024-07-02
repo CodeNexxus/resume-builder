@@ -14,7 +14,7 @@ class ResumeDslCodeGenerator:
 							 'work_experience', 'educations', 'jobinja_scraper',
 							 'go_top', 'autocopy', 'job_title_effect',
 							 'interactive_skill_bars', 'collapsable_sections',
-							 'dynamic_theme', 'switching', 'tooltip', 'pdf_output']
+							 'theme_switching', 'tooltip', 'pdf_output']
 		self.operand_stack = []
 		self.code_stack = []
 		self.hr_spliter = '<hr class="rounded" />'
@@ -53,7 +53,7 @@ class ResumeDslCodeGenerator:
 			"\n\t\t<meta charset=\"utf-8\">\n\t\t<title>Resume</title>\n\t\t"
 			"<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n\t\t"
 			"<link rel=\"stylesheet\" type=\"text/css\" href=\"styles.css\">\n\t</head>"
-			"\n\n\t<body class=\"t2 background\">"
+			"\n\n\t<body id=\"themeHolder\" class=\"t1 background\">"
 			"\n\t\t<section class=\"container\">"
 			"\n\n\t\t\t<div class=\"information\">\n\t\t\t\tHERE\n\t\t\t</div>\n\t\t"
 			"<!-- snack bar -->\n\t\t\t"
@@ -145,11 +145,8 @@ class ResumeDslCodeGenerator:
 		elif item == "collapsable_sections":
 			self.generate_collapsable_sections()
 
-		elif item == "dynamic_theme":
-			self.generate_dynamic_theme()
-
-		elif item == "switching":
-			self.generate_switching()
+		elif item == "theme_switching":
+			self.generate_theme_switching()
 
 		elif item == "tooltip":
 			self.generate_tooltip()
@@ -165,8 +162,7 @@ class ResumeDslCodeGenerator:
 		job_title_effect_enabled = False
 		interactive_skill_bars_enabled = False
 		collapsable_sections_enabled = False
-		dynamic_theme_enabled = False
-		switching_enabled = False
+		theme_switching_enabled = False
 		tooltip_enabled = False
 		pdf_output_enabled = False
 
@@ -184,10 +180,8 @@ class ResumeDslCodeGenerator:
 			elif temp_code.startswith('##COMPILER_PARAM:::collapsable_sections:::'):
 				collapsable_sections_enabled = temp_code.replace('##COMPILER_PARAM:::collapsable_sections:::',
 																 '') == 'True'
-			elif temp_code.startswith('##COMPILER_PARAM:::dynamic_theme:::'):
-				dynamic_theme_enabled = temp_code.replace('##COMPILER_PARAM:::dynamic_theme:::', '') == 'True'
-			elif temp_code.startswith('##COMPILER_PARAM:::switching:::'):
-				switching_enabled = temp_code.replace('##COMPILER_PARAM:::switching:::', '') == 'True'
+			elif temp_code.startswith('##COMPILER_PARAM:::theme_switching:::'):
+				theme_switching_enabled = temp_code.replace('##COMPILER_PARAM:::theme_switching:::', '') == 'True'
 			elif temp_code.startswith('##COMPILER_PARAM:::tooltip:::'):
 				tooltip_enabled = temp_code.replace('##COMPILER_PARAM:::tooltip:::', '') == 'True'
 			elif temp_code.startswith('##COMPILER_PARAM:::pdf_output:::'):
@@ -211,10 +205,8 @@ class ResumeDslCodeGenerator:
 			program_code += self.generate_interactive_skill_bars_code()
 		if collapsable_sections_enabled:
 			program_code += self.generate_collapsable_sections_code()
-		if dynamic_theme_enabled:
-			program_code += self.generate_dynamic_theme_code()
-		if switching_enabled:
-			program_code += self.generate_switching_code()
+		if theme_switching_enabled:
+			program_code += self.generate_theme_switching_code()
 		if tooltip_enabled:
 			program_code += self.generate_tooltip_code()
 		if pdf_output_enabled:
@@ -276,11 +268,14 @@ class ResumeDslCodeGenerator:
 	def generate_collapsable_sections_code(self):
 		pass
 
-	def generate_dynamic_theme_code(self):
+	def generate_theme_switching_code(self):
 		pass
-
-	def generate_switching_code(self):
-		pass
+		# return (
+		# 	'\n\t\t\tfunction changeClass(newClass) {'
+		# 	'\n\t\t\t\tconst div = document.getElementById("themeHolder");'
+		# 	'\n\t\t\t\tdiv.className = newClass + " background";'
+		# 	'\n\t\t\t}'
+		# )
 
 	def generate_tooltip_code(self):
 		pass
@@ -303,11 +298,8 @@ class ResumeDslCodeGenerator:
 	def generate_collapsable_sections(self):
 		self.code_stack.append(f"##COMPILER_PARAM:::collapsable_sections:::{self.operand_stack.pop()}")
 
-	def generate_dynamic_theme(self):
-		self.code_stack.append(f"##COMPILER_PARAM:::dynamic_theme:::{self.operand_stack.pop()}")
-
-	def generate_switching(self):
-		self.code_stack.append(f"##COMPILER_PARAM:::switching:::{self.operand_stack.pop()}")
+	def generate_theme_switching(self):
+		self.code_stack.append(f"##COMPILER_PARAM:::theme_switching:::{self.operand_stack.pop()}")
 
 	def generate_tooltip(self):
 		self.code_stack.append(f"##COMPILER_PARAM:::tooltip:::{self.operand_stack.pop()}")

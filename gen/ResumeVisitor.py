@@ -49,13 +49,8 @@ class ResumeVisitor(ParseTreeVisitor):
         return self.visitChildren(ctx)
 
 
-    # Visit a parse tree produced by ResumeParser#dynamic_theme.
-    def visitDynamic_theme(self, ctx:ResumeParser.Dynamic_themeContext):
-        return self.visitChildren(ctx)
-
-
-    # Visit a parse tree produced by ResumeParser#switching.
-    def visitSwitching(self, ctx:ResumeParser.SwitchingContext):
+    # Visit a parse tree produced by ResumeParser#theme_switching.
+    def visitTheme_switching(self, ctx:ResumeParser.Theme_switchingContext):
         return self.visitChildren(ctx)
 
 

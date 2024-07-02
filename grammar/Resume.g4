@@ -10,8 +10,7 @@ optional_features:
     job_title_effect? NEWLINE*
     interactive_skill_bars? NEWLINE*
     collapsable_sections? NEWLINE*
-    dynamic_theme? NEWLINE*
-    switching? NEWLINE*
+    theme_switching? NEWLINE*
     tooltip? NEWLINE*
     pdf_output?;
 
@@ -20,8 +19,7 @@ autocopy: 'autocopy:' boolean;
 job_title_effect: 'job_title_effect:' boolean;
 interactive_skill_bars: 'interactive_skill_bars:' boolean;
 collapsable_sections: 'collapsable_sections:' boolean;
-dynamic_theme: 'dynamic_theme:' boolean;
-switching: 'switching:' boolean;
+theme_switching: 'theme_switching:' boolean;
 tooltip: 'tooltip:' boolean;
 pdf_output: 'pdf_output:' boolean;
 

@@ -22,7 +22,7 @@ class CustomResumeListener(ResumeListener):
                                  'git_scraper', 'jobinja_scraper',
                                  'go_top', 'autocopy', 'job_title_effect',
                                  'interactive_skill_bars', 'collapsable_sections',
-                                 'dynamic_theme', 'switching', 'tooltip', 'pdf_output']
+                                 'theme_switching', 'tooltip', 'pdf_output']
         self.rule_names = rule_names
         self.ast = AST()
 
@@ -180,8 +180,8 @@ class CustomResumeListener(ResumeListener):
     def exitCollapsable_sections(self, ctx):
         make_ast_subtree(self.ast, ctx, "collapsable_sections", keep_node=True)
 
-    def exitDynamic_theme(self, ctx):
-        make_ast_subtree(self.ast, ctx, "dynamic_theme", keep_node=True)
+    def exitTheme_switching(self, ctx):
+        make_ast_subtree(self.ast, ctx, "theme_switching", keep_node=True)
 
     def exitSwitching(self, ctx):
         make_ast_subtree(self.ast, ctx, "switching", keep_node=True)

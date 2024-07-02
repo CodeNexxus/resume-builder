@@ -80,21 +80,12 @@ class ResumeListener(ParseTreeListener):
         pass
 
 
-    # Enter a parse tree produced by ResumeParser#dynamic_theme.
-    def enterDynamic_theme(self, ctx:ResumeParser.Dynamic_themeContext):
+    # Enter a parse tree produced by ResumeParser#theme_switching.
+    def enterTheme_switching(self, ctx:ResumeParser.Theme_switchingContext):
         pass
 
-    # Exit a parse tree produced by ResumeParser#dynamic_theme.
-    def exitDynamic_theme(self, ctx:ResumeParser.Dynamic_themeContext):
-        pass
-
-
-    # Enter a parse tree produced by ResumeParser#switching.
-    def enterSwitching(self, ctx:ResumeParser.SwitchingContext):
-        pass
-
-    # Exit a parse tree produced by ResumeParser#switching.
-    def exitSwitching(self, ctx:ResumeParser.SwitchingContext):
+    # Exit a parse tree produced by ResumeParser#theme_switching.
+    def exitTheme_switching(self, ctx:ResumeParser.Theme_switchingContext):
         pass
 
 
