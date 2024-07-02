@@ -18,6 +18,7 @@ h2{
     justify-content: center;
     margin: 0;
     background-attachment: fixed;
+    background-attachment: fixed;
 }
 
 .t1.background {
@@ -87,6 +88,11 @@ a {
 
 
     img {
+        height: 15rem;
+        width: 15rem;
+        border-radius: 50%;
+        object-fit: cover;
+        overflow: hidden;
         height: 15rem;
         width: 15rem;
         border-radius: 50%;
