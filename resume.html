@@ -11,7 +11,7 @@
 		<section class="container">
 
 			<div class="information">
-				##COMPILER_PARAM:::go_top:::True##COMPILER_PARAM:::autocopy:::True##COMPILER_PARAM:::job_title_effect:::True##COMPILER_PARAM:::interactive_skill_bars:::True##COMPILER_PARAM:::collapsable_sections:::True##COMPILER_PARAM:::dynamic_theme:::True##COMPILER_PARAM:::switching:::True##COMPILER_PARAM:::tooltip:::True##COMPILER_PARAM:::pdf_output:::True
+				
 				<div class="base-info">
 				<div class="profile-img">
 					<img src="face.jpeg" />
@@ -277,13 +277,13 @@
 		<script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12">
 		</script>
 		<script>
-			new Typed('#typed-text', {
-			strings: [' Software Engineer'],
-			typeSpeed: 40,
-			loop: true,
-			showCursor: false 
+			// go top btn
+			const toTop = document.querySelector(".go-top");
+			window.addEventListener("scroll", () => {
+			if (window.pageYOffset > 150){
+			toTop.classList.add("active");
+			} else {toTop.classList.remove("active");}
 			});
-			
 			const email = document.getElementById("email")
 			email.addEventListener('click', (event) => {
 			event.preventDefault();
@@ -306,13 +306,13 @@
 			}, 3000);
 			});
 			
-			// go top btn
-			const toTop = document.querySelector(".go-top");
-			window.addEventListener("scroll", () => {
-			if (window.pageYOffset > 150){
-			toTop.classList.add("active");
-			} else {toTop.classList.remove("active");}
+			new Typed('#typed-text', {
+			strings: [' Software Engineer'],
+			typeSpeed: 40,
+			loop: true,
+			showCursor: false 
 			});
+			
 		</script>
 	</body>
 </html>

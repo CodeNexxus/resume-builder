@@ -1,5 +1,6 @@
 from .GitScraper import git_scraper
 # from .JobinjaScraper import get_required_skills
+from .GenerateCss import GenerateCss
 class ResumeDslCodeGenerator:
     def __init__(self):
         self.non_operands = ['resume', 'base_info', 'additional_info', 'git_scraper',
@@ -16,7 +17,7 @@ class ResumeDslCodeGenerator:
         self.code_stack = []
         self.hr_spliter = '<hr class="rounded" />'
         self.jobinja_added = False
-        # self.js_code_stack = []
+
 
     def is_operand(self, item):
         if item in self.non_operands:
@@ -34,7 +35,10 @@ class ResumeDslCodeGenerator:
                 self.operand_stack.append(item["label"])
 
         result = ''
-        for code_string in self.code_stack:
+        while True:
+            code_string = self.code_stack.pop()
+            if code_string == 'FLAG-FOR_JS':
+                break
             if code_string is not None:
                 result += code_string
 
@@ -71,8 +75,13 @@ class ResumeDslCodeGenerator:
             "\n\t</body>\n</html>"
         )
         base_html = base_html.replace("HERE", result)
-        base_html = base_html.replace("scripts_Here", result_js)
-        return base_html
+        base_html = base_html.replace("scripts_Here", self.code_stack.pop())
+
+        css_class = GenerateCss()
+        css_file = css_class.generate_code()
+
+        codes = [base_html, css_file]
+        return codes
 
     def generate_code_based_on_non_operand(self, item):
         if item == "resume":
@@ -184,13 +193,14 @@ class ResumeDslCodeGenerator:
                 self.code_stack.append(temp_code)
                 break
 
-        program_code = base_info + additional_info
+        html_code = base_info + additional_info
+        program_code = ""
         if go_top_enabled:
             program_code += self.generate_go_top_code()
         if autocopy_enabled:
             program_code += self.generate_autocopy_code()
         if job_title_effect_enabled:
-            program_code += self.generate_job_title_effect_code()
+            program_code += self.generate_job_title_effect_code().replace("job_title_for_js",self.job_title_replace)
         if interactive_skill_bars_enabled:
             program_code += self.generate_interactive_skill_bars_code()
         if collapsable_sections_enabled:
@@ -204,7 +214,11 @@ class ResumeDslCodeGenerator:
         if pdf_output_enabled:
             program_code += self.generate_pdf_output_code()
 
+        flag_for_js = "FLAG-FOR_JS"
         self.code_stack.append(program_code)
+        self.code_stack.append(flag_for_js)
+        self.code_stack.append(html_code)
+
 
     def generate_go_top_code(self):
         return (
@@ -218,10 +232,38 @@ class ResumeDslCodeGenerator:
         )
 
     def generate_autocopy_code(self):
-        pass
+        js_snack_bar_code = ('\n\t\t\tconst email = document.getElementById(\"email\")\n\t\t\t'
+                             'email.addEventListener(\'click\', (event) => {\n\t\t\t'
+                             'event.preventDefault();\n\t\t\t'
+                             'navigator.clipboard.writeText(email.innerHTML);\n\t\t\t'
+                             'var x = document.getElementById("email-snackbar");\n\t\t\t'
+                             'x.className = "show";\n\t\t\t'
+                             'setTimeout(function () {\n\t\t\t'
+                             'x.className = x.className.replace("show", "");\n\t\t\t'
+                             '}, 3000);\n\t\t\t'
+                             '});\n\t\t\t')
+
+        js_snack_bar_code += ('\n\t\t\tconst phone = document.getElementById(\"phone\")\n\t\t\t'
+                             'phone.addEventListener(\'click\', (event) => {\n\t\t\t'
+                             'event.preventDefault();\n\t\t\t'
+                             'navigator.clipboard.writeText(phone.innerHTML);\n\t\t\t'
+                             'var x = document.getElementById("phone-snackbar");\n\t\t\t'
+                             'x.className = "show";\n\t\t\t'
+                             'setTimeout(function () {\n\t\t\t'
+                             'x.className = x.className.replace("show", "");\n\t\t\t'
+                             '}, 3000);\n\t\t\t'
+                             '});\n\t\t\t')
+
+        return js_snack_bar_code
 
     def generate_job_title_effect_code(self):
-        pass
+        js_code = '\n\t\t\tnew Typed(\'#typed-text\', {\n\t\t\t'
+        js_code += (f'strings: [\'job_title_for_js\'],\n\t\t\t'
+                    f'typeSpeed: 40,\n\t\t\t'
+                    f'loop: true,\n\t\t\t'
+                    f'showCursor: false \n\t\t\t')
+        js_code += "});\n\t\t\t"
+        return js_code
 
     def generate_interactive_skill_bars_code(self):
         pass
@@ -314,7 +356,8 @@ class ResumeDslCodeGenerator:
         phone = self.operand_stack.pop()
 
         self.operand_stack.pop()
-        job_title = self.operand_stack.pop()
+        self.job_title_replace = self.operand_stack.pop()
+
 
         self.operand_stack.pop()
         surname = self.operand_stack.pop()
@@ -356,43 +399,6 @@ class ResumeDslCodeGenerator:
         code_string = f"{contacts_code}\n\n\t\t\t\t{self.hr_spliter}"
 
         self.code_stack.append(code_string)
-
-    def personal_info_js(self,job_title):
-
-        js_code = '\n\t\t\tnew Typed(\'#typed-text\', {\n\t\t\t'
-        js_code += (f'strings: [\'{job_title}\'],\n\t\t\t'
-                    f'typeSpeed: 40,\n\t\t\t'
-                    f'loop: true,\n\t\t\t'
-                    f'showCursor: false \n\t\t\t')
-        js_code += "});\n\t\t\t"
-
-        self.js_code_stack.append(js_code)
-
-        js_snack_bar_code = ('\n\t\t\tconst email = document.getElementById(\"email\")\n\t\t\t'
-                             'email.addEventListener(\'click\', (event) => {\n\t\t\t'
-                             'event.preventDefault();\n\t\t\t'
-                             'navigator.clipboard.writeText(email.innerHTML);\n\t\t\t'
-                             'var x = document.getElementById("email-snackbar");\n\t\t\t'
-                             'x.className = "show";\n\t\t\t'
-                             'setTimeout(function () {\n\t\t\t'
-                             'x.className = x.className.replace("show", "");\n\t\t\t'
-                             '}, 3000);\n\t\t\t'
-                             '});\n\t\t\t')
-
-        self.js_code_stack.append(js_snack_bar_code)
-
-        js_snack_bar_code = ('\n\t\t\tconst phone = document.getElementById(\"phone\")\n\t\t\t'
-                             'phone.addEventListener(\'click\', (event) => {\n\t\t\t'
-                             'event.preventDefault();\n\t\t\t'
-                             'navigator.clipboard.writeText(phone.innerHTML);\n\t\t\t'
-                             'var x = document.getElementById("phone-snackbar");\n\t\t\t'
-                             'x.className = "show";\n\t\t\t'
-                             'setTimeout(function () {\n\t\t\t'
-                             'x.className = x.className.replace("show", "");\n\t\t\t'
-                             '}, 3000);\n\t\t\t'
-                             '});\n\t\t\t')
-
-        self.js_code_stack.append(js_snack_bar_code)
 
     def generate_git_scraper(self):
         # print(self.operand_stack)

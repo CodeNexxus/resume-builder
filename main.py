@@ -24,8 +24,14 @@ def main(arguments):
     traversal = post_order_ast_traverser.traverse_ast(ast.root)
     code_generator = ResumeDslCodeGenerator()
     generated_code = code_generator.generate_code(traversal)
+
+    generated_html = generated_code[0]
+    generated_css = generated_code[1]
+
     with open(arguments.output, 'w') as output_file:
-        output_file.write(generated_code)
+        output_file.write(generated_html)
+    with open('styles.css', 'w') as output_file:
+        output_file.write(generated_css)
 
 
 if __name__ == '__main__':
