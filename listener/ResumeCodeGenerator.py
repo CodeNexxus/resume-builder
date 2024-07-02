@@ -33,11 +33,12 @@ class ResumeDslCodeGenerator:
                 result += code_string
 
         base_html = (
-            "<html>\n\n\t<head>\n\t\t<title>Resume</title>\n\t\t"
+            "<html>\n\n\t<head>"
+            "\n\t\t<meta charset=\"utf-8\">\n\t\t<title>Resume</title>\n\t\t"
+            "<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n\t\t"
             "<link rel=\"stylesheet\" type=\"text/css\" href=\"styles.css\">\n\t</head>"
-            "\n\n\t<body class=\"t1 background\">"
+            "\n\n\t<body class=\"t2 background\">"
             "\n\t\t<section class=\"container\">"
-            "\n\n\t\t\t<div class=\"header-name\">\n\t\t\t\t<h1>John Doe</h1>\n\t\t\t</div>"
             "\n\n\t\t\t<div class=\"information\">\n\t\t\t\tHERE\n\t\t\t</div>\n\t\t"
             "</section>\n\t</body>\n</html>"
         )
@@ -87,28 +88,30 @@ class ResumeDslCodeGenerator:
         socials_code = self.code_stack.pop()
         languages = self.code_stack.pop()
         certificate_code = self.code_stack.pop()
+        contacts = self.code_stack.pop()
         personal_code = self.code_stack.pop()
 
         # print(socials_code)
 
         code_string = (f"\n\t\t\t\t<div class=\"base-info\">"
-                       f"{personal_code}\n{certificate_code}\n{socials_code}"
+                       f"{personal_code}\n{certificate_code}\n{socials_code}\n{contacts}"
                        f"\n\t\t\t\t</div>")
 
         self.code_stack.append(code_string)
 
     def generate_additional_info(self):
         educations = self.code_stack.pop()
+        experience = self.code_stack.pop()
         projects_code = self.code_stack.pop()
         languages = self.code_stack.pop()
-        experience = self.code_stack.pop()
         soft_skills = self.code_stack.pop()
         hard_skills = self.code_stack.pop()
         summary = self.code_stack.pop()
-        # print(projects_code)
+        # print(languages)
 
         code_string = (f"\n\t\t\t\t<div class=\"additional-info\">"
-                       f"{summary}\n{languages}\n{soft_skills}\n{hard_skills}\n{projects_code}\n{experience}\n{educations}"
+                       f"{summary}\n{languages}\n{soft_skills}\n{hard_skills}\n{projects_code}\n"
+                       f"{experience}\n{educations}"
                        f"\n\t\t\t\t</div>")
 
         self.code_stack.append(code_string)
@@ -135,23 +138,37 @@ class ResumeDslCodeGenerator:
         self.operand_stack.pop()
         name = self.operand_stack.pop()
 
-        name_code = f"<li>\n\t\t\t\t\t\t\t<strong>name:</strong> \"{name}\"\n\t\t\t\t\t\t</li>"
-        surname_code = f'\n\t\t\t\t\t\t<li>\n\t\t\t\t\t\t\t<strong>surname:</strong> \"{surname}\"\n\t\t\t\t\t\t</li>'
-        job_title_code = f'\n\t\t\t\t\t\t<li>\n\t\t\t\t\t\t\t<strong>job title:</strong> \"{job_title}\"\n\t\t\t\t\t\t</li>'
-        birth_code = f'\n\t\t\t\t\t\t<li>\n\t\t\t\t\t\t\t<strong>birth:</strong> \"{birth}\"\n\t\t\t\t\t\t</li>'
-        phone_code = f'\n\t\t\t\t\t\t<li>\n\t\t\t\t\t\t\t<strong>phone:</strong> \"{phone}\"\n\t\t\t\t\t\t</li>'
-        city_code = f'\n\t\t\t\t\t\t<li>\n\t\t\t\t\t\t\t<strong>city:</strong> \"{city}\"\n\t\t\t\t\t\t</li>'
-        gmail_code = f'\n\t\t\t\t\t\t<li>\n\t\t\t\t\t\t\t<strong>email:</strong> \"{gmail}\"\n\t\t\t\t\t\t</li>'
+        name_code = f"<li>\n\t\t\t\t\t\t\t<strong>name:</strong> {name}\n\t\t\t\t\t\t</li>"
+        surname_code = f'\n\t\t\t\t\t\t<li>\n\t\t\t\t\t\t\t<strong>surname:</strong> {surname}\n\t\t\t\t\t\t</li>'
+        birth_code = f'\n\t\t\t\t\t\t<li>\n\t\t\t\t\t\t\t<strong>birth:</strong> {birth}\n\t\t\t\t\t\t</li>'
+        city_code = f'\n\t\t\t\t\t\t<li>\n\t\t\t\t\t\t\t<strong>city:</strong> {city}\n\t\t\t\t\t\t</li>'
 
-        temp = name_code + surname_code + job_title_code + birth_code + phone_code + city_code + gmail_code
+        temp = name_code + surname_code + birth_code + city_code
 
         personal_image = ('\n\t\t\t\t<div class=\"profile-img\">'
                           '\n\t\t\t\t\t<img src=\"face.jpg\" />\n\t\t\t\t</div>')
-        personal_base_code = ('<div>\n\t\t\t\t\t<h2>Personal Info</h2>'
+        personal_base_code = (f'<div>\n\t\t\t\t\t<h2 class="base-item">{job_title}</h2>'
                               '\n\t\t\t\t\t<ul>\n\t\t\t\t\t\tHERE\n\t\t\t\t\t</ul>\n\t\t\t\t</div>')
         personal_base_code = personal_base_code.replace("HERE",temp)
 
         code_string = f"{personal_image}\n\n\t\t\t\t{personal_base_code}\n\n\t\t\t\t{self.hr_spliter}"
+
+        self.code_stack.append(code_string)
+
+        phone_code = (f'\n\t\t\t\t\t\t<div class="info-title">\n\t\t\t\t\t\t\t'
+                      f'<img class="base-info-icon" src="icons/icons8-phone.svg" alt="phone icon">'
+                      f'\n\t\t\t\t\t\t\t<a class="link-white" href="{phone}">{phone}</a>\n\t\t\t\t\t\t</div>')
+
+        gmail_code = (f'\n\t\t\t\t\t\t<div class="info-title">\n\t\t\t\t\t\t\t'
+                      f'<img class="base-info-icon" src="icons/icons8-gmail.svg" alt="gmail icon">'
+                      f'\n\t\t\t\t\t\t\t<a class="link-white" href="{gmail}">{gmail}</a>\n\t\t\t\t\t\t</div>')
+        temp = phone_code + gmail_code
+
+        contacts_code = (f'<div>\n\t\t\t\t\t<h2 class="base-item">Contacts</h2>'
+                        '\n\t\t\t\t\t<ul>\n\t\t\t\t\t\tHERE\n\t\t\t\t\t</ul>\n\t\t\t\t</div>')
+        contacts_code = contacts_code.replace("HERE", temp)
+
+        code_string = f"{contacts_code}\n\n\t\t\t\t{self.hr_spliter}"
 
         self.code_stack.append(code_string)
 
@@ -160,14 +177,25 @@ class ResumeDslCodeGenerator:
         self.operand_stack.pop()
         username = self.operand_stack.pop().replace(" ","")
         languages = git_scraper(username)
-
-        cl_start_code = '\n\t\t\t\t\t<div>\n\t\t\t\t\t\t<h2>Top Five Languages</h2>\n\t\t\t\t\t\t<ul>'
+        # languages = {}
+        cl_start_code = '\n\t\t\t\t\t<div>\n\t\t\t\t\t\t<h2 class="base-item">Top Five Languages</h2>\n\t\t\t\t\t\t<ul>'
         cl_end_code = f'\n\t\t\t\t\t\t</ul>\n\t\t\t\t\t</div>\n\n\t\t\t\t\t{self.hr_spliter}'
+
         code_temp = cl_start_code
         for lan in languages:
-            each_cl = (f'\n\t\t\t\t\t\t<li>\n\t\t\t\t\t\t\t<strong>'
-                       f'{lan}:</strong> \"{languages[lan]}\"\n\t\t\t\t\t\t</li>')
-            code_temp += each_cl
+            number = (float(languages[lan]) % 3) + 1
+
+            element = (f'\n\t\t\t\t\t\t<div class="additional-info-item">\n\t\t\t\t\t\t\t'
+                       f'<li>\n\t\t\t\t\t\t\t\t<strong>hard_skills_item</strong>\n\t\t\t\t\t\t</li>'
+                       f'\n\t\t\t\t\t\t\t<div class="rate">rating-skill\n\t\t\t\t\t\t</div>\n\t\t\t\t\t\t</div>')
+
+            fill_star = '\n\t\t\t\t\t\t\t\t<img class="rate-star" src="icons/filled star.svg" alt="">'
+            empty_star = '\n\t\t\t\t\t\t\t\t<img class="rate-star" src="icons/star (1).svg" alt="">'
+
+            temp_code = element.replace("hard_skills_item", lan)
+            rating_code = fill_star * int(number) + empty_star * (3 - int(number))
+            temp_code = temp_code.replace("rating-skill", rating_code)
+            code_temp += temp_code
 
         code_temp += cl_end_code
 
@@ -176,7 +204,7 @@ class ResumeDslCodeGenerator:
     def generate_socials(self):
         # print(self.operand_stack)
 
-        socials_start_code = '\n\t\t\t\t\t<div>\n\t\t\t\t\t\t<h2>Social</h2>\n\t\t\t\t\t\t<ul>'
+        socials_start_code = '\n\t\t\t\t\t<div>\n\t\t\t\t\t\t<h2 class="base-item">Social</h2>\n\t\t\t\t\t\t<ul>'
         socials_end_code = f'\n\t\t\t\t\t\t</ul>\n\t\t\t\t\t</div>\n\n\t\t\t\t\t{self.hr_spliter}'
 
         code_temp = socials_start_code
@@ -192,7 +220,10 @@ class ResumeDslCodeGenerator:
             # self.operand_stack.pop()  # name
             name = self.operand_stack.pop()
 
-            each_social = f'\n\t\t\t\t\t\t\t<li>\n\t\t\t\t\t\t\t\t<a href=\"{link}\">{name}</a>\n\t\t\t\t\t\t\t</li>'
+
+            each_social = (f'\n\t\t\t\t\t\t\t<div class="info-title">'
+                           f'\n\t\t\t\t\t\t\t\t<a class="link-white" href=\"{link}\">{name}</a>'
+                           f'\n\t\t\t\t\t\t\t</div></br>')
 
             code_temp += each_social
 
@@ -243,16 +274,23 @@ class ResumeDslCodeGenerator:
 
     def generate_summary(self):
         summary = self.operand_stack.pop()
-        summary_code = (f'\n\n\t\t\t\t<div>\n\t\t\t\t\t<h2>Summary</h2>'
-                        f'\n\t\t\t\t\t<p class="non-styled-list">{summary}</p>'
+        summary_code = (f'\n\n\t\t\t\t<div class="info-item">\n\t\t\t\t\t'
+                        f'<div class="additional-info-title">\n\t\t\t\t\t\t'
+                        f'<img class="additioan-info-titles-icon" src="icons/info.svg" alt="about icon">'
+                        f'<h2>About Me</h2>\n\t\t\t\t\t</div>'
+                        f'\n\t\t\t\t\t<p class="non-styled-list text">{summary}</p>'
                         f'\n\t\t\t\t</div>\n\n\t\t\t\t{self.hr_spliter}')
 
         self.code_stack.append(summary_code)
 
     def generate_projects(self):
         # print(self.operand_stack)
-        projects_start_code = ('\n\n\t\t\t\t<div>\n\t\t\t\t\t<h2>Projects</h2>'
-                                '\n\t\t\t\t\t<ul>')
+        projects_start_code = ('<div class="info-item">\n\t\t\t\t\t<div class="additional-info-title">'
+                               '\n\t\t\t\t\t<img class=\"additioan-info-titles-icon\" src=\"icons/diagram-project.svg\" '
+                               'alt=\"Projects title icon\">'
+                               '\n\t\t\t\t\t<h2>Projects</h2>\n\t\t\t\t\t</div>'
+                               '\n\t\t\t\t\t<ul class="projects">\n\t\t\t\t\t\t')
+
         projects_end_code = f'\n\t\t\t\t\t</ul>\n\t\t\t\t</div>\n\n\t\t\t\t{self.hr_spliter}'
 
         code_temp = projects_start_code
@@ -271,8 +309,8 @@ class ResumeDslCodeGenerator:
             self.operand_stack.pop()  # title
             title = self.operand_stack.pop()
 
-            title_code = f'\n\t\t\t\t\t\t<li><strong>title:</strong> <a href=\"{link}\">{title}</a></li>'
-            description_code = f'\n\t\t\t\t\t\t<li><strong>description:</strong>{description}</li><br>'
+            title_code = f'\n\t\t\t\t\t\t<div>\n\t\t\t\t\t\t<li><a class="link" href=\"{link}\">{title}</a></li>'
+            description_code = f'\n\t\t\t\t\t\t<li><p class="text">{description}</p></li></div>'
             code_temp += title_code + description_code
 
             temp = self.operand_stack.pop()
@@ -286,8 +324,12 @@ class ResumeDslCodeGenerator:
 
     def generate_work_experience(self):
         # print(self.operand_stack)
-        work_experience_start_code = ('\n\n\t\t\t\t<div>\n\t\t\t\t\t<h2>Work Experience</h2>'
-                                 '\n\t\t\t\t\t<ul>')
+        work_experience_start_code = ('<div class="info-item">\n\t\t\t\t\t<div class="additional-info-title">'
+                                      '\n\t\t\t\t\t<img class=\"additioan-info-titles-icon\" '
+                                      'src=\"icons/diagram-project.svg\" '
+                                      'alt=\"experience title icon\">'
+                                      '\n\t\t\t\t\t<h2>Experience</h2>\n\t\t\t\t\t</div>'
+                                      '\n\t\t\t\t\t<ul class="educations">\n\t\t\t\t\t\t')
         work_experience_end_code = f'\n\t\t\t\t\t</ul>\n\t\t\t\t</div>\n\n\t\t\t\t{self.hr_spliter}'
 
         code_temp = work_experience_start_code
@@ -321,12 +363,13 @@ class ResumeDslCodeGenerator:
             self.operand_stack.pop()  # company
             company = self.operand_stack.pop()
 
-            degree_code = f'\n\t\t\t\t\t\t<li><strong>position:</strong>{position}</li>'
-            institution_code = f'\n\t\t\t\t\t\t<li><strong>company:</strong>{company}</li>'
-            from_code = f'\n\t\t\t\t\t\t<li><strong>from</strong>{start_date} <strong>to</strong> {end_date}</li>'
-            text_code = f'\n\t\t\t\t\t\t<li><strong>descriptions:</strong> {responsibility}</li><br>'
+            position_code = f'\n\t\t\t\t\t\t<div>\n\t\t\t\t\t\t\t<li>{position}</li>'
+            company_code = f'\n\t\t\t\t\t\t<p class="text">{company}</p>'
+            from_code = f'\n\t\t\t\t\t\t<p class="text">From {start_date} to {end_date}</p>'
+            text_code = (f'\n\t\t\t\t\t\t<p class="text">{responsibility}</p>'
+                         f'\n\t\t\t\t\t\t</div>')
 
-            code_temp += degree_code + institution_code + from_code
+            code_temp += position_code + company_code + from_code + text_code
 
             temp = self.operand_stack.pop()
             if temp == 'begin_scope_operator':
@@ -339,8 +382,13 @@ class ResumeDslCodeGenerator:
 
     def generate_educations(self):
         # print(self.operand_stack)
-        educations_start_code = ('\n\n\t\t\t\t<div>\n\t\t\t\t\t<h2>Educations</h2>'
-                                 '\n\t\t\t\t\t<ul>')
+        educations_start_code = ('<div class="info-item">\n\t\t\t\t\t<div class="additional-info-title">'
+                                 '\n\t\t\t\t\t<img class=\"additioan-info-titles-icon\" '
+                                 'src=\"icons/user-graduate.svg\" '
+                                 'alt=\"Projects title icon\">'
+                                 '\n\t\t\t\t\t<h2>Educations</h2>\n\t\t\t\t\t</div>'
+                                 '\n\t\t\t\t\t<ul class="educations">\n\t\t\t\t\t\t')
+
         educations_end_code = f'\n\t\t\t\t\t</ul>\n\t\t\t\t</div>\n\n\t\t\t\t{self.hr_spliter}'
 
         code_temp = educations_start_code
@@ -362,9 +410,10 @@ class ResumeDslCodeGenerator:
             self.operand_stack.pop()  # institution
             institution = self.operand_stack.pop()
 
-            degree_code = f'\n\t\t\t\t\t\t<li><strong>degree:</strong>{degree}</li>'
-            institution_code = f'\n\t\t\t\t\t\t<li><strong>institution:</strong>{institution}</li>'
-            from_code = f'\n\t\t\t\t\t\t<li><strong>from</strong>{start_date} <strong>to</strong> {end_date}</li><br>'
+            degree_code = f'\n\t\t\t\t\t\t<div>\n\t\t\t\t\t\t\t<li>{degree}</li>'
+            institution_code = f'\n\t\t\t\t\t\t<p class="text">{institution}</p>'
+            from_code = (f'\n\t\t\t\t\t\t<p class="text">From {start_date} to {end_date}</p>'
+                         f'\n\t\t\t\t\t\t</div>')
 
             code_temp += degree_code + institution_code + from_code
 
@@ -397,8 +446,14 @@ class ResumeDslCodeGenerator:
         for language in languages:
             code_items += element.replace("Language_item", language)
 
-        languages_code = ('<div>\n\t\t\t\t\t<h2>Languages</h2>'
-                          '\n\t\t\t\t\t<ul>\n\t\t\t\t\t\tHERE\n\t\t\t\t\t</ul>\n\t\t\t\t</div>')
+        languages_code = ('<div class=\"info-item\">'
+                          '\n\t\t\t\t\t<div class="additional-info-title">'
+                          '\n\t\t\t\t\t\t<img class="additioan-info-titles-icon" src="icons/language.svg" '
+                          'alt="languages title icon">'
+                          '\n\t\t\t\t\t\t<h2>Languages</h2>'
+                          '\n\t\t\t\t\t</div>'
+                          '\n\t\t\t\t\t<ul class="additional-info-list">'
+                          '\n\t\t\t\t\t\tHERE\n\t\t\t\t\t</ul>\n\t\t\t\t</div>')
 
         languages_code = languages_code.replace("HERE", code_items)
 
@@ -421,13 +476,19 @@ class ResumeDslCodeGenerator:
         soft_skills.pop()
 
         # print(soft_skills)
-        element = f'\n\t\t\t\t\t\t<li>\n\t\t\t\t\t\t\t<strong>soft_skills_item</strong>\n\t\t\t\t\t\t</li>'
+        element = (f'\n\t\t\t\t\t\t<div class="additional-info-item">'
+                   f'\n\t\t\t\t\t\t<li>\n\t\t\t\t\t\t\t<strong>soft_skills_item</strong>\n\t\t\t\t\t\t</li>'
+                   f'\n\t\t\t\t\t\t</div>')
         code_items = ""
         for soft_skill in soft_skills:
             code_items += element.replace("soft_skills_item", soft_skill)
 
-        soft_skill_code = ('<div>\n\t\t\t\t\t<h2>Soft Skills</h2>'
-                           '\n\t\t\t\t\t<ul>\n\t\t\t\t\t\tHERE\n\t\t\t\t\t</ul>\n\t\t\t\t</div>')
+        soft_skill_code = ('<div class="info-item">\n\t\t\t\t\t<div class="additional-info-title">'
+                           '\n\t\t\t\t\t<img class=\"additioan-info-titles-icon\" src=\"icons/skill-alt.svg\" '
+                           'alt=\"languages title icon\">'
+                           '\n\t\t\t\t\t<h2>Soft Skills</h2>\n\t\t\t\t\t</div>'
+                           '\n\t\t\t\t\t<ul class="additional-info-list">\n\t\t\t\t\t\t'
+                           'HERE\n\t\t\t\t\t</ul>\n\t\t\t\t</div>')
 
         soft_skill_code = soft_skill_code.replace("HERE", code_items)
 
@@ -452,15 +513,29 @@ class ResumeDslCodeGenerator:
         hard_skills.pop()
 
         # print(hard_skills)
-        element = f'\n\t\t\t\t\t\t<li>\n\t\t\t\t\t\t\t<strong>hard_skills_item</strong>\n\t\t\t\t\t\t</li>'
+
+        element = (f'\n\t\t\t\t\t\t<div class="additional-info-item">\n\t\t\t\t\t\t\t'
+                   f'<li>\n\t\t\t\t\t\t\t\t<strong>hard_skills_item</strong>\n\t\t\t\t\t\t</li>'
+                   f'\n\t\t\t\t\t\t\t<div class="rate">rating-skill\n\t\t\t\t\t\t</div>\n\t\t\t\t\t\t</div>')
+
+        fill_star = '\n\t\t\t\t\t\t\t\t<img class="rate-star" src="icons/filled star.svg" alt="">'
+        empty_star = '\n\t\t\t\t\t\t\t\t<img class="rate-star" src="icons/star (1).svg" alt="">'
+
         code_items = ""
         while len(hard_skills) > 0:
             hard_skill_name = hard_skills.pop()
             hard_skill_rate = hard_skills.pop()
-            code_items += element.replace("hard_skills_item", f"{hard_skill_name},{hard_skill_rate}")
+            temp_code = element.replace("hard_skills_item", hard_skill_name)
+            rating_code = fill_star * int(hard_skill_rate) + empty_star * (5-int(hard_skill_rate))
+            temp_code = temp_code.replace("rating-skill",rating_code)
+            code_items += temp_code
 
-        hard_skill_code = ('<div>\n\t\t\t\t\t<h2>Hard Skills</h2>'
-                           '\n\t\t\t\t\t<ul>\n\t\t\t\t\t\tHERE\n\t\t\t\t\t</ul>\n\t\t\t\t</div>')
+        hard_skill_code = ('<div class="info-item">\n\t\t\t\t\t<div class="additional-info-title">'
+                           '\n\t\t\t\t\t<img class=\"additioan-info-titles-icon\" src=\"icons/user-skill-gear.svg\" '
+                           'alt=\"languages title icon\">'
+                           '\n\t\t\t\t\t<h2>Hard Skills</h2>\n\t\t\t\t\t</div>'
+                           '\n\t\t\t\t\t<ul class="additional-info-list">\n\t\t\t\t\t\t'
+                           'HERE\n\t\t\t\t\t</ul>\n\t\t\t\t</div>')
 
         hard_skill_code = hard_skill_code.replace("HERE", code_items)
 

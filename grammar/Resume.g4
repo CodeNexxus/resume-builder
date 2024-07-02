@@ -20,7 +20,7 @@ phone: PHONE;
 city: TEXT;
 gmail: EMAIL;
 
-summary: 'summary:' value NEWLINE;
+summary: 'summary:' (value NEWLINE)*;
 
 value: TEXT;
 
