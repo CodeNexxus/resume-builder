@@ -19,6 +19,61 @@ class ResumeVisitor(ParseTreeVisitor):
         return self.visitChildren(ctx)
 
 
+    # Visit a parse tree produced by ResumeParser#optional_features.
+    def visitOptional_features(self, ctx:ResumeParser.Optional_featuresContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by ResumeParser#go_top.
+    def visitGo_top(self, ctx:ResumeParser.Go_topContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by ResumeParser#autocopy.
+    def visitAutocopy(self, ctx:ResumeParser.AutocopyContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by ResumeParser#job_title_effect.
+    def visitJob_title_effect(self, ctx:ResumeParser.Job_title_effectContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by ResumeParser#interactive_skill_bars.
+    def visitInteractive_skill_bars(self, ctx:ResumeParser.Interactive_skill_barsContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by ResumeParser#collapsable_sections.
+    def visitCollapsable_sections(self, ctx:ResumeParser.Collapsable_sectionsContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by ResumeParser#dynamic_theme.
+    def visitDynamic_theme(self, ctx:ResumeParser.Dynamic_themeContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by ResumeParser#switching.
+    def visitSwitching(self, ctx:ResumeParser.SwitchingContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by ResumeParser#tooltip.
+    def visitTooltip(self, ctx:ResumeParser.TooltipContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by ResumeParser#pdf_output.
+    def visitPdf_output(self, ctx:ResumeParser.Pdf_outputContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by ResumeParser#boolean.
+    def visitBoolean(self, ctx:ResumeParser.BooleanContext):
+        return self.visitChildren(ctx)
+
+
     # Visit a parse tree produced by ResumeParser#base_info.
     def visitBase_info(self, ctx:ResumeParser.Base_infoContext):
         return self.visitChildren(ctx)

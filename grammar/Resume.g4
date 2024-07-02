@@ -2,7 +2,30 @@ grammar Resume;
 
 start: resume EOF;
 
-resume: base_info NEWLINE* additional_info ;
+resume: optional_features NEWLINE* base_info NEWLINE* additional_info;
+
+optional_features:
+    go_top? NEWLINE*
+    autocopy? NEWLINE*
+    job_title_effect? NEWLINE*
+    interactive_skill_bars? NEWLINE*
+    collapsable_sections? NEWLINE*
+    dynamic_theme? NEWLINE*
+    switching? NEWLINE*
+    tooltip? NEWLINE*
+    pdf_output?;
+
+go_top: 'go_top:' boolean;
+autocopy: 'autocopy:' boolean;
+job_title_effect: 'job_title_effect:' boolean;
+interactive_skill_bars: 'interactive_skill_bars:' boolean;
+collapsable_sections: 'collapsable_sections:' boolean;
+dynamic_theme: 'dynamic_theme:' boolean;
+switching: 'switching:' boolean;
+tooltip: 'tooltip:' boolean;
+pdf_output: 'pdf_output:' boolean;
+
+boolean: BOOLEAN;
 
 base_info: personal_info NEWLINE* socials? NEWLINE* certificates? NEWLINE* git_scraper?;
 
@@ -81,7 +104,7 @@ INTEGER: '0' | [1-9]+ [0-9]*;
 //fragment LETTER: [a-zA-Z];
 
 //DATE: [0-9]{4} '-' [0-9]{2} '-' [0-9]{2};
-
+BOOLEAN: 'True' | 'False';
 
 //URL: 'http' 's'? '://' [a-zA-Z0-9./?=&_-]+;
 RATING: [1-5];

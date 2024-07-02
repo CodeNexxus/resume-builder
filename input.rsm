@@ -1,3 +1,13 @@
+go_top:True
+autocopy:True
+job_title_effect:True
+interactive_skill_bars:True
+collapsable_sections:True
+dynamic_theme:True
+switching:True
+tooltip:True
+pdf_output:True
+
 name: John
 surname: Doe
 job_title: Software Engineer
@@ -9,15 +19,10 @@ birth: 2000-10-12
 socials:
     linkedin: https://linkedin.com/in/johndoe
     github: https://github.com/johndoe
-    github2: https://github2.com/johndoe
 
 certificates:
 name: AWS Certified Solutions Architect
 institution: Amazon
-link: https://aws.amazon.com/certification/certified-solutions-architect-associate/
-
-name: AWS Certified2 Solutions Architect
-institution: Amazon2
 link: https://aws.amazon.com/certification/certified-solutions-architect-associate/
 
 git-username: tahamusvi
@@ -29,9 +34,6 @@ jobinja: https://jobinja.ir/companies/arian-tadbir-1/jobs/As5o/%D8%A7%D8%B3%D8%A
 hard_skills:
     Java, 4
     Python, 4
-    JavaScript, 4
-    SQL, 3
-    Git, 5
 
 soft_skills:
     Problem Solving
@@ -40,17 +42,11 @@ soft_skills:
 
 languages:
     English
-    Spanish
-
 
 projects:
 title: Project Management System
 description: Developed a web-based project management system using Java and Spring Boot
 link: https://github.com/johndoe/project-management-system
-
-title: E-commerce Platform
-description: Built an e-commerce platform using Python and Django
-link: https://github.com/johndoe/e-commerce-platform
 
 work_experience:
 company: TechCorp
@@ -62,24 +58,8 @@ responsibilities:
     Implemented new features and maintained existing codebase for various projects
     Collaborated with cross-functional teams to deliver high-quality products
 
-company: Web Solutions
-position: Software Engineer
-start_date: 2015-01-01
-end_date: 2018-05-31
-responsibilities:
-    Developed and maintained web applications using JavaScript and Node.js
-    Improved application performance and fixed bugs
-    Assisted in the design and architecture of new projects
-
 educations:
 institution: State University
 degree: Bachelor of Science in Computer Science
 start_date: 2010-09-01
 end_date: 2014-06-30
-
-
-institution: Tech Institute
-degree: Master of Science in Software Engineering
-start_date: 2015-09-01
-end_date: 2017-06-30
-

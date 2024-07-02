@@ -19,8 +19,10 @@ class CustomResumeListener(ResumeListener):
                                  'job', 'company', 'position',
                                  'start_date', 'end_date', 'responsibility_list',
                                  'responsibility', 'education', 'degree',
-                                 'git_scraper', 'jobinja_scraper'
-                                 ]
+                                 'git_scraper', 'jobinja_scraper',
+                                 'go_top', 'autocopy', 'job_title_effect',
+                                 'interactive_skill_bars', 'collapsable_sections',
+                                 'dynamic_theme', 'switching', 'tooltip', 'pdf_output']
         self.rule_names = rule_names
         self.ast = AST()
 
@@ -162,3 +164,30 @@ class CustomResumeListener(ResumeListener):
 
     def exitJobinja_scraper(self, ctx):
         make_ast_subtree(self.ast, ctx, "jobinja_scraper", keep_node=True)
+
+    def exitGo_top(self, ctx):
+        make_ast_subtree(self.ast, ctx, "go_top", keep_node=True)
+
+    def exitAutocopy(self, ctx):
+        make_ast_subtree(self.ast, ctx, "autocopy", keep_node=True)
+
+    def exitJob_title_effect(self, ctx):
+        make_ast_subtree(self.ast, ctx, "job_title_effect", keep_node=True)
+
+    def exitInteractive_skill_bars(self, ctx):
+        make_ast_subtree(self.ast, ctx, "interactive_skill_bars", keep_node=True)
+
+    def exitCollapsable_sections(self, ctx):
+        make_ast_subtree(self.ast, ctx, "collapsable_sections", keep_node=True)
+
+    def exitDynamic_theme(self, ctx):
+        make_ast_subtree(self.ast, ctx, "dynamic_theme", keep_node=True)
+
+    def exitSwitching(self, ctx):
+        make_ast_subtree(self.ast, ctx, "switching", keep_node=True)
+
+    def exitTooltip(self, ctx):
+        make_ast_subtree(self.ast, ctx, "tooltip", keep_node=True)
+
+    def exitPdf_output(self, ctx):
+        make_ast_subtree(self.ast, ctx, "pdf_output", keep_node=True)

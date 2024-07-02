@@ -26,6 +26,105 @@ class ResumeListener(ParseTreeListener):
         pass
 
 
+    # Enter a parse tree produced by ResumeParser#optional_features.
+    def enterOptional_features(self, ctx:ResumeParser.Optional_featuresContext):
+        pass
+
+    # Exit a parse tree produced by ResumeParser#optional_features.
+    def exitOptional_features(self, ctx:ResumeParser.Optional_featuresContext):
+        pass
+
+
+    # Enter a parse tree produced by ResumeParser#go_top.
+    def enterGo_top(self, ctx:ResumeParser.Go_topContext):
+        pass
+
+    # Exit a parse tree produced by ResumeParser#go_top.
+    def exitGo_top(self, ctx:ResumeParser.Go_topContext):
+        pass
+
+
+    # Enter a parse tree produced by ResumeParser#autocopy.
+    def enterAutocopy(self, ctx:ResumeParser.AutocopyContext):
+        pass
+
+    # Exit a parse tree produced by ResumeParser#autocopy.
+    def exitAutocopy(self, ctx:ResumeParser.AutocopyContext):
+        pass
+
+
+    # Enter a parse tree produced by ResumeParser#job_title_effect.
+    def enterJob_title_effect(self, ctx:ResumeParser.Job_title_effectContext):
+        pass
+
+    # Exit a parse tree produced by ResumeParser#job_title_effect.
+    def exitJob_title_effect(self, ctx:ResumeParser.Job_title_effectContext):
+        pass
+
+
+    # Enter a parse tree produced by ResumeParser#interactive_skill_bars.
+    def enterInteractive_skill_bars(self, ctx:ResumeParser.Interactive_skill_barsContext):
+        pass
+
+    # Exit a parse tree produced by ResumeParser#interactive_skill_bars.
+    def exitInteractive_skill_bars(self, ctx:ResumeParser.Interactive_skill_barsContext):
+        pass
+
+
+    # Enter a parse tree produced by ResumeParser#collapsable_sections.
+    def enterCollapsable_sections(self, ctx:ResumeParser.Collapsable_sectionsContext):
+        pass
+
+    # Exit a parse tree produced by ResumeParser#collapsable_sections.
+    def exitCollapsable_sections(self, ctx:ResumeParser.Collapsable_sectionsContext):
+        pass
+
+
+    # Enter a parse tree produced by ResumeParser#dynamic_theme.
+    def enterDynamic_theme(self, ctx:ResumeParser.Dynamic_themeContext):
+        pass
+
+    # Exit a parse tree produced by ResumeParser#dynamic_theme.
+    def exitDynamic_theme(self, ctx:ResumeParser.Dynamic_themeContext):
+        pass
+
+
+    # Enter a parse tree produced by ResumeParser#switching.
+    def enterSwitching(self, ctx:ResumeParser.SwitchingContext):
+        pass
+
+    # Exit a parse tree produced by ResumeParser#switching.
+    def exitSwitching(self, ctx:ResumeParser.SwitchingContext):
+        pass
+
+
+    # Enter a parse tree produced by ResumeParser#tooltip.
+    def enterTooltip(self, ctx:ResumeParser.TooltipContext):
+        pass
+
+    # Exit a parse tree produced by ResumeParser#tooltip.
+    def exitTooltip(self, ctx:ResumeParser.TooltipContext):
+        pass
+
+
+    # Enter a parse tree produced by ResumeParser#pdf_output.
+    def enterPdf_output(self, ctx:ResumeParser.Pdf_outputContext):
+        pass
+
+    # Exit a parse tree produced by ResumeParser#pdf_output.
+    def exitPdf_output(self, ctx:ResumeParser.Pdf_outputContext):
+        pass
+
+
+    # Enter a parse tree produced by ResumeParser#boolean.
+    def enterBoolean(self, ctx:ResumeParser.BooleanContext):
+        pass
+
+    # Exit a parse tree produced by ResumeParser#boolean.
+    def exitBoolean(self, ctx:ResumeParser.BooleanContext):
+        pass
+
+
     # Enter a parse tree produced by ResumeParser#base_info.
     def enterBase_info(self, ctx:ResumeParser.Base_infoContext):
         pass

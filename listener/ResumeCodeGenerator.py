@@ -8,12 +8,15 @@ class ResumeDslCodeGenerator:
                              'certificates', 'certificate',
                              'socials', 'social_list', 'projects',
                              'languages', 'soft_skills', 'hard_skills',
-                             'work_experience', 'educations', 'jobinja_scraper']
+                             'work_experience', 'educations', 'jobinja_scraper',
+                             'go_top', 'autocopy', 'job_title_effect',
+                             'interactive_skill_bars', 'collapsable_sections',
+                             'dynamic_theme', 'switching', 'tooltip', 'pdf_output']
         self.operand_stack = []
         self.code_stack = []
         self.hr_spliter = '<hr class="rounded" />'
         self.jobinja_added = False
-        self.js_code_stack = []
+        # self.js_code_stack = []
 
     def is_operand(self, item):
         if item in self.non_operands:
@@ -35,10 +38,10 @@ class ResumeDslCodeGenerator:
             if code_string is not None:
                 result += code_string
 
-        result_js = ''
-        for code_string in self.js_code_stack:
-            if code_string is not None:
-                result_js += code_string
+        # result_js = ''
+        # for code_string in self.js_code_stack:
+        #     if code_string is not None:
+        #         result_js += code_string
 
         base_html = (
             "<html>\n\n\t<head>"
@@ -72,7 +75,10 @@ class ResumeDslCodeGenerator:
         return base_html
 
     def generate_code_based_on_non_operand(self, item):
-        if item == "personal_info":
+        if item == "resume":
+            self.generate_resume()
+
+        elif item == "personal_info":
             self.generate_personal_info()
 
         elif item == "summary":
@@ -114,6 +120,154 @@ class ResumeDslCodeGenerator:
         elif item == "jobinja_scraper":
             self.generate_jobinja_scraper()
 
+        elif item == "go_top":
+            self.generate_go_top()
+
+        elif item == "autocopy":
+            self.generate_autocopy()
+
+        elif item == "job_title_effect":
+            self.generate_job_title_effect()
+
+        elif item == "interactive_skill_bars":
+            self.generate_interactive_skill_bars()
+
+        elif item == "collapsable_sections":
+            self.generate_collapsable_sections()
+
+        elif item == "dynamic_theme":
+            self.generate_dynamic_theme()
+
+        elif item == "switching":
+            self.generate_switching()
+
+        elif item == "tooltip":
+            self.generate_tooltip()
+
+        elif item == "pdf_output":
+            self.generate_pdf_output()
+
+    def generate_resume(self):
+        additional_info = self.code_stack.pop()
+        base_info = self.code_stack.pop()
+        go_top_enabled = False
+        autocopy_enabled = False
+        job_title_effect_enabled = False
+        interactive_skill_bars_enabled = False
+        collapsable_sections_enabled = False
+        dynamic_theme_enabled = False
+        switching_enabled = False
+        tooltip_enabled = False
+        pdf_output_enabled = False
+
+        while self.code_stack:
+            temp_code = self.code_stack.pop()
+            if temp_code.startswith('##COMPILER_PARAM:::go_top:::'):
+                go_top_enabled = temp_code.replace('##COMPILER_PARAM:::go_top:::', '') == 'True'
+            elif temp_code.startswith('##COMPILER_PARAM:::autocopy:::'):
+                autocopy_enabled = temp_code.replace('##COMPILER_PARAM:::autocopy:::', '') == 'True'
+            elif temp_code.startswith('##COMPILER_PARAM:::job_title_effect:::'):
+                job_title_effect_enabled = temp_code.replace('##COMPILER_PARAM:::job_title_effect:::', '') == 'True'
+            elif temp_code.startswith('##COMPILER_PARAM:::interactive_skill_bars:::'):
+                interactive_skill_bars_enabled = temp_code.replace('##COMPILER_PARAM:::interactive_skill_bars:::', '') == 'True'
+            elif temp_code.startswith('##COMPILER_PARAM:::collapsable_sections:::'):
+                collapsable_sections_enabled = temp_code.replace('##COMPILER_PARAM:::collapsable_sections:::', '') == 'True'
+            elif temp_code.startswith('##COMPILER_PARAM:::dynamic_theme:::'):
+                dynamic_theme_enabled = temp_code.replace('##COMPILER_PARAM:::dynamic_theme:::', '') == 'True'
+            elif temp_code.startswith('##COMPILER_PARAM:::switching:::'):
+                switching_enabled = temp_code.replace('##COMPILER_PARAM:::switching:::', '') == 'True'
+            elif temp_code.startswith('##COMPILER_PARAM:::tooltip:::'):
+                tooltip_enabled = temp_code.replace('##COMPILER_PARAM:::tooltip:::', '') == 'True'
+            elif temp_code.startswith('##COMPILER_PARAM:::pdf_output:::'):
+                pdf_output_enabled = temp_code.replace('##COMPILER_PARAM:::pdf_output:::', '') == 'True'
+            else:
+                self.code_stack.append(temp_code)
+                break
+
+        program_code = base_info + additional_info
+        if go_top_enabled:
+            program_code += self.generate_go_top_code()
+        if autocopy_enabled:
+            program_code += self.generate_autocopy_code()
+        if job_title_effect_enabled:
+            program_code += self.generate_job_title_effect_code()
+        if interactive_skill_bars_enabled:
+            program_code += self.generate_interactive_skill_bars_code()
+        if collapsable_sections_enabled:
+            program_code += self.generate_collapsable_sections_code()
+        if dynamic_theme_enabled:
+            program_code += self.generate_dynamic_theme_code()
+        if switching_enabled:
+            program_code += self.generate_switching_code()
+        if tooltip_enabled:
+            program_code += self.generate_tooltip_code()
+        if pdf_output_enabled:
+            program_code += self.generate_pdf_output_code()
+
+        self.code_stack.append(program_code)
+
+    def generate_go_top_code(self):
+        return (
+            '\n\t\t\t// go top btn'
+            '\n\t\t\tconst toTop = document.querySelector(".go-top");'
+            '\n\t\t\twindow.addEventListener("scroll", () => {'
+            '\n\t\t\tif (window.pageYOffset > 150){'
+            '\n\t\t\ttoTop.classList.add("active");'
+            '\n\t\t\t} else {toTop.classList.remove("active");}'
+            '\n\t\t\t});'
+        )
+
+    def generate_autocopy_code(self):
+        pass
+
+    def generate_job_title_effect_code(self):
+        pass
+
+    def generate_interactive_skill_bars_code(self):
+        pass
+
+    def generate_collapsable_sections_code(self):
+        pass
+
+    def generate_dynamic_theme_code(self):
+        pass
+
+    def generate_switching_code(self):
+        pass
+
+    def generate_tooltip_code(self):
+        pass
+
+    def generate_pdf_output_code(self):
+        pass
+
+    def generate_go_top(self):
+        self.code_stack.append(f"##COMPILER_PARAM:::go_top:::{self.operand_stack.pop()}")
+
+    def generate_autocopy(self):
+        self.code_stack.append(f"##COMPILER_PARAM:::autocopy:::{self.operand_stack.pop()}")
+
+    def generate_job_title_effect(self):
+        self.code_stack.append(f"##COMPILER_PARAM:::job_title_effect:::{self.operand_stack.pop()}")
+
+    def generate_interactive_skill_bars(self):
+        self.code_stack.append(f"##COMPILER_PARAM:::interactive_skill_bars:::{self.operand_stack.pop()}")
+
+    def generate_collapsable_sections(self):
+        self.code_stack.append(f"##COMPILER_PARAM:::collapsable_sections:::{self.operand_stack.pop()}")
+
+    def generate_dynamic_theme(self):
+        self.code_stack.append(f"##COMPILER_PARAM:::dynamic_theme:::{self.operand_stack.pop()}")
+
+    def generate_switching(self):
+        self.code_stack.append(f"##COMPILER_PARAM:::switching:::{self.operand_stack.pop()}")
+
+    def generate_tooltip(self):
+        self.code_stack.append(f"##COMPILER_PARAM:::tooltip:::{self.operand_stack.pop()}")
+
+    def generate_pdf_output(self):
+        self.code_stack.append(f"##COMPILER_PARAM:::pdf_output:::{self.operand_stack.pop()}")
+
     def generate_base_info(self):
         socials_code = self.code_stack.pop()
         languages = self.code_stack.pop()
@@ -129,18 +283,6 @@ class ResumeDslCodeGenerator:
 
         self.code_stack.append(code_string)
 
-    def js_go_top(self):
-
-        js_code = ('\n\t\t\t// go top btn'
-                   '\n\t\t\tconst toTop = document.querySelector(".go-top");'
-                   '\n\t\t\twindow.addEventListener("scroll", () => {'
-                   '\n\t\t\tif (window.pageYOffset > 150){'
-                   '\n\t\t\ttoTop.classList.add("active");'
-                   '\n\t\t\t} else {toTop.classList.remove("active");}'
-                   '\n\t\t\t});')
-
-        self.js_code_stack.append(js_code)
-
     def generate_additional_info(self):
         educations = self.code_stack.pop()
         experience = self.code_stack.pop()
@@ -155,8 +297,6 @@ class ResumeDslCodeGenerator:
                        f"{summary}\n{languages}\n{soft_skills}\n{hard_skills}\n{projects_code}\n"
                        f"{experience}\n{educations}"
                        f"\n\t\t\t\t</div>")
-
-        self.js_go_top()
 
         self.code_stack.append(code_string)
 
@@ -216,9 +356,6 @@ class ResumeDslCodeGenerator:
         code_string = f"{contacts_code}\n\n\t\t\t\t{self.hr_spliter}"
 
         self.code_stack.append(code_string)
-
-        # js part
-        self.personal_info_js(job_title)
 
     def personal_info_js(self,job_title):
 
