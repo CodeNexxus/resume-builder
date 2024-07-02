@@ -1,4 +1,4 @@
-# Generated from D:/Uni/semester_6/Compiler/proj/resume-builder/grammar/Resume.g4 by ANTLR 4.13.1
+# Generated from C:/Users/DarknesS/source/repos/dsl/grammar/Resume.g4 by ANTLR 4.13.1
 from antlr4 import *
 if "." in __name__:
     from .ResumeParser import ResumeParser
@@ -455,6 +455,51 @@ class ResumeListener(ParseTreeListener):
 
     # Exit a parse tree produced by ResumeParser#end_date.
     def exitEnd_date(self, ctx:ResumeParser.End_dateContext):
+        pass
+
+
+    # Enter a parse tree produced by ResumeParser#optional_features.
+    def enterOptional_features(self, ctx:ResumeParser.Optional_featuresContext):
+        pass
+
+    # Exit a parse tree produced by ResumeParser#optional_features.
+    def exitOptional_features(self, ctx:ResumeParser.Optional_featuresContext):
+        pass
+
+
+    # Enter a parse tree produced by ResumeParser#theme_switch.
+    def enterTheme_switch(self, ctx:ResumeParser.Theme_switchContext):
+        pass
+
+    # Exit a parse tree produced by ResumeParser#theme_switch.
+    def exitTheme_switch(self, ctx:ResumeParser.Theme_switchContext):
+        pass
+
+
+    # Enter a parse tree produced by ResumeParser#pdf_download.
+    def enterPdf_download(self, ctx:ResumeParser.Pdf_downloadContext):
+        pass
+
+    # Exit a parse tree produced by ResumeParser#pdf_download.
+    def exitPdf_download(self, ctx:ResumeParser.Pdf_downloadContext):
+        pass
+
+
+    # Enter a parse tree produced by ResumeParser#section_mod.
+    def enterSection_mod(self, ctx:ResumeParser.Section_modContext):
+        pass
+
+    # Exit a parse tree produced by ResumeParser#section_mod.
+    def exitSection_mod(self, ctx:ResumeParser.Section_modContext):
+        pass
+
+
+    # Enter a parse tree produced by ResumeParser#collapsable.
+    def enterCollapsable(self, ctx:ResumeParser.CollapsableContext):
+        pass
+
+    # Exit a parse tree produced by ResumeParser#collapsable.
+    def exitCollapsable(self, ctx:ResumeParser.CollapsableContext):
         pass
 
 

@@ -1,6 +1,6 @@
 grammar Resume;
 
-start: optional_features resume EOF;
+start: resume EOF;
 
 resume: base_info NEWLINE* additional_info ;
 
@@ -56,7 +56,7 @@ project_title: TEXT;
 project_description: TEXT;
 project_url: URL;
 
-work_experience: section_mod 'work_experience:' NEWLINE* job (NEWLINE NEWLINE job)*;
+work_experience: 'work_experience:' NEWLINE* job (NEWLINE NEWLINE job)*;
 job: 'company:' company NEWLINE* 'position:' position NEWLINE* 'start_date:' start_date NEWLINE* 'end_date:' end_date NEWLINE*  'responsibilities:' NEWLINE responsibility_list;
 responsibility_list: responsibility (NEWLINE responsibility)*;
 responsibility: TEXT+;
@@ -70,13 +70,6 @@ education: 'institution:' institution NEWLINE* 'degree:' degree NEWLINE* 'start_
 degree: TEXT;
 start_date: TEXT;
 end_date: TEXT;
-
-optional_features: theme_switch? pdf_download?;
-theme_switch: 'theme_switch';
-pdf_download: 'pdf_download';
-
-section_mod: collapsable?;
-collapsable: 'collapsable';
 
 URL: ' '* 'http' 's'? '://' [a-zA-Z0-9./?=&_%-]+;
 EMAIL: ' '* [a-zA-Z0-9_.+-]+ '@' [a-zA-Z0-9-]+ '.' [a-zA-Z0-9-.]+;
