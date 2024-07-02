@@ -1,4 +1,4 @@
-# Generated from D:/Uni/semester_6/Compiler/project/resume-builder/grammar/Resume.g4 by ANTLR 4.13.1
+# Generated from C:/Users/pars/Desktop/code nuxxus/grammar/Resume.g4 by ANTLR 4.13.1
 from antlr4 import *
 if "." in __name__:
     from .ResumeParser import ResumeParser
@@ -41,6 +41,15 @@ class ResumeListener(ParseTreeListener):
 
     # Exit a parse tree produced by ResumeParser#additional_info.
     def exitAdditional_info(self, ctx:ResumeParser.Additional_infoContext):
+        pass
+
+
+    # Enter a parse tree produced by ResumeParser#git_scraper.
+    def enterGit_scraper(self, ctx:ResumeParser.Git_scraperContext):
+        pass
+
+    # Exit a parse tree produced by ResumeParser#git_scraper.
+    def exitGit_scraper(self, ctx:ResumeParser.Git_scraperContext):
         pass
 
 

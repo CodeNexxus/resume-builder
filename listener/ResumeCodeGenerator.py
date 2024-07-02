@@ -1,6 +1,7 @@
+from .GitScraper import git_scraper
 class ResumeDslCodeGenerator:
     def __init__(self):
-        self.non_operands = ['resume', 'base_info', 'additional_info',
+        self.non_operands = ['resume', 'base_info', 'additional_info', 'git_scraper',
                              'personal_info', 'summary',
                              'skills',
                              'certificates', 'certificate',
@@ -49,6 +50,9 @@ class ResumeDslCodeGenerator:
         elif item == "summary":
             self.generate_summary()
 
+        elif item == "git_scraper":
+            self.generate_git_scraper()
+
         elif item == "languages":
             self.generate_languages()
 
@@ -81,6 +85,7 @@ class ResumeDslCodeGenerator:
 
     def generate_base_info(self):
         socials_code = self.code_stack.pop()
+        languages = self.code_stack.pop()
         certificate_code = self.code_stack.pop()
         personal_code = self.code_stack.pop()
 
@@ -149,6 +154,24 @@ class ResumeDslCodeGenerator:
         code_string = f"{personal_image}\n\n\t\t\t\t{personal_base_code}\n\n\t\t\t\t{self.hr_spliter}"
 
         self.code_stack.append(code_string)
+
+    def generate_git_scraper(self):
+        # print(self.operand_stack)
+        self.operand_stack.pop()
+        username = self.operand_stack.pop().replace(" ","")
+        languages = git_scraper(username)
+
+        cl_start_code = '\n\t\t\t\t\t<div>\n\t\t\t\t\t\t<h2>Top Five Languages</h2>\n\t\t\t\t\t\t<ul>'
+        cl_end_code = f'\n\t\t\t\t\t\t</ul>\n\t\t\t\t\t</div>\n\n\t\t\t\t\t{self.hr_spliter}'
+        code_temp = cl_start_code
+        for lan in languages:
+            each_cl = (f'\n\t\t\t\t\t\t<li>\n\t\t\t\t\t\t\t<strong>'
+                       f'{lan}:</strong> \"{languages[lan]}\"\n\t\t\t\t\t\t</li>')
+            code_temp += each_cl
+
+        code_temp += cl_end_code
+
+        self.code_stack.append(code_temp)
 
     def generate_socials(self):
         # print(self.operand_stack)

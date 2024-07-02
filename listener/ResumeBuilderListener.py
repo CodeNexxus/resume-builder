@@ -18,8 +18,7 @@ class CustomResumeListener(ResumeListener):
                                  'project_description', 'project_url',
                                  'work_experience', 'job', 'company', 'position',
                                  'start_date', 'end_date', 'responsibility_list',
-                                 'responsibility', 'education', 'degree',
-                                 ''
+                                 'responsibility', 'education', 'degree', 'git_scraper',
                                  ]
         self.rule_names = rule_names
         self.ast = AST()
@@ -31,6 +30,9 @@ class CustomResumeListener(ResumeListener):
 
     def exitResume(self, ctx):
         make_ast_subtree(self.ast, ctx, "resume", keep_node=True)
+
+    def exitGit_scraper(self, ctx):
+        make_ast_subtree(self.ast, ctx, "git_scraper", keep_node=True)
 
     def exitSocial(self, ctx):
         make_ast_subtree(self.ast, ctx, "social", keep_node=True)

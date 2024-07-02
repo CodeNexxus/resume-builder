@@ -2,11 +2,13 @@ grammar Resume;
 
 start: resume EOF;
 
-resume: base_info NEWLINE* additional_info;
+resume: base_info NEWLINE* additional_info ;
 
-base_info: personal_info NEWLINE* socials? NEWLINE* certificates?;
+base_info: personal_info NEWLINE* socials? NEWLINE* certificates? NEWLINE* git_scraper?;
 
 additional_info: summary? NEWLINE* skills? NEWLINE* projects? NEWLINE* work_experience? NEWLINE* educations?;
+
+git_scraper: 'git-username:' name;
 
 personal_info: 'name:' name NEWLINE 'surname:' surname NEWLINE 'job_title:' job_title NEWLINE 'phone:' phone NEWLINE 'city:' city NEWLINE 'gmail:' gmail NEWLINE 'birth:' birth;
 

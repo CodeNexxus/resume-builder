@@ -20,6 +20,7 @@ name: AWS Certified2 Solutions Architect
 institution: Amazon2
 link: https://aws.amazon.com/certification/certified-solutions-architect-associate/
 
+git-username: tahamusvi
 
 summary: Experienced
 
@@ -74,7 +75,9 @@ degree: Bachelor of Science in Computer Science
 start_date: 2010-09-01
 end_date: 2014-06-30
 
+
 institution: Tech Institute
 degree: Master of Science in Software Engineering
 start_date: 2015-09-01
 end_date: 2017-06-30
+
