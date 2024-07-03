@@ -62,15 +62,6 @@ class ResumeListener(ParseTreeListener):
         pass
 
 
-    # Enter a parse tree produced by ResumeParser#interactive_skill_bars.
-    def enterInteractive_skill_bars(self, ctx:ResumeParser.Interactive_skill_barsContext):
-        pass
-
-    # Exit a parse tree produced by ResumeParser#interactive_skill_bars.
-    def exitInteractive_skill_bars(self, ctx:ResumeParser.Interactive_skill_barsContext):
-        pass
-
-
     # Enter a parse tree produced by ResumeParser#collapsable_sections.
     def enterCollapsable_sections(self, ctx:ResumeParser.Collapsable_sectionsContext):
         pass
@@ -95,15 +86,6 @@ class ResumeListener(ParseTreeListener):
 
     # Exit a parse tree produced by ResumeParser#tooltip.
     def exitTooltip(self, ctx:ResumeParser.TooltipContext):
-        pass
-
-
-    # Enter a parse tree produced by ResumeParser#pdf_output.
-    def enterPdf_output(self, ctx:ResumeParser.Pdf_outputContext):
-        pass
-
-    # Exit a parse tree produced by ResumeParser#pdf_output.
-    def exitPdf_output(self, ctx:ResumeParser.Pdf_outputContext):
         pass
 
 

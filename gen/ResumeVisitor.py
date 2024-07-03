@@ -39,11 +39,6 @@ class ResumeVisitor(ParseTreeVisitor):
         return self.visitChildren(ctx)
 
 
-    # Visit a parse tree produced by ResumeParser#interactive_skill_bars.
-    def visitInteractive_skill_bars(self, ctx:ResumeParser.Interactive_skill_barsContext):
-        return self.visitChildren(ctx)
-
-
     # Visit a parse tree produced by ResumeParser#collapsable_sections.
     def visitCollapsable_sections(self, ctx:ResumeParser.Collapsable_sectionsContext):
         return self.visitChildren(ctx)
@@ -56,11 +51,6 @@ class ResumeVisitor(ParseTreeVisitor):
 
     # Visit a parse tree produced by ResumeParser#tooltip.
     def visitTooltip(self, ctx:ResumeParser.TooltipContext):
-        return self.visitChildren(ctx)
-
-
-    # Visit a parse tree produced by ResumeParser#pdf_output.
-    def visitPdf_output(self, ctx:ResumeParser.Pdf_outputContext):
         return self.visitChildren(ctx)
 
 

@@ -41,7 +41,7 @@ summary: 'summary:' (value NEWLINE)*;
 
 value: TEXT;
 
-skills: jobinja_scraper NEWLINE* hard_skills NEWLINE* soft_skills? NEWLINE* languages?;
+skills: jobinja_scraper? NEWLINE* hard_skills NEWLINE* soft_skills? NEWLINE* languages?;
 jobinja_scraper: 'jobinja:' link;
 
 hard_skills: 'hard_skills:' NEWLINE (hard_skill)*;
