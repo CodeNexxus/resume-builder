@@ -26,6 +26,7 @@ class GenerateCss:
 		self.generate_snackbar()
 		self.generate_go_top()
 		self.generate_change_theme()
+		self.generate_collapsable()
 
 	def generate_change_theme(self):
 		temp_code = """.change-theme-btn {
@@ -354,4 +355,16 @@ hr.rounded {
     opacity: 1;
 }
 /* end go top */"""
+		self.code_stack.append(temp_code)
+
+	def generate_collapsable(self):
+		temp_code = """
+.collapsable {
+    cursor: pointer;
+}
+
+.collapsable:hover {
+    cursor: pointer;
+}
+"""
 		self.code_stack.append(temp_code)

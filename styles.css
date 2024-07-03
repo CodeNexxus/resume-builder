@@ -273,3 +273,10 @@ hr.rounded {
     background-color: #FFE6C7;
     color: #454545;
 }
+.collapsable {
+    cursor: pointer;
+}
+
+.collapsable:hover {
+    cursor: pointer;
+}

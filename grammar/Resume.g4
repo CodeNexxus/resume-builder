@@ -11,8 +11,7 @@ optional_features:
     interactive_skill_bars? NEWLINE*
     collapsable_sections? NEWLINE*
     theme_switching? NEWLINE*
-    tooltip? NEWLINE*
-    pdf_output?;
+    tooltip?;
 
 go_top: 'go_top:' boolean;
 autocopy: 'autocopy:' boolean;
@@ -21,7 +20,6 @@ interactive_skill_bars: 'interactive_skill_bars:' boolean;
 collapsable_sections: 'collapsable_sections:' boolean;
 theme_switching: 'theme_switching:' boolean;
 tooltip: 'tooltip:' boolean;
-pdf_output: 'pdf_output:' boolean;
 
 boolean: BOOLEAN;
 

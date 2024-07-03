@@ -14,7 +14,7 @@ class ResumeDslCodeGenerator:
 							 'work_experience', 'educations', 'jobinja_scraper',
 							 'go_top', 'autocopy', 'job_title_effect',
 							 'interactive_skill_bars', 'collapsable_sections',
-							 'theme_switching', 'tooltip', 'pdf_output']
+							 'theme_switching', 'tooltip']
 		self.operand_stack = []
 		self.code_stack = []
 		self.hr_spliter = '<hr class="rounded" />'
@@ -165,9 +165,6 @@ class ResumeDslCodeGenerator:
 		elif item == "tooltip":
 			self.generate_tooltip()
 
-		elif item == "pdf_output":
-			self.generate_pdf_output()
-
 	def generate_resume(self):
 		additional_info = self.code_stack.pop()
 		base_info = self.code_stack.pop()
@@ -178,7 +175,6 @@ class ResumeDslCodeGenerator:
 		collapsable_sections_enabled = False
 		theme_switching_enabled = False
 		tooltip_enabled = False
-		pdf_output_enabled = False
 
 		while self.code_stack:
 			temp_code = self.code_stack.pop()
@@ -198,8 +194,6 @@ class ResumeDslCodeGenerator:
 				theme_switching_enabled = temp_code.replace('##COMPILER_PARAM:::theme_switching:::', '') == 'True'
 			elif temp_code.startswith('##COMPILER_PARAM:::tooltip:::'):
 				tooltip_enabled = temp_code.replace('##COMPILER_PARAM:::tooltip:::', '') == 'True'
-			elif temp_code.startswith('##COMPILER_PARAM:::pdf_output:::'):
-				pdf_output_enabled = temp_code.replace('##COMPILER_PARAM:::pdf_output:::', '') == 'True'
 			else:
 				self.code_stack.append(temp_code)
 				break
@@ -226,8 +220,6 @@ class ResumeDslCodeGenerator:
 			self.flag_theme = False
 		if tooltip_enabled:
 			program_code += self.generate_tooltip_code()
-		if pdf_output_enabled:
-			program_code += self.generate_pdf_output_code()
 
 		flag_for_js = "FLAG-FOR_JS"
 		self.code_stack.append(program_code)
@@ -283,7 +275,20 @@ class ResumeDslCodeGenerator:
 		pass
 
 	def generate_collapsable_sections_code(self):
-		pass
+		return ('\n\t\t\t// collapsable sections'
+               '\n\t\t\tconst collapsables = document.querySelectorAll(".collapsable");'
+               '\n\t\t\tcollapsables.forEach((collapsable) => {'
+               '\n\t\t\tcollapsable.addEventListener("click", () => {'
+               '\n\t\t\tcollapsable.classList.toggle("active");'
+               '\n\t\t\tconst content = collapsable.nextElementSibling;'
+               '\n\t\t\tif (content.style.display === "block") {'
+               '\n\t\t\tcontent.style.display = "none";'
+               '\n\t\t\t} else {'
+               '\n\t\t\tcontent.style.display = "block";'
+               '\n\t\t\t}'
+               '\n\t\t\t});'
+               '\n\t\t\t});'
+		)
 
 	def generate_theme_switching_code(self):
 		pass
@@ -295,9 +300,6 @@ class ResumeDslCodeGenerator:
 		)
 
 	def generate_tooltip_code(self):
-		pass
-
-	def generate_pdf_output_code(self):
 		pass
 
 	def generate_go_top(self):
@@ -320,9 +322,6 @@ class ResumeDslCodeGenerator:
 
 	def generate_tooltip(self):
 		self.code_stack.append(f"##COMPILER_PARAM:::tooltip:::{self.operand_stack.pop()}")
-
-	def generate_pdf_output(self):
-		self.code_stack.append(f"##COMPILER_PARAM:::pdf_output:::{self.operand_stack.pop()}")
 
 	def generate_base_info(self):
 		socials_code = self.code_stack.pop()
@@ -515,7 +514,7 @@ class ResumeDslCodeGenerator:
 	def generate_summary(self):
 		summary = self.operand_stack.pop()
 		summary_code = (f'\n\n\t\t\t\t<div class="info-item">\n\t\t\t\t\t'
-						f'<div class="additional-info-title">\n\t\t\t\t\t\t'
+						f'<div class="additional-info-title collapsable">\n\t\t\t\t\t\t'
 						f'<img class="additioan-info-titles-icon" src="icons/info.svg" alt="about icon">'
 						f'<h2>About Me</h2>\n\t\t\t\t\t</div>'
 						f'\n\t\t\t\t\t<p class="non-styled-list text">{summary}</p>'
@@ -525,7 +524,7 @@ class ResumeDslCodeGenerator:
 
 	def generate_projects(self):
 		# print(self.operand_stack)
-		projects_start_code = ('<div class="info-item">\n\t\t\t\t\t<div class="additional-info-title">'
+		projects_start_code = ('<div class="info-item">\n\t\t\t\t\t<div class="additional-info-title collapsable">'
 							   '\n\t\t\t\t\t<img class=\"additioan-info-titles-icon\" src=\"icons/diagram-project.svg\" '
 							   'alt=\"Projects title icon\">'
 							   '\n\t\t\t\t\t<h2>Projects</h2>\n\t\t\t\t\t</div>'
@@ -564,7 +563,7 @@ class ResumeDslCodeGenerator:
 
 	def generate_work_experience(self):
 		# print(self.operand_stack)
-		work_experience_start_code = ('<div class="info-item">\n\t\t\t\t\t<div class="additional-info-title">'
+		work_experience_start_code = ('<div class="info-item">\n\t\t\t\t\t<div class="additional-info-title collapsable">'
 									  '\n\t\t\t\t\t<img class=\"additioan-info-titles-icon\" '
 									  'src=\"icons/diagram-project.svg\" '
 									  'alt=\"experience title icon\">'
@@ -622,7 +621,7 @@ class ResumeDslCodeGenerator:
 
 	def generate_educations(self):
 		# print(self.operand_stack)
-		educations_start_code = ('<div class="info-item">\n\t\t\t\t\t<div class="additional-info-title">'
+		educations_start_code = ('<div class="info-item">\n\t\t\t\t\t<div class="additional-info-title collapsable">'
 								 '\n\t\t\t\t\t<img class=\"additioan-info-titles-icon\" '
 								 'src=\"icons/user-graduate.svg\" '
 								 'alt=\"Projects title icon\">'
@@ -687,7 +686,7 @@ class ResumeDslCodeGenerator:
 			code_items += element.replace("Language_item", language)
 
 		languages_code = ('<div class=\"info-item\">'
-						  '\n\t\t\t\t\t<div class="additional-info-title">'
+						  '\n\t\t\t\t\t<div class="additional-info-title collapsable">'
 						  '\n\t\t\t\t\t\t<img class="additioan-info-titles-icon" src="icons/language.svg" '
 						  'alt="languages title icon">'
 						  '\n\t\t\t\t\t\t<h2>Languages</h2>'
@@ -723,7 +722,7 @@ class ResumeDslCodeGenerator:
 		for soft_skill in soft_skills:
 			code_items += element.replace("soft_skills_item", soft_skill)
 
-		soft_skill_code = ('<div class="info-item">\n\t\t\t\t\t<div class="additional-info-title">'
+		soft_skill_code = ('<div class="info-item">\n\t\t\t\t\t<div class="additional-info-title collapsable">'
 						   '\n\t\t\t\t\t<img class=\"additioan-info-titles-icon\" src=\"icons/skill-alt.svg\" '
 						   'alt=\"languages title icon\">'
 						   '\n\t\t\t\t\t<h2>Soft Skills</h2>\n\t\t\t\t\t</div>'
@@ -779,7 +778,7 @@ class ResumeDslCodeGenerator:
 			temp_code = temp_code.replace("rating-skill", rating_code)
 			code_items += temp_code
 
-		hard_skill_code = ('<div class="info-item">\n\t\t\t\t\t<div class="additional-info-title">'
+		hard_skill_code = ('<div class="info-item">\n\t\t\t\t\t<div class="additional-info-title collapsable">'
 						   '\n\t\t\t\t\t<img class=\"additioan-info-titles-icon\" src=\"icons/user-skill-gear.svg\" '
 						   'alt=\"languages title icon\">'
 						   '\n\t\t\t\t\t<h2>Hard Skills</h2>\n\t\t\t\t\t</div>'

@@ -1,11 +1,10 @@
 go_top:True
 autocopy:True
-job_title_effect:False
+job_title_effect:True
 interactive_skill_bars:False
-collapsable_sections:False
+collapsable_sections:True
 theme_switching:True
 tooltip:False
-pdf_output:False
 
 name: John
 surname: Doe

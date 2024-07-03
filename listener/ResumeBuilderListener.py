@@ -22,7 +22,7 @@ class CustomResumeListener(ResumeListener):
                                  'git_scraper', 'jobinja_scraper',
                                  'go_top', 'autocopy', 'job_title_effect',
                                  'interactive_skill_bars', 'collapsable_sections',
-                                 'theme_switching', 'tooltip', 'pdf_output']
+                                 'theme_switching', 'tooltip']
         self.rule_names = rule_names
         self.ast = AST()
 
@@ -188,6 +188,3 @@ class CustomResumeListener(ResumeListener):
 
     def exitTooltip(self, ctx):
         make_ast_subtree(self.ast, ctx, "tooltip", keep_node=True)
-
-    def exitPdf_output(self, ctx):
-        make_ast_subtree(self.ast, ctx, "pdf_output", keep_node=True)
