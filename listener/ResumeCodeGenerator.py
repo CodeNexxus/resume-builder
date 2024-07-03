@@ -69,6 +69,9 @@ class ResumeDslCodeGenerator:
 			"</svg>"
 			"</a>\n\t\t"
 			"<!-- end go top -->\n\t\t"
+			"<!-- change theme -->\n\t\t"
+			"CHANGE_THEME_PLACE\n\t\t"
+			"<!-- end change theme -->\n\t\t"
 			"</section>\n\t\t<script src=\"https://cdn.jsdelivr.net/npm/typed.js@2.0.12\">"
 			"\n\t\t</script>"
 			"\n\t\t<script>scripts_Here"
@@ -77,6 +80,17 @@ class ResumeDslCodeGenerator:
 		)
 		base_html = base_html.replace("HERE", result)
 		base_html = base_html.replace("scripts_Here", self.code_stack.pop())
+
+		temp_theme = ("<div class=\"button-container\"><h3 style=\"margin: 10px 0;\">Themes:</h3>"
+					  "<button class=\"change-theme-btn\" onclick=\"changeClass('t1')\">Warm Vanilla</button>"
+					  "<button class=\"change-theme-btn\" onclick=\"changeClass('t2')\">Soft Blush</button>"
+					  "<button class=\"change-theme-btn\" onclick=\"changeClass('t3')\">Peach Cream</button></div>")
+
+		if self.flag_theme:
+			base_html = base_html.replace("CHANGE_THEME_PLACE",temp_theme)
+		else:
+			base_html = base_html.replace("CHANGE_THEME_PLACE", "")
+
 
 		css_class = GenerateCss()
 		css_file = css_class.generate_code()
@@ -207,6 +221,9 @@ class ResumeDslCodeGenerator:
 			program_code += self.generate_collapsable_sections_code()
 		if theme_switching_enabled:
 			program_code += self.generate_theme_switching_code()
+			self.flag_theme = True
+		else:
+			self.flag_theme = False
 		if tooltip_enabled:
 			program_code += self.generate_tooltip_code()
 		if pdf_output_enabled:
@@ -270,12 +287,12 @@ class ResumeDslCodeGenerator:
 
 	def generate_theme_switching_code(self):
 		pass
-		# return (
-		# 	'\n\t\t\tfunction changeClass(newClass) {'
-		# 	'\n\t\t\t\tconst div = document.getElementById("themeHolder");'
-		# 	'\n\t\t\t\tdiv.className = newClass + " background";'
-		# 	'\n\t\t\t}'
-		# )
+		return (
+			'\n\t\t\tfunction changeClass(newClass) {'
+			'\n\t\t\t\tconst div = document.getElementById("themeHolder");'
+			'\n\t\t\t\tdiv.className = newClass + " background";'
+			'\n\t\t\t}'
+		)
 
 	def generate_tooltip_code(self):
 		pass

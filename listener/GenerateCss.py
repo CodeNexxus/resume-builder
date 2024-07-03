@@ -25,6 +25,45 @@ class GenerateCss:
 		self.generate_general()
 		self.generate_snackbar()
 		self.generate_go_top()
+		self.generate_change_theme()
+
+	def generate_change_theme(self):
+		temp_code = """.change-theme-btn {
+    padding: 10px 15px;
+    margin: 5px 0;
+    border: none;
+    border-radius: 5px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    display: block;
+}
+
+.button-container {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    display: flex;
+    flex-direction: column;
+    color: white;
+}
+
+.button-container button:nth-child(1) {
+    background-color: #FFF5E0;
+    color: #141E46;
+}
+
+.button-container button:nth-child(2) {
+    background-color: #EEE2DE;
+    color: #2B2A4C;
+}
+
+.button-container button:nth-child(3) {
+    background-color: #FFE6C7;
+    color: #454545;
+}"""
+		self.code_stack.append(temp_code)
 
 	def generate_container(self):
 		temp_code = """.container {
