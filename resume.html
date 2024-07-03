@@ -193,6 +193,30 @@
 						
 						<div class="additional-info-item">
 							<li>
+								<strong>Back-end</strong>
+						</li>
+							<div class="rate">
+								<img class="rate-star" src="icons/filled star.svg" alt="">
+								<img class="rate-star" src="icons/filled star.svg" alt="">
+								<img class="rate-star" src="icons/filled star.svg" alt="">
+								<img class="rate-star" src="icons/star (1).svg" alt="">
+								<img class="rate-star" src="icons/star (1).svg" alt="">
+						</div>
+						</div>
+						<div class="additional-info-item">
+							<li>
+								<strong>Docker</strong>
+						</li>
+							<div class="rate">
+								<img class="rate-star" src="icons/filled star.svg" alt="">
+								<img class="rate-star" src="icons/filled star.svg" alt="">
+								<img class="rate-star" src="icons/filled star.svg" alt="">
+								<img class="rate-star" src="icons/star (1).svg" alt="">
+								<img class="rate-star" src="icons/star (1).svg" alt="">
+						</div>
+						</div>
+						<div class="additional-info-item">
+							<li>
 								<strong>Golang</strong>
 						</li>
 							<div class="rate">
@@ -334,10 +358,10 @@
 			collapsable.addEventListener("click", () => {
 			collapsable.classList.toggle("active");
 			const content = collapsable.nextElementSibling;
-			if (content.style.display === "block") {
+			if (content.style.display == "" || content.style.display === "flex") {
 			content.style.display = "none";
 			} else {
-			content.style.display = "block";
+			content.style.display = "flex";
 			}
 			});
 			});
