@@ -1,0 +1,73 @@
+autocopy:True
+job_title_effect:False
+collapsable_sections:True
+theme_switching:True
+tooltip:False
+
+name: Mobin
+surname: Barfi
+job_title: Software Engineer
+phone: +989021111111
+city: Tehran
+gmail: mobin@gmail.com
+birth: 2000-01-01
+
+socials:
+    linkedin: https://www.linkedin.com/in/mobin-barfi-729a26224/
+    github: https://github.com/mobinbr
+
+certificates:
+name: Advanced Algorithms and Complexity
+institution: University of California San Diego
+link: https://www.coursera.org/account/accomplishments/verify/W5ZZKH33MTXK
+
+git-username: mobinbr
+
+summary: Enthusiastic and detail-oriented Junior Software Engineer with hands-on experience in developing and maintaining software applications.
+
+jobinja: https://jobinja.ir/companies/gam-mohajer/jobs/AwFx/%D8%A7%D8%B3%D8%AA%D8%AE%D8%AF%D8%A7%D9%85-golang-back-end-%D8%AF%D8%B1-%DA%AF%D8%A7%D9%85-%D9%85%D9%87%D8%A7%D8%AC%D8%B1?_ref=16
+
+hard_skills:
+    Golang, 4
+    C, 4
+
+soft_skills:
+    Problem Solving
+    Team Collaboration
+    Time Management
+
+languages:
+    English
+    Persian
+
+projects:
+title: Resume Builder
+description: Developed a dsl for building resumes
+link: https://github.com/CodeNexxus/resume-builder
+
+title: Barista
+description: Developed a web application
+link: https://github.com/synapse-organization
+
+work_experience:
+company: Iran University of Science and Technology
+position: Algorithms Teaching Assistant
+start_date: 2024-01-01
+end_date: Present
+responsibilities:
+    Teach students
+    Release homeworks
+
+company: Iran University of Science and Technology
+position: Database Teaching Assistant
+start_date: 2024-01-01
+end_date: Present
+responsibilities:
+    Teach students
+    Release homeworks
+
+educations:
+institution: Iran University of Science and Technology
+degree: Bachelor of Science in Computer Engineering
+start_date: 2021-09-01
+end_date: 2025-06-30

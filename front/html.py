@@ -1,7 +1,10 @@
 from antlr4 import *
 from gen.ResumeLexer import ResumeLexer
 from gen.ResumeParser import ResumeParser
-from listener.resume_builder_listener import ResumeBuilderListener
+from listener.ResumeBuilderListener import ResumeListener
+from listener.ResumeCodeGenerator import ResumeDslCodeGenerator
+from ast_code.post_order_ast_traverser import PostOrderASTTraverser
+from ast_code.ast_to_networkx_graph import show_ast
 
 
 def get_html(self):
@@ -35,9 +38,19 @@ def generate_html_from_resume_file(file_path):
     parser = ResumeParser(stream)
     tree = parser.resume()
 
-    listener = ResumeBuilderListener()
+    # listener = ResumeBuilderListener()
     walker = ParseTreeWalker()
-    walker.walk(listener, tree)
+    ast_builder_listener = ResumeListener(parser.ruleNames)
+    walker.walk(t=tree, listener=ast_builder_listener)
 
-    html = get_html(listener)
-    return html
+    ast = ast_builder_listener.ast
+    show_ast(ast.root)
+    post_order_ast_traverser = PostOrderASTTraverser()
+    post_order_ast_traverser.node_attributes = ['label', 'text', 'number']
+    traversal = post_order_ast_traverser.traverse_ast(ast.root)
+
+    code_generator = ResumeDslCodeGenerator()
+    generated_resume = code_generator.generate_code(traversal)
+
+    # html = get_html(listener)
+    return generated_resume

@@ -1,4 +1,4 @@
-# Generated from D:/Uni/semester_6/Compiler/project/resume-builder/grammar/Resume.g4 by ANTLR 4.13.1
+# Generated from D:/Uni/semester_6/Compiler/proj/resume-builder/grammar/Resume.g4 by ANTLR 4.13.1
 from antlr4 import *
 if "." in __name__:
     from .ResumeParser import ResumeParser
@@ -16,6 +16,61 @@ class ResumeVisitor(ParseTreeVisitor):
 
     # Visit a parse tree produced by ResumeParser#resume.
     def visitResume(self, ctx:ResumeParser.ResumeContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by ResumeParser#optional_features.
+    def visitOptional_features(self, ctx:ResumeParser.Optional_featuresContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by ResumeParser#go_top.
+    def visitGo_top(self, ctx:ResumeParser.Go_topContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by ResumeParser#autocopy.
+    def visitAutocopy(self, ctx:ResumeParser.AutocopyContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by ResumeParser#job_title_effect.
+    def visitJob_title_effect(self, ctx:ResumeParser.Job_title_effectContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by ResumeParser#collapsable_sections.
+    def visitCollapsable_sections(self, ctx:ResumeParser.Collapsable_sectionsContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by ResumeParser#theme_switching.
+    def visitTheme_switching(self, ctx:ResumeParser.Theme_switchingContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by ResumeParser#tooltip.
+    def visitTooltip(self, ctx:ResumeParser.TooltipContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by ResumeParser#boolean.
+    def visitBoolean(self, ctx:ResumeParser.BooleanContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by ResumeParser#base_info.
+    def visitBase_info(self, ctx:ResumeParser.Base_infoContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by ResumeParser#additional_info.
+    def visitAdditional_info(self, ctx:ResumeParser.Additional_infoContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by ResumeParser#git_scraper.
+    def visitGit_scraper(self, ctx:ResumeParser.Git_scraperContext):
         return self.visitChildren(ctx)
 
 
@@ -64,8 +119,18 @@ class ResumeVisitor(ParseTreeVisitor):
         return self.visitChildren(ctx)
 
 
+    # Visit a parse tree produced by ResumeParser#value.
+    def visitValue(self, ctx:ResumeParser.ValueContext):
+        return self.visitChildren(ctx)
+
+
     # Visit a parse tree produced by ResumeParser#skills.
     def visitSkills(self, ctx:ResumeParser.SkillsContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by ResumeParser#jobinja_scraper.
+    def visitJobinja_scraper(self, ctx:ResumeParser.Jobinja_scraperContext):
         return self.visitChildren(ctx)
 
 
@@ -74,13 +139,18 @@ class ResumeVisitor(ParseTreeVisitor):
         return self.visitChildren(ctx)
 
 
-    # Visit a parse tree produced by ResumeParser#hard_skill_list.
-    def visitHard_skill_list(self, ctx:ResumeParser.Hard_skill_listContext):
+    # Visit a parse tree produced by ResumeParser#hard_skill.
+    def visitHard_skill(self, ctx:ResumeParser.Hard_skillContext):
         return self.visitChildren(ctx)
 
 
-    # Visit a parse tree produced by ResumeParser#hard_skill.
-    def visitHard_skill(self, ctx:ResumeParser.Hard_skillContext):
+    # Visit a parse tree produced by ResumeParser#hard_skill_name.
+    def visitHard_skill_name(self, ctx:ResumeParser.Hard_skill_nameContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by ResumeParser#rate.
+    def visitRate(self, ctx:ResumeParser.RateContext):
         return self.visitChildren(ctx)
 
 
@@ -89,13 +159,13 @@ class ResumeVisitor(ParseTreeVisitor):
         return self.visitChildren(ctx)
 
 
-    # Visit a parse tree produced by ResumeParser#soft_skill_list.
-    def visitSoft_skill_list(self, ctx:ResumeParser.Soft_skill_listContext):
+    # Visit a parse tree produced by ResumeParser#soft_skill.
+    def visitSoft_skill(self, ctx:ResumeParser.Soft_skillContext):
         return self.visitChildren(ctx)
 
 
-    # Visit a parse tree produced by ResumeParser#soft_skill.
-    def visitSoft_skill(self, ctx:ResumeParser.Soft_skillContext):
+    # Visit a parse tree produced by ResumeParser#soft_skill_name.
+    def visitSoft_skill_name(self, ctx:ResumeParser.Soft_skill_nameContext):
         return self.visitChildren(ctx)
 
 
@@ -104,13 +174,13 @@ class ResumeVisitor(ParseTreeVisitor):
         return self.visitChildren(ctx)
 
 
-    # Visit a parse tree produced by ResumeParser#language_list.
-    def visitLanguage_list(self, ctx:ResumeParser.Language_listContext):
+    # Visit a parse tree produced by ResumeParser#language.
+    def visitLanguage(self, ctx:ResumeParser.LanguageContext):
         return self.visitChildren(ctx)
 
 
-    # Visit a parse tree produced by ResumeParser#language.
-    def visitLanguage(self, ctx:ResumeParser.LanguageContext):
+    # Visit a parse tree produced by ResumeParser#language_name.
+    def visitLanguage_name(self, ctx:ResumeParser.Language_nameContext):
         return self.visitChildren(ctx)
 
 
@@ -124,18 +194,28 @@ class ResumeVisitor(ParseTreeVisitor):
         return self.visitChildren(ctx)
 
 
+    # Visit a parse tree produced by ResumeParser#link.
+    def visitLink(self, ctx:ResumeParser.LinkContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by ResumeParser#institution.
+    def visitInstitution(self, ctx:ResumeParser.InstitutionContext):
+        return self.visitChildren(ctx)
+
+
     # Visit a parse tree produced by ResumeParser#socials.
     def visitSocials(self, ctx:ResumeParser.SocialsContext):
         return self.visitChildren(ctx)
 
 
-    # Visit a parse tree produced by ResumeParser#social_list.
-    def visitSocial_list(self, ctx:ResumeParser.Social_listContext):
+    # Visit a parse tree produced by ResumeParser#social.
+    def visitSocial(self, ctx:ResumeParser.SocialContext):
         return self.visitChildren(ctx)
 
 
-    # Visit a parse tree produced by ResumeParser#social.
-    def visitSocial(self, ctx:ResumeParser.SocialContext):
+    # Visit a parse tree produced by ResumeParser#social_name.
+    def visitSocial_name(self, ctx:ResumeParser.Social_nameContext):
         return self.visitChildren(ctx)
 
 
@@ -146,6 +226,21 @@ class ResumeVisitor(ParseTreeVisitor):
 
     # Visit a parse tree produced by ResumeParser#project.
     def visitProject(self, ctx:ResumeParser.ProjectContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by ResumeParser#project_title.
+    def visitProject_title(self, ctx:ResumeParser.Project_titleContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by ResumeParser#project_description.
+    def visitProject_description(self, ctx:ResumeParser.Project_descriptionContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by ResumeParser#project_url.
+    def visitProject_url(self, ctx:ResumeParser.Project_urlContext):
         return self.visitChildren(ctx)
 
 
@@ -169,6 +264,16 @@ class ResumeVisitor(ParseTreeVisitor):
         return self.visitChildren(ctx)
 
 
+    # Visit a parse tree produced by ResumeParser#company.
+    def visitCompany(self, ctx:ResumeParser.CompanyContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by ResumeParser#position.
+    def visitPosition(self, ctx:ResumeParser.PositionContext):
+        return self.visitChildren(ctx)
+
+
     # Visit a parse tree produced by ResumeParser#educations.
     def visitEducations(self, ctx:ResumeParser.EducationsContext):
         return self.visitChildren(ctx)
@@ -176,6 +281,21 @@ class ResumeVisitor(ParseTreeVisitor):
 
     # Visit a parse tree produced by ResumeParser#education.
     def visitEducation(self, ctx:ResumeParser.EducationContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by ResumeParser#degree.
+    def visitDegree(self, ctx:ResumeParser.DegreeContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by ResumeParser#start_date.
+    def visitStart_date(self, ctx:ResumeParser.Start_dateContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by ResumeParser#end_date.
+    def visitEnd_date(self, ctx:ResumeParser.End_dateContext):
         return self.visitChildren(ctx)
 
 

@@ -1,4 +1,73 @@
-.container {
+class GenerateCss:
+	def __init__(self):
+		self.code_stack = []
+
+	def generate_code(self):
+		self.code_start()
+
+		result = ""
+		for code in self.code_stack:
+			result += code
+
+		return result
+
+	def code_start(self):
+		self.generate_container()
+
+		self.generate_header()
+		self.generate_base_info()
+		self.generate_body()
+
+		self.generate_h2()
+		self.generate_profile()
+		self.generate_background()
+
+		self.generate_general()
+		self.generate_snackbar()
+		self.generate_go_top()
+		self.generate_change_theme()
+		self.generate_collapsable()
+
+	def generate_change_theme(self):
+		temp_code = """.change-theme-btn {
+    padding: 10px 15px;
+    margin: 5px 0;
+    border: none;
+    border-radius: 5px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    display: block;
+}
+
+.button-container {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    display: flex;
+    flex-direction: column;
+    color: white;
+}
+
+.button-container button:nth-child(1) {
+    background-color: #FFF5E0;
+    color: #141E46;
+}
+
+.button-container button:nth-child(2) {
+    background-color: #EEE2DE;
+    color: #2B2A4C;
+}
+
+.button-container button:nth-child(3) {
+    background-color: #FFE6C7;
+    color: #454545;
+}"""
+		self.code_stack.append(temp_code)
+
+	def generate_container(self):
+		temp_code = """.container {
     background-color: transparent;
     width: 75%;
     min-width: 50rem;
@@ -8,7 +77,11 @@
     a:hover {
         color: skyblue;
     }
-}
+}"""
+		self.code_stack.append(temp_code)
+
+	def generate_header(self):
+		temp_code = """
 .header-name {
     width: 100%;
     height: 10rem;
@@ -28,11 +101,35 @@
     border-radius: 7px;
     /* overflow: hidden; */
 }
-.base-info {
+"""
+		self.code_stack.append(temp_code)
+
+	def generate_base_info(self):
+		temp_code = """.base-info {
     width: 30%;
     padding: 1rem;
     box-sizing: border-box;
-}body {/* font-family: Verdana, Geneva, Tahoma, sans-serif; */font-family: Arial, Helvetica, sans-serif;background: linear-gradient(to bottom, #767d9c, #000);}h2{margin: unset;}.profile-img {
+}"""
+		self.code_stack.append(temp_code)
+
+	def generate_body(self):
+		temp_code = ('body {'
+					 '/* font-family: Verdana, Geneva, Tahoma, sans-serif; */'
+					 'font-family: Arial, Helvetica, sans-serif;'
+					 'background: linear-gradient(to bottom, #767d9c, #000);'
+					 '}')
+
+		self.code_stack.append(temp_code)
+
+	def generate_h2(self):
+		temp_code = ('h2{'
+					 'margin: unset;'
+					 '}')
+
+		self.code_stack.append(temp_code)
+
+	def generate_profile(self):
+		temp_code = """.profile-img {
 	    display: flex;
 	    justify-content: center;
 	    align-items: center;
@@ -47,12 +144,22 @@
 	        overflow: hidden;
 	    }
 	}
-	.background {
+	"""
+
+		self.code_stack.append(temp_code)
+
+	def generate_background(self):
+		temp_code = """.background {
     			display: flex;
     			justify-content: center;
     			margin: 0;
     			background-attachment: fixed;
-				}.t1 .base-info {
+				}"""
+
+		self.code_stack.append(temp_code)
+
+	def generate_general(self):
+		temp_code = """.t1 .base-info {
     background-color: #141E46;
     color: white;
 }
@@ -165,7 +272,11 @@ hr.rounded {
 
 .base-info-icon{
     width: 30px;
-}
+}"""
+		self.code_stack.append(temp_code)
+
+	def generate_snackbar(self):
+		temp_code = """
 /* snack bar */
 
 #email-snackbar , #phone-snackbar {
@@ -212,7 +323,12 @@ hr.rounded {
   }
 
 /* snack bar */
-		
+		"""
+
+		self.code_stack.append(temp_code)
+
+	def generate_go_top(self):
+		temp_code = """
 /* go top btn */
 .go-top{
     background-color: #767d9c;
@@ -238,41 +354,11 @@ hr.rounded {
     pointer-events: auto;
     opacity: 1;
 }
-/* end go top */.change-theme-btn {
-    padding: 10px 15px;
-    margin: 5px 0;
-    border: none;
-    border-radius: 5px;
-    font-size: 14px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    display: block;
-}
+/* end go top */"""
+		self.code_stack.append(temp_code)
 
-.button-container {
-    position: fixed;
-    top: 20px;
-    left: 20px;
-    display: flex;
-    flex-direction: column;
-    color: white;
-}
-
-.button-container button:nth-child(1) {
-    background-color: #FFF5E0;
-    color: #141E46;
-}
-
-.button-container button:nth-child(2) {
-    background-color: #EEE2DE;
-    color: #2B2A4C;
-}
-
-.button-container button:nth-child(3) {
-    background-color: #FFE6C7;
-    color: #454545;
-}
+	def generate_collapsable(self):
+		temp_code = """
 .collapsable {
     cursor: pointer;
 }
@@ -280,3 +366,5 @@ hr.rounded {
 .collapsable:hover {
     cursor: pointer;
 }
+"""
+		self.code_stack.append(temp_code)
