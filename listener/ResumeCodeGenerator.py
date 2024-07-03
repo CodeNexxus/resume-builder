@@ -13,8 +13,7 @@ class ResumeDslCodeGenerator:
 							 'languages', 'soft_skills', 'hard_skills',
 							 'work_experience', 'educations', 'jobinja_scraper',
 							 'go_top', 'autocopy', 'job_title_effect',
-							 'interactive_skill_bars', 'collapsable_sections',
-							 'theme_switching', 'tooltip']
+							 'collapsable_sections', 'theme_switching', 'tooltip']
 		self.operand_stack = []
 		self.code_stack = []
 		self.hr_spliter = '<hr class="rounded" />'
@@ -153,9 +152,6 @@ class ResumeDslCodeGenerator:
 		elif item == "job_title_effect":
 			self.generate_job_title_effect()
 
-		elif item == "interactive_skill_bars":
-			self.generate_interactive_skill_bars()
-
 		elif item == "collapsable_sections":
 			self.generate_collapsable_sections()
 
@@ -171,7 +167,6 @@ class ResumeDslCodeGenerator:
 		go_top_enabled = False
 		autocopy_enabled = False
 		job_title_effect_enabled = False
-		interactive_skill_bars_enabled = False
 		collapsable_sections_enabled = False
 		theme_switching_enabled = False
 		tooltip_enabled = False
@@ -184,9 +179,6 @@ class ResumeDslCodeGenerator:
 				autocopy_enabled = temp_code.replace('##COMPILER_PARAM:::autocopy:::', '') == 'True'
 			elif temp_code.startswith('##COMPILER_PARAM:::job_title_effect:::'):
 				job_title_effect_enabled = temp_code.replace('##COMPILER_PARAM:::job_title_effect:::', '') == 'True'
-			elif temp_code.startswith('##COMPILER_PARAM:::interactive_skill_bars:::'):
-				interactive_skill_bars_enabled = temp_code.replace('##COMPILER_PARAM:::interactive_skill_bars:::',
-																   '') == 'True'
 			elif temp_code.startswith('##COMPILER_PARAM:::collapsable_sections:::'):
 				collapsable_sections_enabled = temp_code.replace('##COMPILER_PARAM:::collapsable_sections:::',
 																 '') == 'True'
@@ -209,8 +201,6 @@ class ResumeDslCodeGenerator:
 			html_code = html_code.replace("JS_FLAG_FOR_JOB_TITLE", "")
 		else:
 			html_code = html_code.replace("JS_FLAG_FOR_JOB_TITLE", self.job_title_replace)
-		if interactive_skill_bars_enabled:
-			program_code += self.generate_interactive_skill_bars_code()
 		if collapsable_sections_enabled:
 			program_code += self.generate_collapsable_sections_code()
 		if theme_switching_enabled:
@@ -271,9 +261,6 @@ class ResumeDslCodeGenerator:
 		js_code += "});\n\t\t\t"
 		return js_code
 
-	def generate_interactive_skill_bars_code(self):
-		pass
-
 	def generate_collapsable_sections_code(self):
 		return ('\n\t\t\t// collapsable sections'
                '\n\t\t\tconst collapsables = document.querySelectorAll(".collapsable");'
@@ -310,9 +297,6 @@ class ResumeDslCodeGenerator:
 
 	def generate_job_title_effect(self):
 		self.code_stack.append(f"##COMPILER_PARAM:::job_title_effect:::{self.operand_stack.pop()}")
-
-	def generate_interactive_skill_bars(self):
-		self.code_stack.append(f"##COMPILER_PARAM:::interactive_skill_bars:::{self.operand_stack.pop()}")
 
 	def generate_collapsable_sections(self):
 		self.code_stack.append(f"##COMPILER_PARAM:::collapsable_sections:::{self.operand_stack.pop()}")

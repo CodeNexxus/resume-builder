@@ -8,7 +8,6 @@ optional_features:
     go_top? NEWLINE*
     autocopy? NEWLINE*
     job_title_effect? NEWLINE*
-    interactive_skill_bars? NEWLINE*
     collapsable_sections? NEWLINE*
     theme_switching? NEWLINE*
     tooltip?;
@@ -16,7 +15,6 @@ optional_features:
 go_top: 'go_top:' boolean;
 autocopy: 'autocopy:' boolean;
 job_title_effect: 'job_title_effect:' boolean;
-interactive_skill_bars: 'interactive_skill_bars:' boolean;
 collapsable_sections: 'collapsable_sections:' boolean;
 theme_switching: 'theme_switching:' boolean;
 tooltip: 'tooltip:' boolean;
