@@ -1,6 +1,5 @@
-go_top:True
 autocopy:True
-job_title_effect:True
+job_title_effect:False
 collapsable_sections:True
 theme_switching:True
 tooltip:False
@@ -30,7 +29,7 @@ jobinja: https://jobinja.ir/companies/gam-mohajer/jobs/AwFx/%D8%A7%D8%B3%D8%AA%D
 
 hard_skills:
     Golang, 4
-    Python, 4
+    C, 4
 
 soft_skills:
     Problem Solving

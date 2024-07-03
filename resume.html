@@ -18,7 +18,7 @@
 				</div>
 
 				<div>
-					<h2 id="typed-text" class="base-item" style="height: 30px"></h2>
+					<h2 id="typed-text" class="base-item" style="height: 30px"> Software Engineer</h2>
 					<ul>
 						<li>
 							<strong>name:</strong>  Mobin
@@ -205,6 +205,18 @@
 						</div>
 						<div class="additional-info-item">
 							<li>
+								<strong>Python</strong>
+						</li>
+							<div class="rate">
+								<img class="rate-star" src="icons/filled star.svg" alt="">
+								<img class="rate-star" src="icons/filled star.svg" alt="">
+								<img class="rate-star" src="icons/filled star.svg" alt="">
+								<img class="rate-star" src="icons/star (1).svg" alt="">
+								<img class="rate-star" src="icons/star (1).svg" alt="">
+						</div>
+						</div>
+						<div class="additional-info-item">
+							<li>
 								<strong>Docker</strong>
 						</li>
 							<div class="rate">
@@ -229,7 +241,7 @@
 						</div>
 						<div class="additional-info-item">
 							<li>
-								<strong>Python</strong>
+								<strong>C</strong>
 						</li>
 							<div class="rate">
 								<img class="rate-star" src="icons/filled star.svg" alt="">
@@ -316,13 +328,6 @@
 		<script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12">
 		</script>
 		<script>
-			// go top btn
-			const toTop = document.querySelector(".go-top");
-			window.addEventListener("scroll", () => {
-			if (window.pageYOffset > 150){
-			toTop.classList.add("active");
-			} else {toTop.classList.remove("active");}
-			});
 			const email = document.getElementById("email")
 			email.addEventListener('click', (event) => {
 			event.preventDefault();
@@ -343,13 +348,6 @@
 			setTimeout(function () {
 			x.className = x.className.replace("show", "");
 			}, 3000);
-			});
-			
-			new Typed('#typed-text', {
-			strings: [' Software Engineer'],
-			typeSpeed: 40,
-			loop: true,
-			showCursor: false 
 			});
 			
 			// collapsable sections
