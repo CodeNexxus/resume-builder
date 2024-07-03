@@ -5,31 +5,31 @@ collapsable_sections:True
 theme_switching:True
 tooltip:False
 
-name: John
-surname: Doe
+name: Mobin
+surname: Barfi
 job_title: Software Engineer
-phone: +989303016386
-city: New York
-gmail: johndoe@gmail.com
-birth: 2000-10-12
+phone: +989021111111
+city: Tehran
+gmail: mobin@gmail.com
+birth: 2000-01-01
 
 socials:
-    linkedin: https://linkedin.com/in/johndoe
-    github: https://github.com/johndoe
+    linkedin: https://www.linkedin.com/in/mobin-barfi-729a26224/
+    github: https://github.com/mobinbr
 
 certificates:
-name: AWS Certified Solutions Architect
-institution: Amazon
-link: https://aws.amazon.com/certification/certified-solutions-architect-associate/
+name: Advanced Algorithms and Complexity
+institution: University of California San Diego
+link: https://www.coursera.org/account/accomplishments/verify/W5ZZKH33MTXK
 
-git-username: tahamusvi
+git-username: mobinbr
 
-summary: ss
+summary: Enthusiastic and detail-oriented Junior Software Engineer with hands-on experience in developing and maintaining software applications.
 
-jobinja: https://jobinja.ir/companies/arian-tadbir-1/jobs/As5o/%D8%A7%D8%B3%D8%AA%D8%AE%D8%AF%D8%A7%D9%85-back-end-developer-%D8%AF%D8%B1-%D9%85%D8%AF%DB%8C%D8%B1%DB%8C%D8%AA-%D8%B3%D8%B1%D9%85%D8%A7%DB%8C%D9%87-%D8%A2%D8%B1%DB%8C%D9%86-%D8%AA%D8%AF%D8%A8%DB%8C%D8%B1?_ref=28
+jobinja: https://jobinja.ir/companies/gam-mohajer/jobs/AwFx/%D8%A7%D8%B3%D8%AA%D8%AE%D8%AF%D8%A7%D9%85-golang-back-end-%D8%AF%D8%B1-%DA%AF%D8%A7%D9%85-%D9%85%D9%87%D8%A7%D8%AC%D8%B1?_ref=16
 
 hard_skills:
-    Java, 4
+    Golang, 4
     Python, 4
 
 soft_skills:
@@ -39,24 +39,36 @@ soft_skills:
 
 languages:
     English
+    Persian
 
 projects:
-title: Project Management System
-description: Developed a web-based project management system using Java and Spring Boot
-link: https://github.com/johndoe/project-management-system
+title: Resume Builder
+description: Developed a dsl for building resumes
+link: https://github.com/CodeNexxus/resume-builder
+
+title: Barista
+description: Developed a web application
+link: https://github.com/synapse-organization
 
 work_experience:
-company: TechCorp
-position: Senior Software Engineer
-start_date: 2018-06-01
+company: Iran University of Science and Technology
+position: Algorithms Teaching Assistant
+start_date: 2024-01-01
 end_date: Present
 responsibilities:
-    Lead a team of software engineers to develop scalable software solutions
-    Implemented new features and maintained existing codebase for various projects
-    Collaborated with cross-functional teams to deliver high-quality products
+    Teach students
+    Release homeworks
+
+company: Iran University of Science and Technology
+position: Database Teaching Assistant
+start_date: 2024-01-01
+end_date: Present
+responsibilities:
+    Teach students
+    Release homeworks
 
 educations:
-institution: State University
-degree: Bachelor of Science in Computer Science
-start_date: 2010-09-01
-end_date: 2014-06-30
+institution: Iran University of Science and Technology
+degree: Bachelor of Science in Computer Engineering
+start_date: 2021-09-01
+end_date: 2025-06-30

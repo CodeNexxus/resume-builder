@@ -439,7 +439,7 @@ class ResumeDslCodeGenerator:
 			self.operand_stack.pop()  # social
 
 			self.operand_stack.pop()  # link
-			link = self.operand_stack.pop()
+			link = self.operand_stack.pop().strip().strip('"')
 
 			# self.operand_stack.pop()  # name
 			name = self.operand_stack.pop()
@@ -524,7 +524,7 @@ class ResumeDslCodeGenerator:
 			self.operand_stack.pop()  # project
 
 			self.operand_stack.pop()  # url
-			link = self.operand_stack.pop()
+			link = self.operand_stack.pop().strip().strip('"')
 
 			self.operand_stack.pop()  # description
 			description = self.operand_stack.pop()
